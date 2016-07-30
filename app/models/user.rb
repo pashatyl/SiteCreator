@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+<<<<<<< HEAD
   TEMP_EMAIL_PREFIX = 'change@me'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -25,4 +26,28 @@ def self.find_for_oauth(auth)
   end
 end
   
+=======
+  require "/home/pasha/Projects/SiteCreator1/sitebuilder/app/services/permissions.rb"
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+
+  def guest?
+    permission == Permissions::GUEST
+  end
+
+  def user?
+    permission == Permissions::USER
+  end
+
+  def admin?
+    permission == Permissions::ADMIN
+  end
+
+  def superAdmin?
+    permission == Permissions::SUPERADMIN
+  end
+
+>>>>>>> 3af1aad48742fd96a026917f2e109b4864193dda
 end
