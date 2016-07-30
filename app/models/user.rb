@@ -27,7 +27,6 @@ def self.find_for_oauth(auth)
   end
 end
 
-require "/home/pasha/Projects/SiteCreator1/sitebuilder/app/services/permissions.rb"
 
   def guest?
     permission == Permissions::GUEST
