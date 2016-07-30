@@ -32,6 +32,8 @@ gem 'http_accept_language'
 
 gem 'cancancan', '~> 1.10'
 
+gem 'ruby-enum'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
