@@ -5,19 +5,19 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  def Guest?
+  def guest?
     permission == Permissions::GUEST
   end
 
-  def User?
+  def user?
     permission == Permissions::USER
   end
 
-  def Admin?
+  def admin?
     permission == Permissions::ADMIN
   end
 
-  def SuperAdmin?
+  def superAdmin?
     permission == Permissions::SUPERADMIN
   end
 

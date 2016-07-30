@@ -1,2 +1,10 @@
 <h1>Persons#profile</h1>
 <p>Find me in app/views/persons/profile.html.erb</p>
+
+
+<%= current_user.superAdmin? %>
+<%= can? :administrate, current_user %>
+
+<% if can? :administrate, current_user %>
+  <%= 'superadmin permission'%>
+<% end %>
