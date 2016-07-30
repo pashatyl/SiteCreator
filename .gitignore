@@ -13,5 +13,7 @@
 /tmp
 
 
-/config/database.yml
-/database.yml
+config/database.yml
+database.yml
+
+.idea/
