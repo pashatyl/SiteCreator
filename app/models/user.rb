@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :sites
+
   TEMP_EMAIL_PREFIX = 'change@me'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

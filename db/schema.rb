@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730092326) do
+ActiveRecord::Schema.define(version: 20160730140832) do
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string   "tag",        limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.integer  "template",   limit: 4, null: false
+    t.integer  "site_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "pages", ["site_id"], name: "index_pages_on_site_id", using: :btree
+
+  create_table "sites", force: :cascade do |t|
+    t.string   "name",        limit: 255,   null: false
+    t.text     "description", limit: 65535
+    t.integer  "theme",       limit: 4,     null: false
+    t.integer  "menu",        limit: 4,     null: false
+    t.string   "logo",        limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
