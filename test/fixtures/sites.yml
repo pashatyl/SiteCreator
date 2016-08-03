@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  theme: MyString
+  menu_type: MyString
+  title: MyString
+
+two:
+  theme: MyString
+  menu_type: MyString
+  title: MyString

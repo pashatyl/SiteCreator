@@ -1,0 +1,20 @@
+<!-- <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @site.theme %>
+</p>
+
+<p>
+  <strong>Menu type:</strong>
+  <%= @site.menu_type %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @site.title %>
+</p>
+ -->
+ <%= render "menu/#{@site.menu_type}"
+<%= link_to 'Edit', edit_site_path(@site) %> |
+<%= link_to 'Back', sites_path %>
