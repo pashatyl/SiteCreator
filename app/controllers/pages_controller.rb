@@ -11,6 +11,7 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
   	@site = Site.find(params[:site_id])
+    @body = HtmlProcessor.new(@page).process
   end
 
 
