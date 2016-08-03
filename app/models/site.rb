@@ -26,4 +26,8 @@ class Site < ActiveRecord::Base
 	def create_first_page
 		pages.create(title: "Home", template_id: default_template_id)
 	end
+
+	def first_page
+		pages.first
+	end
 end

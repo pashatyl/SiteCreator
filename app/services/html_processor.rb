@@ -12,7 +12,7 @@ class HtmlProcessor
     puts grouped_elements
     grouped_elements.transform_values! { |value| value.sort_by(&:order)}
     grouped_elements.transform_values! do |value|
-      value.inject("") { |res, el| res + el.to_html }
+      value.inject("") { |res, el| res + wrap(el) }
 
     end
     grouped_elements.transform_keys! { |key| key.to_sym }
@@ -22,8 +22,10 @@ class HtmlProcessor
   end
 
 private
+  def wrap(element)
+    '<div class="dragbox" data-type="' + element.class.name.underscore + '" data-id="'+ element.id.to_s + '">' + element.to_html + '</div>'
+  end 
 
 
-
-  attr_reader :checkout_service
+ 
 end

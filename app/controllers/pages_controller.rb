@@ -23,6 +23,8 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
+    @site = Site.find(params[:site_id])
+    @body = HtmlProcessor.new(@page).process
   end
 
   # POST /pages
@@ -44,10 +46,14 @@ class PagesController < ApplicationController
   # PATCH/PUT /pages/1
   # PATCH/PUT /pages/1.json
   def update
-    respond_to do |format|
-      if @page.update(page_params)
+    puts JSON.parse params[:page_elements]
+    update_params = parse_params(JSON.parse params[:page_elements])
+
+    respond_to do |format|      
+      if @page.update(update_params)
+        Rails.logger.error("Hello")
         format.html { redirect_to @page, notice: 'page was successfully updated.' }
-        format.json { render :show, status: :ok, location: @page }
+        format.json { render json: @page.to_json, status: 200}
       else
         format.html { render :edit }
         format.json { render json: @page.errors, status: :unprocessable_entity }
@@ -74,5 +80,17 @@ class PagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
       params.require(:page).permit(:title, :template_id)
+    end
+
+    def parse_params(page_elements)
+      elements = page_elements["items"].group_by{|el| el["type"]}
+      .transform_values do |value| 
+        value.each do |el|
+          el.delete("type")
+        end
+      end
+      .transform_keys!{ |key| key.pluralize + "_attributes" }
+
+      elements
     end
 end
