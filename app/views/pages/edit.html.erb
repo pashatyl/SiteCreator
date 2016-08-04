@@ -1,3 +1,5 @@
+<script src="http://www.appelsiini.net/download/jquery.jeditable.mini.js"></script>
+
 <style type="text/css">
 .column{
 	width:49%;
@@ -64,7 +66,18 @@
 
 <a href="#" class="btn btn-inverse" id="save-btn">Save</a>
 
+
 <script type="text/javascript" >
+
+$(document).ready(function() {
+     $('.edit_area').editable(function(value, settings) {
+     console.log(this);
+     console.log(value);
+     console.log(settings);
+     return(value);
+  }); 
+ });
+
 $(document).ready(function() {
 	$('.column').sortable({  
     connectWith: '.column',    
@@ -81,7 +94,7 @@ $(document).ready(function() {
     $('.column').each(function(){  
         var columnId=$(this).attr('id');  
         $('.dragbox', this).each(function(i){
-        	console.log($(this).data('id'));  
+        	console.log($(this).data('id'));   
             var item={  
                 id: $(this).data('id'),   
                 order : i,  

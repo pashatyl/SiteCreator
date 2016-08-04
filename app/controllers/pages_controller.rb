@@ -52,7 +52,7 @@ class PagesController < ApplicationController
     respond_to do |format|      
       if @page.update(update_params)
         Rails.logger.error("Hello")
-        format.html { redirect_to @page, notice: 'page was successfully updated.' }
+        format.html {  redirect_to @page, notice: 'page was successfully updated.' }
         format.json { render json: @page.to_json, status: 200}
       else
         format.html { render :edit }
