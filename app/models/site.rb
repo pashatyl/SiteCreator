@@ -1,5 +1,5 @@
 class Site < ActiveRecord::Base
-	has_many :pages
+	has_many :pages, dependent: :destroy
 	belongs_to :default_template, class_name: "Template", inverse_of: :sites
 	after_save :create_first_page
 

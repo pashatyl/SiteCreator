@@ -9,6 +9,7 @@ gem 'jquery-ui-rails'
 
 gem "redcarpet"
 gem 'jeditable-rails'
+gem 'dragonfly', '~> 1.0.12'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7'
 # Use mysql as the database for Active Record

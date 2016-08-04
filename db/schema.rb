@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802192140) do
+ActiveRecord::Schema.define(version: 20160804150527) do
 
   create_table "markdown_texts", force: :cascade do |t|
     t.text     "markdown",   limit: 65535
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20160802192140) do
   add_index "pages", ["site_id"], name: "index_pages_on_site_id", using: :btree
   add_index "pages", ["template_id"], name: "index_pages_on_template_id", using: :btree
 
+  create_table "pages_pictures", id: false, force: :cascade do |t|
+    t.integer "page_id",    limit: 4
+    t.integer "picture_id", limit: 4
+  end
+
+  add_index "pages_pictures", ["page_id"], name: "index_pages_pictures_on_page_id", using: :btree
+  add_index "pages_pictures", ["picture_id"], name: "index_pages_pictures_on_picture_id", using: :btree
+
   create_table "pages_templates", id: false, force: :cascade do |t|
     t.integer "page_id",     limit: 4
     t.integer "template_id", limit: 4
@@ -42,6 +50,15 @@ ActiveRecord::Schema.define(version: 20160802192140) do
 
   add_index "pages_templates", ["page_id"], name: "index_pages_templates_on_page_id", using: :btree
   add_index "pages_templates", ["template_id"], name: "index_pages_templates_on_template_id", using: :btree
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "div_id",     limit: 255
+    t.integer  "order",      limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "image_uid",  limit: 255
+    t.string   "image_name", limit: 255
+  end
 
   create_table "sites", force: :cascade do |t|
     t.string   "theme",               limit: 255

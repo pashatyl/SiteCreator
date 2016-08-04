@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pictures
   resources :sites do
     resources :pages, on: :member
   end
