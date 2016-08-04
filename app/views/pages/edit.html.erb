@@ -64,69 +64,63 @@
 </div>
 
 
-<a href="#" class="btn btn-inverse" id="save-btn">Save</a>
-
-
 <script type="text/javascript" >
-
-$(document).ready(function() {
-     $('.edit_area').editable(function(value, settings) {
-     console.log(this);
-     console.log(value);
-     console.log(settings);
-     return(value);
-  }); 
+	$(document).ready(function() {
+    $('.edit_area').editable(function(value, settings) {
+    	console.log(this);
+    	console.log(value);
+    	return(value);
+  	}, {
+  		data:  function(value, settings) {
+      	return $(this).data('content');
+   		},
+  		indicator : 'Saving...',
+    	tooltip   : 'Click to edit...',
+  	}); 
  });
 
-$(document).ready(function() {
-	$('.column').sortable({  
-    connectWith: '.column',    
-    cursor: 'move',  
-    placeholder: 'placeholder',  
-    forcePlaceholderSize: true,  
-    opacity: 0.4,  
-})  
-.disableSelection(); 
+	$(document).ready(function() {
+		$('.column').sortable({  
+	    connectWith: '.column',    
+	    cursor: 'move',  
+	    placeholder: 'placeholder',  
+	    forcePlaceholderSize: true,  
+	    opacity: 0.4,  
+	    stop: function(event, ui){  
+           console.log("stop")
+           updateWidgetData();
+        },
 
-	$('#save-btn').click(function(e) {
-		e.preventDefault();
-	  var items=[];  
-    $('.column').each(function(){  
-        var columnId=$(this).attr('id');  
-        $('.dragbox', this).each(function(i){
-        	console.log($(this).data('id'));   
-            var item={  
-                id: $(this).data('id'),   
-                order : i,  
-                type: $(this).data('type'),
-                div_id: columnId  
-            };  
-            //Push item object into items array  
-            items.push(item);  
-        });  
-    });  
-    //Assign items array to sortorder JSON variable  
-    var sortorder={ items: items };  
-    console.log(sortorder);
+		})  
+		.disableSelection(); 
 
-    //  $.patch(window.location.pathname.replace("edit",""), 'data='+$.toJSON(sortorder), function(response){  
-    //     if(response=="success")  
-    //         $("#console").html('<div class="success">Saved</div>').hide().fadeIn(1000);  
-    //     setTimeout(function(){  
-    //         $('#console').fadeOut(1000);  
-    //     }, 2000);  
-    // });  
- 	 $.ajax({
-            type: "PATCH",
-            url: window.location.pathname.replace("edit",""),
-            data: {page_elements: JSON.stringify( sortorder )},
-            dataType: 'json',
-            success: function(msg) {
-            	console.log("success")
-
-            }
-           
-        });
-});
-});
+		function updateWidgetData(){  
+		  var items=[];  
+	    $('.column').each(function(){  
+	      var columnId=$(this).attr('id');  
+	      $('.dragbox', this).each(function(i){
+	       	console.log($(this).data('id'));   
+	        var item={  
+	          id: $(this).data('id'),   
+	          order : i,  
+	          type: $(this).data('type'),
+	          div_id: columnId  
+	        };  
+	        items.push(item);  
+	      });  
+	    });  
+	    var sortorder={ items: items };  
+	    console.log(sortorder);  
+	 	 $.ajax({
+	      type: "PATCH",
+	      url: window.location.pathname.replace("edit",""),
+	      data: {page_elements: JSON.stringify( sortorder )},
+	      dataType: 'json',
+	      success: function(msg) {
+	      	console.log("success")
+	      }
+	           
+	    });
+		}
+	});
 </script>
