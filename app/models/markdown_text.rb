@@ -1,7 +1,8 @@
 class MarkdownText < ActiveRecord::Base
 	belongs_to :page
 	def to_html
-		'<div class="edit_area" data-content="' + markdown + '">' + markdown_to_html(markdown) + "</div>"
+		#'<div class="edit_area" data-content="' + markdown + '">' + markdown_to_html(markdown) + "</div>"
+    '<div class="edit_area">' + markdown + '</div>'
 	end
 
 	private

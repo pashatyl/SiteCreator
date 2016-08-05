@@ -1,5 +1,6 @@
 <script src="http://www.appelsiini.net/download/jquery.jeditable.mini.js"></script>
 
+
 <style type="text/css">
 .column{
 	width:49%;
@@ -8,7 +9,7 @@
 	background:#fff;
 	float:left;
 }
-.column .dragbox{
+ .dragbox{
 	margin:5px 2px  20px;
 	background:#fff;
 	position:relative;
@@ -16,7 +17,7 @@
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 }
-.column .dragbox h2{
+ .dragbox h2{
 	margin:0;
 	font-size:12px;
 	padding:5px;
@@ -43,6 +44,24 @@
 	margin-right:30px; float:right;
 }
 </style>
+<style>
+
+  #droppable { margin:5px 2px  20px;
+	background:#fff;
+	border:1px solid #ddd;  }
+  </style>
+<style type="text/css">
+.items{float:left;}
+.items div{width:50px;background:#444;color:#fff;margin-bottom:4px;padding:6px;text-align:center}
+
+.content{width:500px;min-height:500px;background:#eee;position:absolute;left:70px;padding:10px}
+
+.items .block,
+.content .block{height:100px!important;background:#bbb;margin-bottom:10px;width:500px;color:#000}
+
+/* style the sortable placeholder */
+.content .block-placeholder{height:98px!important;border:1px dotted black;margin-bottom:10px;width:498px;}
+</style>
 
 <div class="row">
   <div class="col-xs-6 col-md-4">
@@ -51,6 +70,7 @@
 	      <a href="#" class="btn btn-inverse">Text</a>
 	      <a href="#" class="btn btn-inverse">Image</a>
 	      <a href="#" class="btn btn-inverse">Table</a>
+	      <i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
 	  </div>
 	  <div class="btn-group">
 	      <a href="#" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a>
@@ -62,30 +82,55 @@
   </div>
   
 </div>
+<div class="dragbox draggable" data-type="markdown_text">
+	<div class="edit_area" data-content="**!!!!**">
+  Drag me to my target
+</div>
+</div>
+ 
 
 
+<!--<iframe src="https://www.youtube.com/embed/yqYq6If4YbY" frameborder="0" allowfullscreen></iframe>-->
 <script type="text/javascript" >
 	$(document).ready(function() {
+
+		pageLoad();
+
+		//var w = $('.column .dragbox').width()
+		//$('.draggable').width(w);
+
+function pageLoad() {
+	console.log("PageLoad")
     $('.edit_area').editable(function(value, settings) {
     	console.log(this);
     	console.log(value);
     	return(value);
   	}, {
-  		data:  function(value, settings) {
-      	return $(this).data('content');
-   		},
+  		// data:  function(value, settings) {
+    //   	return $(this).data('content');
+   	// 	},
   		indicator : 'Saving...',
     	tooltip   : 'Click to edit...',
   	}); 
- });
 
-	$(document).ready(function() {
+  }
+		$('.draggable').draggable({
+    helper: "clone",
+    connectToSortable: ".column"
+});
 		$('.column').sortable({  
 	    connectWith: '.column',    
 	    cursor: 'move',  
 	    placeholder: 'placeholder',  
 	    forcePlaceholderSize: true,  
-	    opacity: 0.4,  
+	    opacity: 0.4, 
+	    update: function(event, ui){  
+	    	// console.log("!!!!")
+	    	 ui.item.attr('style','');
+	    	 pageLoad();
+	    	// console.log(ui.item)
+	    	//ui.item.addClass("dragbox")
+	    },
 	    stop: function(event, ui){  
            console.log("stop")
            updateWidgetData();
@@ -105,7 +150,11 @@
 	          order : i,  
 	          type: $(this).data('type'),
 	          div_id: columnId  
-	        };  
+	        }; 
+	        console.log("item", $(this).text())
+	        if (item["type"] == "markdown_text") {
+	        	item["markdown"] = $(this).text();
+	        } 
 	        items.push(item);  
 	      });  
 	    });  
@@ -124,3 +173,6 @@
 		}
 	});
 </script>
+
+
+

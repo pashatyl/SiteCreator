@@ -5,7 +5,9 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
 gem 'jquery-ui-rails'
-
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+gem "font-awesome-rails"
 
 gem "redcarpet"
 gem 'jeditable-rails'
