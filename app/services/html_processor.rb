@@ -5,6 +5,7 @@ class HtmlProcessor
     @elements = []
     @elements += @page.markdown_texts
     @elements += @page.pictures
+    @elements += @page.videos
   end
 
   def process
