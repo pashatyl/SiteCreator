@@ -20,6 +20,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-vkontakte'
+gem 'devise-russian'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

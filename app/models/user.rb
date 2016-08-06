@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :sites
+  has_many :achievements
 
   TEMP_EMAIL_PREFIX = 'change@me'
   # Include default devise modules. Others available are:
