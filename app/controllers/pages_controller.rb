@@ -46,13 +46,13 @@ class PagesController < ApplicationController
   # PATCH/PUT /pages/1
   # PATCH/PUT /pages/1.json
   def update
-    puts JSON.parse params[:page_elements]
+    #puts JSON.parse params[:page_elements]
     update_params = parse_params(JSON.parse params[:page_elements])
 
     respond_to do |format|      
       if @page.update(update_params)
-        Rails.logger.error("Hello")
-        format.html {  redirect_to @page, notice: 'page was successfully updated.' }
+        #Rails.logger.error("Hello")
+        format.html { redirect_to @page, notice: 'page was successfully updated.' }
         format.json { render json: @page.to_json, status: 200}
       else
         format.html { render :edit }

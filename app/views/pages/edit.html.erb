@@ -31,22 +31,48 @@ div iframe{
 	margin:10px 10px 10px 10px;
 	border-bottom:1px solid #eee;
 }
+
+.panel-heading span
+{
+    margin-top: -26px;
+    font-size: 15px;
+    margin-right: -12px;
+}
+
+.clickable {
+    background: rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
 </style>
 
 <div class="row">
-	<div class="panel panel-default">
-  <div class="panel-body">
-    Basic panel example
-  </div>
-</div>
+	<div class="col-md-3 col-sm-6 col-xs-6">
+	<div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Using Fade Out</h3>
+                    <!-- Watch Out: Here We must use the effect name in the data tag-->
+                    <span class="pull-right clickable" data-effect="fadeOut"><i class="fa fa-times"></i></span>
+                </div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+                <div class="panel-footer">
+                    Panel footer
+                </div>
+            </div>
+     </div>
+     
 </div>
 <div class="row">
   <div class="col-xs-6 col-md-4">
   	<div class="btn-toolbar">
 	  <div class="btn-group-vertical">
-	       <button class="btn"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></button>
-	      <button class="btn"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
-	      <button class="btn"><i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
+	       <button class="btn" id="picture"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></button>
+	      <button class="btn draggable" id="video"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
+	      <button class="btn draggable" id="text"><i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
 	  </div>
 	</div>
   </div>
@@ -55,17 +81,19 @@ div iframe{
   </div>
   
 </div>
-<div class="dragbox draggable" data-type="markdown_text">
+<!-- <div class="draggable">
 	<div class="edit_area" data-content="**!!!!**">
   Drag me to my target
 </div>
-</div>
+</div> -->
  
 
 
 <!--<iframe src="https://www.youtube.com/embed/yqYq6If4YbY" frameborder="0" allowfullscreen></iframe>-->
 <script type="text/javascript" >
 	$(document).ready(function() {
+		//console.log($("#text").html())
+		$("#text").off();
 
 		pageLoad();
 
@@ -73,10 +101,18 @@ div iframe{
 		//$('.draggable').width(w);
 
 function pageLoad() {
-	console.log("PageLoad")
+	//console.log("PageLoad")
     $('.edit_area').editable(function(value, settings) {
-    	console.log(this);
-    	console.log(value);
+    	var parent = $(this).parent();
+    	if(parent.data("type") == "video" && value.includes("youtube")) {
+    		parent.empty();
+    		//return'<iframe src="' + url + '" frameborder="0" allowfullscreen></iframe>'
+    		var frame = $('<iframe>').attr("src", value).attr("frameborder", 0).attr("allowfullscreen","");
+    		parent.append(frame)
+    		console.log($(this).parent(), value, $(this).parent().data("type"));
+    	}
+    	
+    	//console.log(value);
     	
     	return(value);
   	}, {
@@ -86,7 +122,7 @@ function pageLoad() {
   		indicator : 'Saving...',
     	tooltip   : 'Click to edit...',
     	callback : function(value, settings) {
-    		console.log("callback");
+    		//console.log("callback");
     		updateWidgetData();
 
      }
@@ -94,7 +130,25 @@ function pageLoad() {
 
   }
 		$('.draggable').draggable({
-    helper: "clone",
+			cancel: false,
+    helper: function(e) {
+    	var type = this.id
+    	//console.log(this.id)
+    	var innerDiv = $('<div>').addClass('edit_area')
+    	innerDiv.attr("title", "Click to edit")
+    	innerDiv.text("New " + type)
+    	var res = $('<div>').addClass('dragbox').append(innerDiv);
+    	if (type == "text") {
+    		res.data("type", "markdown_text")
+    	} else if (type == "video") {
+    		res.data("type", "video")
+    		//console.log("video type")
+    	}
+
+    	return res;
+
+        //return $(e);
+    },
     connectToSortable: ".column"
 });
 		$('.column').sortable({  
@@ -109,7 +163,7 @@ function pageLoad() {
 
 	    },
 	    stop: function(event, ui){  
-           console.log("stop")
+           //console.log("stop")
            updateWidgetData();
         },
 
@@ -121,7 +175,7 @@ function pageLoad() {
 	    $('.column').each(function(){  
 	      var columnId=$(this).attr('id');  
 	      $('.dragbox', this).each(function(i){
-	       	console.log($(this).data('id'));   
+	       	//console.log($(this).data('id'));   
 	        var item={  
 	          id: $(this).data('id'),   
 	          order : i,  
@@ -130,7 +184,11 @@ function pageLoad() {
 	        }; 
 	        if (item["type"] == "markdown_text") {
 	        	item["markdown"] = $(this).text();
-	        } 
+	        } else if (item["type"] == "video") {
+	        	//var text = $(this).text();
+	        	//console.log("video!!!!", $(this).find('iframe').attr("src"))
+	        	item["url"] = $(this).text() || $(this).find('iframe').attr("src") //"https://www.youtube.com/embed/0nCOZyoeA14"//$(this).text();
+	        }
 	        items.push(item);  
 	      });  
 	    });  
@@ -148,6 +206,13 @@ function pageLoad() {
 	    });
 		}
 	});
+
+$(function(){
+$('.clickable').on('click',function(){
+    var effect = $(this).data('effect');
+        $(this).closest('.panel')[effect]();
+	})
+})
 </script>
 
 
