@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730141034) do
+ActiveRecord::Schema.define(version: 20160806105344) do
+
+  create_table "achievements", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "icon",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text     "text",       limit: 65535, null: false
@@ -61,10 +68,10 @@ ActiveRecord::Schema.define(version: 20160730141034) do
     t.string   "unconfirmed_email",      limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
-    t.integer  "permission",             limit: 4
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
     t.string   "name",                   limit: 255
+    t.integer  "permission",             limit: 4
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
