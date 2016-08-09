@@ -3,10 +3,14 @@ class Ability
 
   def initialize(user)
 
+    if user == nil
+      permissionDenied
+      return
+    end
+
     if user.superAdmin?
       can :access, :rails_admin   # grant access to rails_admin
       can :dashboard              # grant access to the dashboard
-      can :administrate
     end
     # Define abilities for the passed in user here. For example:
     #
@@ -34,5 +38,11 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+  end
+
+  private
+
+  def permissionDenied
+    # TODO: Make error messege
   end
 end

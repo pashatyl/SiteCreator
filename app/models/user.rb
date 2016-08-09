@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :sites
+  has_many :achievements
 
   searchable do
     text :name
