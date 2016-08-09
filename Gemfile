@@ -1,17 +1,18 @@
 source 'https://rubygems.org'
-
-gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'pry-rails'
+#gem 'bootstrap', '~> 4.0.0.alpha3.1'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
 gem 'jquery-ui-rails'
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
 gem "font-awesome-rails"
-
+gem 'dropzonejs-rails'
 gem "redcarpet"
 gem 'jeditable-rails'
 gem 'dragonfly', '~> 1.0.12'
+gem 'cloudinary'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7'
 # Use mysql as the database for Active Record

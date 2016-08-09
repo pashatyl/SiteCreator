@@ -1,199 +1,95 @@
 <script src="http://www.appelsiini.net/download/jquery.jeditable.mini.js"></script>
 
 
-<style type="text/css">
-.column{
-	width:49%;
-	margin-right:.5%;
-	min-height:300px;
-	background:#fff;
-	float:left;
-}
- .dragbox{
-	margin:5px 2px  20px;
-	background:#fff;
-	position:relative;
-	border:1px solid #ddd;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-}
-.column  .placeholder{
-	background: #f0f0f0;
-	border:1px dashed #ddd;
-}
+<div class="container">
 
-div iframe{
-		display:block; 
-		margin:10px 1% 10px 1%;
-		width:98%;
-}
-.panel {
-	margin:10px 10px 10px 10px;
-	border-bottom:1px solid #eee;
-}
-
-.panel-heading span
-{
-    margin-top: -26px;
-    font-size: 15px;
-    margin-right: -12px;
-}
-
-.clickable {
-    background: rgba(0, 0, 0, 0.15);
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-</style>
-
-<div class="row">
-	<div class="col-md-3 col-sm-6 col-xs-6">
-	<div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Using Fade Out</h3>
-                    <!-- Watch Out: Here We must use the effect name in the data tag-->
-                    <span class="pull-right clickable" data-effect="fadeOut"><i class="fa fa-times"></i></span>
-                </div>
-                <div class="panel-body">
-                    Panel content
-                </div>
-                <div class="panel-footer">
-                    Panel footer
-                </div>
-            </div>
-     </div>
-     
-</div>
-<div class="row">
-  <div class="col-xs-6 col-md-4">
-  	<div class="btn-toolbar">
-	  <div class="btn-group-vertical">
-	       <button class="btn" id="picture"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></button>
-	      <button class="btn draggable" id="video"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
-	      <button class="btn draggable" id="text"><i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
-	  </div>
-	</div>
+  <div class="modal fade" id="choosePictureModel" role="dialog">
+   	<div class="modal-dialog">
+   		<div class="modal-content">
+        <div class="modal-header">                        
+          <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><%= link_to "upload", new_picture_url(:format => :js), :remote => true, 'data-toggle' => 'tab', 'data-target' => '#uploadcontent' %></li>
+						<li><%= link_to "choose picture", pictures_path(:format => :js), :remote => true, 'data-toggle' => 'tab', 'data-target' => '#indexcontent' %></li>
+					</ul>
+        </div>
+        <div class="modal-body">
+          <div class="tab-content">
+						<div class="tab-pane active" id="uploadcontent"></div>
+							<div class="tab-pane" id="indexcontent"></div>
+								<div class="tab-pane" id="messages"></div>
+					</div>
+        </div>
+        <div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary">Ok</button>
+				</div>
+      </div>
+    </div>
   </div>
-  <div class="col-xs-12 col-md-8">
-  	<%= render "page" %>
-  </div>
+
+
+	<div class="row">
+  	<div class="col-xs-6 col-md-4">
+  		<div class="btn-toolbar">
+	  		<div class="btn-group-vertical">
+	       	<button class="btn draggable" id="picture"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></button>
+	      	<button class="btn draggable" id="video"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
+	      	<button class="btn draggable" id="text"><i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
+	  		</div>
+			</div>
+  	</div>
+  	<div class="col-xs-12 col-md-8">
+  		<%= render "page" %>
+  	</div>
   
-</div>
-<!-- <div class="draggable">
-	<div class="edit_area" data-content="**!!!!**">
-  Drag me to my target
-</div>
-</div> -->
- 
+	</div>
+<button class="btn" id="save"> Save </button>
 
 
-<!--<iframe src="https://www.youtube.com/embed/yqYq6If4YbY" frameborder="0" allowfullscreen></iframe>-->
 <script type="text/javascript" >
-	$(document).ready(function() {
-		//console.log($("#text").html())
-		$("#text").off();
-
-		pageLoad();
-
-		//var w = $('.column .dragbox').width()
-		//$('.draggable').width(w);
-
-function pageLoad() {
-	//console.log("PageLoad")
+  function pageLoad() {
     $('.edit_area').editable(function(value, settings) {
-    	var parent = $(this).parent();
-    	if(parent.data("type") == "video" && value.includes("youtube")) {
-    		parent.empty();
-    		//return'<iframe src="' + url + '" frameborder="0" allowfullscreen></iframe>'
-    		var frame = $('<iframe>').attr("src", value).attr("frameborder", 0).attr("allowfullscreen","");
-    		parent.append(frame)
-    		console.log($(this).parent(), value, $(this).parent().data("type"));
-    	}
-    	
-    	//console.log(value);
-    	
-    	return(value);
-  	}, {
-  		// data:  function(value, settings) {
-    //   	return $(this).data('content');
-   	// 	},
-  		indicator : 'Saving...',
-    	tooltip   : 'Click to edit...',
-    	callback : function(value, settings) {
-    		//console.log("callback");
-    		updateWidgetData();
-
-     }
-  	}); 
-
+	    	var parent = $(this).parent();
+	    	if(parent.data("type") == "video" && value.includes("youtube")) {
+	    		parent.empty();
+	    		var frame = $('<iframe>').attr("src", value).attr("frameborder", 0).attr("allowfullscreen","");
+	    		parent.append(frame)
+	    		console.log($(this).parent(), value, $(this).parent().data("type"));
+	    	}  	
+	    	return(value);
+	  	}, {
+	  		indicator : 'Saving...',
+	    	tooltip   : 'Click to edit...',
+	    	callback : function(value, settings) {
+	    		//updateWidgetData();
+	    }
+    }); 
   }
-		$('.draggable').draggable({
-			cancel: false,
-    helper: function(e) {
-    	var type = this.id
-    	//console.log(this.id)
-    	var innerDiv = $('<div>').addClass('edit_area')
-    	innerDiv.attr("title", "Click to edit")
-    	innerDiv.text("New " + type)
-    	var res = $('<div>').addClass('dragbox').append(innerDiv);
-    	if (type == "text") {
-    		res.data("type", "markdown_text")
-    	} else if (type == "video") {
-    		res.data("type", "video")
-    		//console.log("video type")
-    	}
 
-    	return res;
-
-        //return $(e);
-    },
-    connectToSortable: ".column"
-});
-		$('.column').sortable({  
-	    connectWith: '.column',    
-	    cursor: 'move',  
-	    placeholder: 'placeholder',  
-	    forcePlaceholderSize: true,  
-	    opacity: 0.4, 
-	    update: function(event, ui){  
-	    	 ui.item.attr('style','');
-	    	 pageLoad();
-
-	    },
-	    stop: function(event, ui){  
-           //console.log("stop")
-           updateWidgetData();
-        },
-
-		})  
-		.disableSelection(); 
-
-		function updateWidgetData(){  
-		  var items=[];  
-	    $('.column').each(function(){  
-	      var columnId=$(this).attr('id');  
-	      $('.dragbox', this).each(function(i){
+  function updateWidgetData(){  
+	  var items=[];  
+	  $('.column').each(function(){  
+	    var columnId=$(this).attr('id');  
+	    $('.dragbox', this).each(function(i){
 	       	//console.log($(this).data('id'));   
-	        var item={  
-	          id: $(this).data('id'),   
-	          order : i,  
-	          type: $(this).data('type'),
-	          div_id: columnId  
-	        }; 
-	        if (item["type"] == "markdown_text") {
-	        	item["markdown"] = $(this).text();
-	        } else if (item["type"] == "video") {
-	        	//var text = $(this).text();
+	      var item={  
+	        id: $(this).data('id'),   
+	        order : i,  
+	        type: $(this).data('type'),
+	        div_id: columnId  
+	      }; 
+	      if (item["type"] == "markdown_text") {
+	       	item["markdown"] = $(this).text();
+	      } else if (item["type"] == "video") {
+	       	//var text = $(this).text();
 	        	//console.log("video!!!!", $(this).find('iframe').attr("src"))
-	        	item["url"] = $(this).text() || $(this).find('iframe').attr("src") //"https://www.youtube.com/embed/0nCOZyoeA14"//$(this).text();
-	        }
-	        items.push(item);  
-	      });  
+	       	item["url"] = $(this).text() || $(this).find('iframe').attr("src") //"https://www.youtube.com/embed/0nCOZyoeA14"//$(this).text();
+	      }
+	      items.push(item);  
 	    });  
-	    var sortorder={ items: items };  
-	    console.log(sortorder);  
+	  });  
+	  var sortorder={ items: items };  
+	  console.log(sortorder);  
 	 	 $.ajax({
 	      type: "PATCH",
 	      url: window.location.pathname.replace("edit",""),
@@ -204,15 +100,114 @@ function pageLoad() {
 	      }
 	           
 	    });
-		}
+	}
+
+	$(document).ready(function() {
+		//console.log($("#text").html())
+		$("#text").off();
+		$("#video").off();
+		$("#picture").off();
+
+		pageLoad();
+
+		$('.draggable').draggable({
+			cancel: false,
+    	helper: function(e) {
+	    	var type = this.id
+	    	//console.log(this.id)
+	    	if (type == "picture") {
+	    		
+	    		var innerDiv = $('<div>').addClass('edit_area')
+		    	innerDiv.attr("title", "Click to edit")
+		    	innerDiv.text("New " + type)
+	    	} else {
+		    	var innerDiv = $('<div>').addClass('edit_area')
+		    	innerDiv.attr("title", "Click to edit")
+		    	innerDiv.text("New " + type)
+	    	}
+	    	var res = $('<div>').addClass('dragbox').append(innerDiv);
+	    	if (type == "text") {
+	    		res.data("type", "markdown_text")
+	    	} else if (type == "video") {
+	    		res.data("type", "video")
+	    		//console.log("video type")
+	    	} else if (type == "picture") {
+	    		res.data("type", "picture")
+	    		//console.log("video type")
+	    	}
+
+	    	return res;
+
+    },
+    stop: function( event, ui ) {
+     	console.log("stop")
+     	if(this.id == "picture") $('#choosePictureModel').modal('show')  
+    },
+    connectToSortable: ".column"
+	});
+	$('.column').sortable({  
+    connectWith: '.column',    
+    cursor: 'move',  
+    placeholder: 'placeholder',  
+    forcePlaceholderSize: true,  
+    opacity: 0.4, 
+    update: function(event, ui){  
+    	ui.item.attr('style','');
+    	pageLoad();
+
+    },
+    stop: function(event, ui){  
+      //console.log("stop")
+      //updateWidgetData();
+    },
+
+	})  
+	.disableSelection(); 
+
+	
 	});
 
-$(function(){
-$('.clickable').on('click',function(){
-    var effect = $(this).data('effect');
-        $(this).closest('.panel')[effect]();
-	})
-})
+
+
+
+//  $( function() {
+//     $( "#tabs" ).tabs({
+//     	beforeLoad: function(event, ui){
+//     alert('loading');
+// 		}, 
+// 		load:function(event, ui){
+//     alert('loaded');
+// }
+//     });
+//   } );
+
+$('#myTabs a').click(function (e) {
+	e.preventDefault();
+  
+	var url = $(this).attr("data-url");
+  	var href = this.hash;
+  	var pane = $(this);
+	
+	// ajax load from data-url
+	$(href).load(url,function(result){      
+	    pane.tab('show');
+	});
+});
+
+$("#save").click(function() {
+	updateWidgetData();
+});
+
+$(".dragbox").hover( 
+	function() {
+        $(this).find('.close').delay(50).fadeIn(10);
+    },
+    function() {
+        $(this).find('.close').delay(50).fadeOut(10);
+    });
+$('button.close').click(function (e) {
+	$(this).parent().remove();
+});
 </script>
 
 

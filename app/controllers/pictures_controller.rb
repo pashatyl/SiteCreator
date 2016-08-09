@@ -15,6 +15,10 @@ class PicturesController < ApplicationController
   # GET /pictures/new
   def new
     @picture = Picture.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /pictures/1/edit
@@ -27,6 +31,7 @@ class PicturesController < ApplicationController
     @picture = Picture.new(picture_params)
 
     respond_to do |format|
+      Rails.logger("Hello")
       if @picture.save
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
         format.json { render :show, status: :created, location: @picture }

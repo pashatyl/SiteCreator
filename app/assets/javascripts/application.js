@@ -12,10 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require bootstrap-sprockets
 //= require jquery-ui
 //= require turbolinks
 //= require tether
-//= require bootstrap
-//= require bootstrap-sprockets
+//= require dropzone
 //= require_tree .
