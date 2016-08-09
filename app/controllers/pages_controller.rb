@@ -48,7 +48,7 @@ class PagesController < ApplicationController
   def update
     #puts JSON.parse params[:page_elements]
     update_params = parse_params(JSON.parse params[:page_elements])
-
+    pry
     respond_to do |format|      
       if @page.update(update_params)
         #Rails.logger.error("Hello")

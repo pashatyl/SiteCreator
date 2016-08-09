@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805143122) do
+ActiveRecord::Schema.define(version: 20160809144946) do
 
   create_table "markdown_texts", force: :cascade do |t|
     t.text     "markdown",   limit: 65535
@@ -56,8 +56,7 @@ ActiveRecord::Schema.define(version: 20160805143122) do
     t.integer  "order",      limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "image_uid",  limit: 255
-    t.string   "image_name", limit: 255
+    t.string   "public_id",  limit: 255
   end
 
   create_table "sites", force: :cascade do |t|

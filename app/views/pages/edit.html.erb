@@ -1,5 +1,14 @@
 <script src="http://www.appelsiini.net/download/jquery.jeditable.mini.js"></script>
 
+<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+ <a href="#" id="upload_widget_opener">Upload multiple images</a>         
+<img src="http://res.cloudinary.com/dg1a2dx9d/image/upload/v1470742403/roses_ba5tmk"/>
+
+<img src="" class="dynamic_image"
+     data-src="roses_ba5tmk" 
+     data-width="115" data-height="135"
+     data-crop="thumb" data-gravity="faces" data-radius="20"/>
+
 
 <div class="container">
 
@@ -35,19 +44,36 @@
 	       	<button class="btn draggable" id="picture"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></button>
 	      	<button class="btn draggable" id="video"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
 	      	<button class="btn draggable" id="text"><i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
+	      	<button class="btn" id="save"> Save </button>
 	  		</div>
 			</div>
   	</div>
   	<div class="col-xs-12 col-md-8">
   		<%= render "page" %>
   	</div>
-  
+
 	</div>
-<button class="btn" id="save"> Save </button>
+
 
 
 <script type="text/javascript" >
   function pageLoad() {
+  	//jquery delegate
+ //  	$("body").on("click",".editable",function(e){
+
+ //  // Add editable plugin
+ //  // but! for `focus` instead common `clik` event
+
+ //  $(this).editable('go.to',
+ //    {
+ //      event : 'focus.editable',
+ //      ..
+ //      ..
+
+ //     // Then trigger focus event
+
+ //   }).trigger("focus");
+ // })
     $('.edit_area').editable(function(value, settings) {
 	    	var parent = $(this).parent();
 	    	if(parent.data("type") == "video" && value.includes("youtube")) {
@@ -80,10 +106,13 @@
 	      }; 
 	      if (item["type"] == "markdown_text") {
 	       	item["markdown"] = $(this).text();
+	       	console.log($(this).text())
 	      } else if (item["type"] == "video") {
 	       	//var text = $(this).text();
 	        	//console.log("video!!!!", $(this).find('iframe').attr("src"))
 	       	item["url"] = $(this).text() || $(this).find('iframe').attr("src") //"https://www.youtube.com/embed/0nCOZyoeA14"//$(this).text();
+	      } else if (item["type"] == "picture") {
+	      	item["public_id"] = $(this).find('img').data("public_id");
 	      }
 	      items.push(item);  
 	    });  
@@ -104,9 +133,9 @@
 
 	$(document).ready(function() {
 		//console.log($("#text").html())
-		$("#text").off();
-		$("#video").off();
-		$("#picture").off();
+		$.cloudinary.config({ cloud_name: 'dg1a2dx9d', api_key: '643398365774925'})
+
+		$(".dragbox > img").cloudinary();
 
 		pageLoad();
 
@@ -117,15 +146,15 @@
 	    	//console.log(this.id)
 	    	if (type == "picture") {
 	    		
-	    		var innerDiv = $('<div>').addClass('edit_area')
-		    	innerDiv.attr("title", "Click to edit")
-		    	innerDiv.text("New " + type)
-	    	} else {
-		    	var innerDiv = $('<div>').addClass('edit_area')
-		    	innerDiv.attr("title", "Click to edit")
-		    	innerDiv.text("New " + type)
+	    		 var innerTag = $('<div>').addClass('edit_area')
+		    	innerTag.attr("title", "Click to edit")
+		    	innerTag.text("New " + type)	    	
+		    } else {
+		    	var innerTag = $('<div>').addClass('edit_area')
+		    	innerTag.attr("title", "Click to edit")
+		    	innerTag.text("New " + type)
 	    	}
-	    	var res = $('<div>').addClass('dragbox').append(innerDiv);
+	    	var res = $('<div>').addClass('dragbox').append(innerTag);
 	    	if (type == "text") {
 	    		res.data("type", "markdown_text")
 	    	} else if (type == "video") {
@@ -140,8 +169,22 @@
 
     },
     stop: function( event, ui ) {
-     	console.log("stop")
-     	if(this.id == "picture") $('#choosePictureModel').modal('show')  
+     	console.log("stop", event, $(ui.helper).data('type') )
+     	if(this.id == "picture"){
+     		cloudinary.openUploadWidget({ cloud_name: 'dg1a2dx9d', upload_preset: 'zothj6or', 'folder': 'user_photos' },
+	      function(error, result) {
+	      	console.log(error, result[0]['url'])
+	      	var id = result[0]['public_id']
+	      	console.log(id)
+	      	console.log($(ui.helper).children('img'))
+	      	var curItem = $(ui.helper)
+	      	var innerTag = $('<img>').data({"src": id, "height": 200, "public_id" : id})	      	
+	      	curItem.html(innerTag)
+	      	innerTag.cloudinary();
+	      });
+     	}
+     	
+     	//if(this.id == "picture") $('#choosePictureModel').modal('show')  
     },
     connectToSortable: ".column"
 	});
@@ -169,18 +212,6 @@
 
 
 
-
-//  $( function() {
-//     $( "#tabs" ).tabs({
-//     	beforeLoad: function(event, ui){
-//     alert('loading');
-// 		}, 
-// 		load:function(event, ui){
-//     alert('loaded');
-// }
-//     });
-//   } );
-
 $('#myTabs a').click(function (e) {
 	e.preventDefault();
   
@@ -198,6 +229,7 @@ $("#save").click(function() {
 	updateWidgetData();
 });
 
+
 $(".dragbox").hover( 
 	function() {
         $(this).find('.close').delay(50).fadeIn(10);
@@ -209,6 +241,5 @@ $('button.close').click(function (e) {
 	$(this).parent().remove();
 });
 </script>
-
 
 

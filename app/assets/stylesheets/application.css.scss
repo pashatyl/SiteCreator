@@ -14,7 +14,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-@import "dropzone/dropzone";
 @import "jquery-ui";
 
 html {
@@ -63,12 +62,12 @@ footer {
 }
 
 .column{
-	//width:49%;
-	/*margin-right:.5%;
+	width:49%;
+	margin-right:.5%;
 	min-height:300px;
 	background:#fff;
 	float:left;
-*/}
+}
 .dragbox{
 	margin:5px 2px 2px 20px;
 	background:#fff;

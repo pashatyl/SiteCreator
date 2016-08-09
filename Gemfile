@@ -8,10 +8,8 @@ gem 'jquery-ui-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
 gem "font-awesome-rails"
-gem 'dropzonejs-rails'
 gem "redcarpet"
 gem 'jeditable-rails'
-gem 'dragonfly', '~> 1.0.12'
 gem 'cloudinary'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7'

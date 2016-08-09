@@ -16,5 +16,5 @@
 //= require jquery-ui
 //= require turbolinks
 //= require tether
-//= require dropzone
+//= require cloudinary
 //= require_tree .
