@@ -1,10 +1,7 @@
 class Site < ActiveRecord::Base
-<<<<<<< HEAD
   belongs_to :user
-  has_many :pages
   has_many :hashtags
   has_many :comments
-=======
 	has_many :pages, dependent: :destroy
 	belongs_to :default_template, class_name: "Template", inverse_of: :sites
 	after_save :create_first_page
@@ -36,5 +33,4 @@ class Site < ActiveRecord::Base
 	def first_page
 		pages.first
 	end
->>>>>>> origin/toMerge
 end
