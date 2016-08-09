@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808105821) do
+ActiveRecord::Schema.define(version: 20160806105344) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -24,10 +24,7 @@ ActiveRecord::Schema.define(version: 20160808105821) do
     t.text     "text",       limit: 65535, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.integer  "user_id",    limit: 4
   end
-
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "hashtags", force: :cascade do |t|
     t.string   "tag",        limit: 255, null: false

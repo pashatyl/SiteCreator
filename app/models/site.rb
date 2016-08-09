@@ -3,10 +3,4 @@ class Site < ActiveRecord::Base
   has_many :pages
   has_many :hashtags
   has_many :comments
-
-  searchable do
-    text :description
-    text :name
-  end
-
 end
