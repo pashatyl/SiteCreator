@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806105344) do
-
-  create_table "achievements", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "icon",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+ActiveRecord::Schema.define(version: 20160805143122) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "text",       limit: 65535, null: false
@@ -32,23 +25,61 @@ ActiveRecord::Schema.define(version: 20160806105344) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "markdown_texts", force: :cascade do |t|
+    t.text     "markdown",   limit: 65535
+    t.string   "div_id",     limit: 255
+    t.integer  "order",      limit: 4
+    t.integer  "page_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "markdown_texts", ["page_id"], name: "index_markdown_texts_on_page_id", using: :btree
+
   create_table "pages", force: :cascade do |t|
-    t.integer  "template",   limit: 4, null: false
-    t.integer  "site_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "title",       limit: 255
+    t.integer  "site_id",     limit: 4
+    t.integer  "template_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "pages", ["site_id"], name: "index_pages_on_site_id", using: :btree
+  add_index "pages", ["template_id"], name: "index_pages_on_template_id", using: :btree
+
+  create_table "pages_pictures", id: false, force: :cascade do |t|
+    t.integer "page_id",    limit: 4
+    t.integer "picture_id", limit: 4
+  end
+
+  add_index "pages_pictures", ["page_id"], name: "index_pages_pictures_on_page_id", using: :btree
+  add_index "pages_pictures", ["picture_id"], name: "index_pages_pictures_on_picture_id", using: :btree
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "div_id",     limit: 255
+    t.integer  "order",      limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "image_uid",  limit: 255
+    t.string   "image_name", limit: 255
+  end
 
   create_table "sites", force: :cascade do |t|
-    t.string   "name",        limit: 255,   null: false
-    t.text     "description", limit: 65535
-    t.integer  "theme",       limit: 4,     null: false
-    t.integer  "menu",        limit: 4,     null: false
-    t.string   "logo",        limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "theme",               limit: 255
+    t.string   "menu_type",           limit: 255
+    t.string   "title",               limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "default_template_id", limit: 4
+  end
+
+  add_index "sites", ["default_template_id"], name: "index_sites_on_default_template_id", using: :btree
+
+  create_table "templates", force: :cascade do |t|
+    t.text     "html",       limit: 65535
+    t.string   "title",      limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,5 +108,16 @@ ActiveRecord::Schema.define(version: 20160806105344) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "url",        limit: 255
+    t.string   "div_id",     limit: 255
+    t.integer  "order",      limit: 4
+    t.integer  "page_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "videos", ["page_id"], name: "index_videos_on_page_id", using: :btree
 
 end
