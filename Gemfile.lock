@@ -70,6 +70,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.1.0)
     devise-russian (2.0.1.1)
       devise
     domain_name (0.5.20160615)
@@ -285,6 +286,7 @@ DEPENDENCIES
   cloudinary
   coffee-rails (~> 4.1.0)
   devise
+  devise-i18n
   devise-russian
   dragonfly (~> 1.0.12)
   dropzonejs-rails

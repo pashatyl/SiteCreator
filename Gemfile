@@ -52,6 +52,8 @@ gem 'cancancan', '~> 1.10'
 
 gem 'ruby-enum'
 
+gem 'devise-i18n'
+
 gem 'rails_admin'
 
 #https://github.com/sunspot/sunspot, to start use $ bundle exec rake sunspot:solr:start

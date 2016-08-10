@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'search' => 'search#results'
   get 'users' => 'users#profile'
   get 'index' => 'users#index'
+  get 'profile' => 'users#profile'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

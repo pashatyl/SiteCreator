@@ -1,9 +1,9 @@
 <% if user_signed_in? %>
     <li>
-      <%= link_to(' Logout', destroy_user_session_path, :method => :delete, class: "glyphicon glyphicon-log-out") %>
+      <%= link_to((I18n.t :logout), destroy_user_session_path, :method => :delete, class: "glyphicon glyphicon-log-out") %>
     </li>
 <% else %>
     <li>
-      <%= link_to(' Login', new_user_session_path, class: "glyphicon glyphicon-log-in")  %>
+      <%= link_to((I18n.t :login), new_user_session_path, class: "glyphicon glyphicon-log-in")  %>
     </li>
 <% end %>

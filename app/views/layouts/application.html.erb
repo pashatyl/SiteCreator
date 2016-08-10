@@ -13,13 +13,13 @@
       <%= link_to 'SiteBuilder', index_path, class: "navbar-brand" %>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
+      <li class="active"><a href="#"><%= I18n.t :home %></a></li>
+      <li><a href="#"><%= I18n.t :page %> 1</a></li>
+      <li><a href="#"><%= I18n.t :page %> 2</a></li>
       <li>
-        <%= form_tag "search", method: "get" do %>
+        <%= form_tag 'search', method: "get" do %>
             <%= text_field_tag :search, params[:search] %>
-            <%= submit_tag "Search", :name => nil %>
+            <%= submit_tag I18n.t :search, :name => nil %>
         <% end %>
       </li>
     </ul>
