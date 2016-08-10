@@ -5,4 +5,15 @@ class Hashtag < ActiveRecord::Base
     text :tag
   end
 
+  def header
+    "##{tag} at the #{site.title}"
+  end
+
+  def text
+    ''
+  end
+
+  def link
+    site
+  end
 end

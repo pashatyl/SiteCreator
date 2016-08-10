@@ -54,7 +54,7 @@ gem 'ruby-enum'
 
 gem 'rails_admin'
 
-#https://github.com/sunspot/sunspot
+#https://github.com/sunspot/sunspot, to start use $ bundle exec rake sunspot:solr:start
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 

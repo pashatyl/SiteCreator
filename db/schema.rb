@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806105344) do
+ActiveRecord::Schema.define(version: 20160810093606) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160806105344) do
     t.string   "tag",        limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "weight",     limit: 4
   end
 
   create_table "markdown_texts", force: :cascade do |t|

@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   root 'users#profile'
   get 'users/profile', as: 'user_root'
   get 'search' => 'search#results'
+  get 'users' => 'users#profile'
+  get 'index' => 'users#index'
+  get 'sign_up' => 'Device::Registrations#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
