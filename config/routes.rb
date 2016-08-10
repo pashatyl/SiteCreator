@@ -12,12 +12,11 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'users#profile'
+  root 'users#index'
   get 'users/profile', as: 'user_root'
   get 'search' => 'search#results'
   get 'users' => 'users#profile'
   get 'index' => 'users#index'
-  get 'sign_up' => 'Device::Registrations#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
