@@ -14,6 +14,7 @@ class HtmlProcessor
     res
   end
 
+
 private
   def wrap(element)
     '<div class="dragbox" data-type="' + element.class.name.underscore + '" data-id="'+ element.id.to_s + '">' + element.to_html + '</div>'

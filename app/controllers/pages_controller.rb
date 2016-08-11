@@ -23,6 +23,7 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
+    @pictures = Picture.all
     @site = Site.find(params[:site_id])
     @body = HtmlProcessor.new(@page).process
   end
@@ -48,12 +49,16 @@ class PagesController < ApplicationController
   def update
     #puts JSON.parse params[:page_elements]
     update_params = parse_params(JSON.parse params[:page_elements])
-    pry
+    #pry
+    puts update_params
     respond_to do |format|      
       if @page.update(update_params)
-        #Rails.logger.error("Hello")
+        @body = HtmlProcessor.new(@page).process
+        Rails.logger.error("Hello")
+        format.js {render :edit}
         format.html { redirect_to @page, notice: 'page was successfully updated.' }
-        format.json { render json: @page.to_json, status: 200}
+        
+        format.json { render json: @body.to_json, status: 200}
       else
         format.html { render :edit }
         format.json { render json: @page.errors, status: :unprocessable_entity }

@@ -1,51 +1,42 @@
-<script src="http://www.appelsiini.net/download/jquery.jeditable.mini.js"></script>
 
-<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
- <a href="#" id="upload_widget_opener">Upload multiple images</a>         
-<img src="http://res.cloudinary.com/dg1a2dx9d/image/upload/v1470742403/roses_ba5tmk"/>
+<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>         
 
-<img src="" class="dynamic_image"
+<!-- <img src="" class="dynamic_image"
      data-src="roses_ba5tmk" 
      data-width="115" data-height="135"
-     data-crop="thumb" data-gravity="faces" data-radius="20"/>
+     data-crop="thumb" data-gravity="faces" data-radius="20"/> -->
 
+<style type="text/css">
+.popover-content {
+  height: 200px;
+  overflow-y: auto;
+ }
 
+</style>
 <div class="container">
-
-  <div class="modal fade" id="choosePictureModel" role="dialog">
-   	<div class="modal-dialog">
-   		<div class="modal-content">
-        <div class="modal-header">                        
-          <ul id="myTab" class="nav nav-tabs">
-            <li class="active"><%= link_to "upload", new_picture_url(:format => :js), :remote => true, 'data-toggle' => 'tab', 'data-target' => '#uploadcontent' %></li>
-						<li><%= link_to "choose picture", pictures_path(:format => :js), :remote => true, 'data-toggle' => 'tab', 'data-target' => '#indexcontent' %></li>
-					</ul>
-        </div>
-        <div class="modal-body">
-          <div class="tab-content">
-						<div class="tab-pane active" id="uploadcontent"></div>
-							<div class="tab-pane" id="indexcontent"></div>
-								<div class="tab-pane" id="messages"></div>
-					</div>
-        </div>
-        <div class="modal-footer">
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary">Ok</button>
-				</div>
-      </div>
-    </div>
-  </div>
 
 
 	<div class="row">
   	<div class="col-xs-6 col-md-4">
   		<div class="btn-toolbar">
-	  		<div class="btn-group-vertical">
-	       	<button class="btn draggable" id="picture"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></button>
-	      	<button class="btn draggable" id="video"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
-	      	<button class="btn draggable" id="text"><i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
+	  		<div class="btn-group">
+	       	<button class="btn draggable" id="picture-btn" data-original-title="Creativity Tuts" 
+   data-placement="bottom" rel="popover"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
+	       		<!-- <div>
+				      <%= render "pictures" %>				    
+				    </div> -->
+
+	       	</button>
+	      	<button class="btn draggable" id="video-btn"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
+	      	<button class="btn draggable" id="text-btn"><i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
 	      	<button class="btn" id="save"> Save </button>
+
 	  		</div>
+	  		 <div class="dialog" style="display:none"  id="pictures" >
+					  <%= render "pictures" %>
+					  
+					</div>
+	  		
 			</div>
   	</div>
   	<div class="col-xs-12 col-md-8">
@@ -55,49 +46,14 @@
 	</div>
 
 
-
 <script type="text/javascript" >
-  function pageLoad() {
-  	//jquery delegate
- //  	$("body").on("click",".editable",function(e){
-
- //  // Add editable plugin
- //  // but! for `focus` instead common `clik` event
-
- //  $(this).editable('go.to',
- //    {
- //      event : 'focus.editable',
- //      ..
- //      ..
-
- //     // Then trigger focus event
-
- //   }).trigger("focus");
- // })
-    $('.edit_area').editable(function(value, settings) {
-	    	var parent = $(this).parent();
-	    	if(parent.data("type") == "video" && value.includes("youtube")) {
-	    		parent.empty();
-	    		var frame = $('<iframe>').attr("src", value).attr("frameborder", 0).attr("allowfullscreen","");
-	    		parent.append(frame)
-	    		console.log($(this).parent(), value, $(this).parent().data("type"));
-	    	}  	
-	    	return(value);
-	  	}, {
-	  		indicator : 'Saving...',
-	    	tooltip   : 'Click to edit...',
-	    	callback : function(value, settings) {
-	    		//updateWidgetData();
-	    }
-    }); 
-  }
-
+  
   function updateWidgetData(){  
 	  var items=[];  
-	  $('.column').each(function(){  
-	    var columnId=$(this).attr('id');  
+	  $("div[class*='column']").each(function(){  
+	    var columnId=$(this).attr('id'); 
 	    $('.dragbox', this).each(function(i){
-	       	//console.log($(this).data('id'));   
+  
 	      var item={  
 	        id: $(this).data('id'),   
 	        order : i,  
@@ -106,13 +62,11 @@
 	      }; 
 	      if (item["type"] == "markdown_text") {
 	       	item["markdown"] = $(this).text();
-	       	console.log($(this).text())
 	      } else if (item["type"] == "video") {
 	       	//var text = $(this).text();
-	        	//console.log("video!!!!", $(this).find('iframe').attr("src"))
 	       	item["url"] = $(this).text() || $(this).find('iframe').attr("src") //"https://www.youtube.com/embed/0nCOZyoeA14"//$(this).text();
 	      } else if (item["type"] == "picture") {
-	      	item["public_id"] = $(this).find('img').data("public_id");
+	      	item["public_id"] = $(this).find('img').data("public");
 	      }
 	      items.push(item);  
 	    });  
@@ -123,107 +77,43 @@
 	      type: "PATCH",
 	      url: window.location.pathname.replace("edit",""),
 	      data: {page_elements: JSON.stringify( sortorder )},
-	      dataType: 'json',
+	      dataType: 'script',
 	      success: function(msg) {
 	      	console.log("success")
 	      }
 	           
 	    });
 	}
+	$(function () {
+		$('#picture-btn')
+   .popover({trigger: "click", html:true, content: function () {
+        return $('<div>').html('<%= escape_javascript(render "pictures") %>');
 
+      }})
+   .click(function(e) { 
+       e.preventDefault(); 
+       initializeSortable();
+       $(this).focus(); 
+   });
+    //$('#example').popover({trigger: "click", html:true});
+});
 	$(document).ready(function() {
-		//console.log($("#text").html())
-		$.cloudinary.config({ cloud_name: 'dg1a2dx9d', api_key: '643398365774925'})
+		//$.cloudinary.config({ cloud_name: 'dg1a2dx9d', api_key: '643398365774925'})
 
-		$(".dragbox > img").cloudinary();
+		//$(".dragbox > img").cloudinary();
 
 		pageLoad();
-
-		$('.draggable').draggable({
-			cancel: false,
-    	helper: function(e) {
-	    	var type = this.id
-	    	//console.log(this.id)
-	    	if (type == "picture") {
-	    		
-	    		 var innerTag = $('<div>').addClass('edit_area')
-		    	innerTag.attr("title", "Click to edit")
-		    	innerTag.text("New " + type)	    	
-		    } else {
-		    	var innerTag = $('<div>').addClass('edit_area')
-		    	innerTag.attr("title", "Click to edit")
-		    	innerTag.text("New " + type)
-	    	}
-	    	var res = $('<div>').addClass('dragbox').append(innerTag);
-	    	if (type == "text") {
-	    		res.data("type", "markdown_text")
-	    	} else if (type == "video") {
-	    		res.data("type", "video")
-	    		//console.log("video type")
-	    	} else if (type == "picture") {
-	    		res.data("type", "picture")
-	    		//console.log("video type")
-	    	}
-
-	    	return res;
-
-    },
-    stop: function( event, ui ) {
-     	console.log("stop", event, $(ui.helper).data('type') )
-     	if(this.id == "picture"){
-     		cloudinary.openUploadWidget({ cloud_name: 'dg1a2dx9d', upload_preset: 'zothj6or', 'folder': 'user_photos' },
-	      function(error, result) {
-	      	console.log(error, result[0]['url'])
-	      	var id = result[0]['public_id']
-	      	console.log(id)
-	      	console.log($(ui.helper).children('img'))
-	      	var curItem = $(ui.helper)
-	      	var innerTag = $('<img>').data({"src": id, "height": 200, "public_id" : id})	      	
-	      	curItem.html(innerTag)
-	      	innerTag.cloudinary();
-	      });
-     	}
-     	
-     	//if(this.id == "picture") $('#choosePictureModel').modal('show')  
-    },
-    connectToSortable: ".column"
-	});
-	$('.column').sortable({  
-    connectWith: '.column',    
-    cursor: 'move',  
-    placeholder: 'placeholder',  
-    forcePlaceholderSize: true,  
-    opacity: 0.4, 
-    update: function(event, ui){  
-    	ui.item.attr('style','');
-    	pageLoad();
-
-    },
-    stop: function(event, ui){  
-      //console.log("stop")
-      //updateWidgetData();
-    },
-
-	})  
-	.disableSelection(); 
-
+		initializeSortable();
+		// setClickableTooltip(
+  //       '#picture',
+  //       'diff content with <a href="http://abbysdoor.com">link</a> :)'
+  //   );
 	
 	});
 
 
 
-$('#myTabs a').click(function (e) {
-	e.preventDefault();
-  
-	var url = $(this).attr("data-url");
-  	var href = this.hash;
-  	var pane = $(this);
-	
-	// ajax load from data-url
-	$(href).load(url,function(result){      
-	    pane.tab('show');
-	});
-});
+
 
 $("#save").click(function() {
 	updateWidgetData();
@@ -237,9 +127,17 @@ $(".dragbox").hover(
     function() {
         $(this).find('.close').delay(50).fadeOut(10);
     });
-$('button.close').click(function (e) {
-	$(this).parent().remove();
+// $('button.close').click(function (e) {
+// 	$(this).parent().remove();
+// });
+$('#picture').mouseenter(function(){
+  var pos = $(this).position();
+  $(this).find('div').css('top', (pos.top)+50 + 'px').fadeIn();
+}).mouseleave(function(){
+  $(this).find('div').fadeOut();
 });
+
+
 </script>
 
 
