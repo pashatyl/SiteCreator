@@ -28,6 +28,8 @@ class PagesController < ApplicationController
 
     @pictures = Picture.all
     @site = Site.find(params[:site_id])
+    @user = User.find(params[:user_id])
+
     @body = HtmlProcessor.new(@page).process
   end
 
@@ -37,9 +39,11 @@ class PagesController < ApplicationController
     #pry
     @page = Page.new(page_params)
     @site = Site.find(params[:site_id])
+    @user = User.find(params[:user_id])
+
     respond_to do |format|
       if @page.save
-        format.html { redirect_to edit_site_page_path(@site, @page), notice: 'page was successfully created.' }
+        format.html { redirect_to edit_user_site_page_path(@user, @site, @page), notice: 'page was successfully created.' }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new }

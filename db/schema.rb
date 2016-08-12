@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160812085856) do
+ActiveRecord::Schema.define(version: 20160812145858) do
 
   create_table "markdown_texts", force: :cascade do |t|
     t.text     "markdown",   limit: 65535
@@ -66,12 +66,15 @@ ActiveRecord::Schema.define(version: 20160812085856) do
     t.string   "theme",               limit: 255
     t.string   "menu_type",           limit: 255
     t.string   "title",               limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "default_template_id", limit: 4
+    t.integer  "user_id",             limit: 4
+    t.text     "description",         limit: 65535
   end
 
   add_index "sites", ["default_template_id"], name: "index_sites_on_default_template_id", using: :btree
+  add_index "sites", ["user_id"], name: "index_sites_on_user_id", using: :btree
 
   create_table "templates", force: :cascade do |t|
     t.text     "html",       limit: 65535

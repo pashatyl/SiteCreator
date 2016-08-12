@@ -13,14 +13,14 @@
       <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><%= link_to "Home", root_path %></li>
       <li><a href="#">Page 1</a></li>
       <li><a href="#">Page 2</a></li> 
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
         <li>
-            <%= link_to new_user_registration_path do%>
+            <%= link_to user_sites_path(current_user.id) do%>
               <span class="glyphicon glyphicon-user"></span> My account
             <% end %>
         </li>
