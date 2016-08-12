@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'pry-rails'
+gem 'dotenv-rails'
 #gem 'bootstrap', '~> 4.0.0.alpha3.1'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
@@ -11,6 +12,7 @@ gem "font-awesome-rails"
 gem "redcarpet"
 gem 'jeditable-rails'
 gem 'cloudinary'
+gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7'
 # Use mysql as the database for Active Record

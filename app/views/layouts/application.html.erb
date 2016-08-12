@@ -18,14 +18,41 @@
       <li><a href="#">Page 2</a></li> 
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <% if user_signed_in? %>
+        <li>
+            <%= link_to new_user_registration_path do%>
+              <span class="glyphicon glyphicon-user"></span> My account
+            <% end %>
+        </li>
+
+        <li>
+          <%= link_to destroy_user_session_path, :method => :delete do%>
+            <span class="glyphicon glyphicon-log-out"></span> Log out
+          <% end %>
+        </li>
+              <% else %>
+          <li>
+            <%= link_to new_user_registration_path do%>
+              <span class="glyphicon glyphicon-user"></span> Sign Up
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path do %>
+              <span class="glyphicon glyphicon-log-in"></span> Login
+              <% end %>
+          </li>
+      <% end %>
     </ul>
   </div>
 </nav>
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-8 text-left">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <% if user_signed_in? %>
+        <p> <%= current_user.name %></p>
+      <% end %>
     	<%= yield %>
     </div>
   </div>
