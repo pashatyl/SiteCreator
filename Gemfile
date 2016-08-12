@@ -52,6 +52,8 @@ gem 'cancancan', '~> 1.10'
 
 gem 'ruby-enum'
 
+gem 'rails-jquery-autocomplete'
+
 gem 'devise-i18n'
 
 gem 'rails_admin'

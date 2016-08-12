@@ -18,4 +18,6 @@
 //= require jqcloud
 //= require tether
 //= require dropzone
+//= require jquery-ui/autocomplete
+//= require autocomplete-rails
 //= require_tree .

@@ -1,42 +1,47 @@
 <%= form_for(@site) do |f| %>
-  <% if @site.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
+    <% if @site.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
 
-      <ul>
-      <% @site.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+            <% @site.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :theme %><br>
+      <%= f.select :theme do %>
+          <% @themes.each do |theme| %>
+              <%= content_tag(:option, theme[:name], value: theme[:value]) %>
+          <% end %>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :theme %><br>
-    <%= f.select :theme do %>
-      <% @themes.each do |theme| %>
-        <%= content_tag(:option, theme[:name], value: theme[:value]) %>
+    <div class="field">
+      <%= f.label :menu_type %><br>
+      <%= f.select :menu_type do %>
+          <% @menu.each do |m| %>
+              <%= content_tag(:option, m[:name], value: m[:value]) %>
+          <% end %>
       <% end %>
-    <% end %>
-  </div>
- <div class="field">
-    <%= f.label :menu_type %><br>
-    <%= f.select :menu_type do %>
-      <% @menu.each do |m| %>
-        <%= content_tag(:option, m[:name], value: m[:value]) %>
-      <% end %>
-    <% end %>
-  </div>  
-  <div class="field">
-    <%= f.label :default_template_id %><br>
-    <%= f.collection_select(:default_template_id, @templates, :id, :title) %>
+    </div>
+    <div class="field">
+      <%= f.label :default_template_id %><br>
+      <%= f.collection_select(:default_template_id, @templates, :id, :title) %>
 
-  </div> 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    </div>
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+    <%= form_for @site do |f| %>
+      <% f.autocomplete_field :hashtag_tags, autocomplete_hashtag_tag_sites_path,
+                              'data-delimiter' => ',', :multiple => true %>
+    <% end %>
 <% end %>

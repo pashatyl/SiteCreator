@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
+  autocomplete :hashtag, :tag
 
   # GET /sites
   # GET /sites.json
