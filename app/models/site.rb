@@ -4,7 +4,9 @@ class Site < ActiveRecord::Base
   has_many :comments
 	has_many :pages, dependent: :destroy
 	belongs_to :default_template, class_name: "Template", inverse_of: :sites
+	belongs_to :user
 	after_save :create_first_page
+
 
 	def self.available_themes
 		%w(black white blue)

@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  def profile
-  end
 
-  def show
-  end
+	def index
+	  @sites = Site.all
+	end
 
-  def index
-  end
+	def show
+		@user = User.find(params[:id])
+		@sites = @user.sites
+	end
 end

@@ -1,4 +1,4 @@
-<%= form_for(@site) do |f| %>
+<%= form_for([@user, @site]) do |f| %>
     <% if @site.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
@@ -10,7 +10,7 @@
           </ul>
         </div>
     <% end %>
-
+    <%= f.hidden_field :user_id, :value => current_user.id %>
     <div class="field">
       <%= f.label :theme %><br>
       <%= f.select :theme do %>
@@ -41,10 +41,10 @@
     </div>
 
     <div>
-    <%= f.autocomplete_field :hashtags, autocomplete_hashtag_tag_sites_path,
-                             'data-delimiter' => ' ', :multiple => true,
-                             'data-auto-focus' => true
-      # TODO: Correct UI(maybe use MagicSuggest)
-    %>
+      <%= f.autocomplete_field :hashtags, autocomplete_hashtag_tag_sites_path,
+                               'data-delimiter' => ' ', :multiple => true,
+                               'data-auto-focus' => true
+          # TODO: Correct UI(maybe use MagicSuggest)
+      %>
     </div>
 <% end %>

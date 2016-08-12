@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users #, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   resources :pictures
   resources :users
 
-  resources :sites do
-    resources :pages, on: :member
-    get :autocomplete_hashtag_tag, :on => :collection
+  resources :users do
+      resources :sites do
+        resources :pages, on: :member
+      end
+      get :autocomplete_hashtag_tag, :on => :collection
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

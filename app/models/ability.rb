@@ -6,7 +6,6 @@ class Ability
 
     if user.admin?
       can :manage, :all
-      can :manage, Site
       can :access, :rails_admin   # grant access to rails_admin
       can :dashboard              # grant access to the dashboard
     end
