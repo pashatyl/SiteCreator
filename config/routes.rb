@@ -4,13 +4,12 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   resources :pictures
+  resources :users
 
   resources :sites do
     resources :pages, on: :member
     get :autocomplete_hashtag_tag, :on => :collection
   end
-
-  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -22,6 +21,7 @@ Rails.application.routes.draw do
   get 'users' => 'users#profile'
   get 'index' => 'users#index'
   get 'profile' => 'users#profile'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -13,19 +13,17 @@
       <%= link_to 'SiteBuilder', index_path, class: "navbar-brand" %>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#"><%= I18n.t :home %></a></li>
-      <li><a href="#"><%= I18n.t :page %> 1</a></li>
-      <li><a href="#"><%= I18n.t :page %> 2</a></li>
+      <li class="active"><%= link_to (I18n.t :createsite), new_site_path %></li>
       <li>
         <%= form_tag 'search', method: "get" do %>
             <%= text_field_tag :search, params[:search] %>
-            <%= submit_tag I18n.t :search, :name => nil %>
+            <%= submit_tag (I18n.t :search), :name => nil %>
         <% end %>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-        <li><%= render 'devise/menu/registration_items' %></li>
-        <li><%= render 'devise/menu/login_items'%></li>
+      <li><%= render 'devise/menu/registration_items' %></li>
+      <li><%= render 'devise/menu/login_items'%></li>
     </ul>
   </div>
 </nav>
@@ -36,15 +34,5 @@
     </div>
   </div>
 </div>
-<!-- 
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
-<<<<<<< HEAD
-
-<br/>
-<br/>
- -->
-
 </body>
 </html>

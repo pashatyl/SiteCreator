@@ -34,7 +34,7 @@ end
 
 
   def guest?
-    permission == Permissions::GUEST
+    permission == nil
   end
 
   def user?
@@ -43,9 +43,5 @@ end
 
   def admin?
     permission == Permissions::ADMIN
-  end
-
-  def superAdmin?
-    permission == Permissions::SUPERADMIN
   end
 end

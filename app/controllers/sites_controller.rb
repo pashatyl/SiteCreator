@@ -18,7 +18,6 @@ class SitesController < ApplicationController
   def new
     @site = Site.new
     @themes = Site.available_themes_with_names #callb!
-    pry
     @menu = Site.available_menu_with_names #callb!
     @templates = Template.all
   end

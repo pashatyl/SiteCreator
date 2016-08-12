@@ -40,8 +40,11 @@
       <%= f.submit %>
     </div>
 
-    <% #form_for @site do |f| %>
-      <%# f.autocomplete_field :hashtag_tags, autocomplete_hashtag_tag_sites_path,
-                              'data-delimiter' => ',', :multiple => true %>
-    <% #end %>
+    <div>
+    <%= f.autocomplete_field :hashtags, autocomplete_hashtag_tag_sites_path,
+                             'data-delimiter' => ' ', :multiple => true,
+                             'data-auto-focus' => true
+      # TODO: Correct UI(maybe use MagicSuggest)
+    %>
+    </div>
 <% end %>
