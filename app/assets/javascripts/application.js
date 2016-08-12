@@ -20,4 +20,6 @@
 //= require dropzone
 //= require jquery-ui/autocomplete
 //= require autocomplete-rails
+//= require jquery.jeditable.mini
+//= require cloudinary
 //= require_tree .

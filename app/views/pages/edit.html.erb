@@ -1,214 +1,135 @@
-<script src="http://www.appelsiini.net/download/jquery.jeditable.mini.js"></script>
+<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 
 
 <div class="container">
 
-  <div class="modal fade" id="choosePictureModel" role="dialog">
-   	<div class="modal-dialog">
-   		<div class="modal-content">
-        <div class="modal-header">                        
-          <ul id="myTab" class="nav nav-tabs">
-            <li class="active"><%= link_to "upload", new_picture_url(:format => :js), :remote => true, 'data-toggle' => 'tab', 'data-target' => '#uploadcontent' %></li>
-						<li><%= link_to "choose picture", pictures_path(:format => :js), :remote => true, 'data-toggle' => 'tab', 'data-target' => '#indexcontent' %></li>
-					</ul>
+
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div class="btn-toolbar">
+        <div class="btn-group">
+          <button class="btn" id="picture-btn" data-original-title="Drag picture" data-placement="bottom" rel="popover"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
+
+          </button>
+          <button class="btn draggable" id="video-btn"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
+          <button class="btn draggable" id="text-btn"><i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
+          <button class="btn" id="add-page" data-toggle="modal" data-target="#newPageDialog"> Add page </button>
+          <button class="btn" id="save"> Save </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-8">
+      <%= render "page" %>
+    </div>
+
+  </div>
+
+  <div class="modal fade" id="newPageDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="exampleModalLabel">New Page</h4>
         </div>
         <div class="modal-body">
-          <div class="tab-content">
-						<div class="tab-pane active" id="uploadcontent"></div>
-							<div class="tab-pane" id="indexcontent"></div>
-								<div class="tab-pane" id="messages"></div>
-					</div>
+          <%= render "form" %>
         </div>
         <div class="modal-footer">
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary">Ok</button>
-				</div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Send message</button>
+        </div>
       </div>
     </div>
   </div>
 
+  <script type="text/javascript" >
 
-	<div class="row">
-  	<div class="col-xs-6 col-md-4">
-  		<div class="btn-toolbar">
-	  		<div class="btn-group-vertical">
-	       	<button class="btn draggable" id="picture"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></button>
-	      	<button class="btn draggable" id="video"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
-	      	<button class="btn draggable" id="text"><i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
-	  		</div>
-			</div>
-  	</div>
-  	<div class="col-xs-12 col-md-8">
-  		<%= render "page" %>
-  	</div>
-  
-	</div>
-<button class="btn" id="save"> Save </button>
+    function updateWidgetData(){
+      var items=[];
+      $("div[class*='column']").each(function(){
+        var columnId=$(this).attr('id');
+        $('.dragbox', this).each(function(i){
 
+          var item={
+            id : $(this).data('id'),
+            order : i,
+            type : $(this).data('type'),
+            div_id : columnId
+          };
+          if (item["type"] == "markdown_text") {
+            item["markdown"] = $(this).text();
+          } else if (item["type"] == "video") {
+            //var text = $(this).text();
+            item["url"] = $(this).find('iframe').attr("src") //"https://www.youtube.com/embed/0nCOZyoeA14"//$(this).text();
+          } else if (item["type"] == "picture_role") {
+            //item["public_id"] = $(this).find('img').data("public");
+            var pictureItem = {
+              url : $(this).find('img').attr("src"),
+              public_id : $(this).find('img').data("public"),
+              id : $(this).find('img').data("id")
+              //item["public_id"] = $(this).find('img').data("public")
+            }
+            item["picture_attributes"] = pictureItem
+          }
+          items.push(item);
+        });
+      });
+      var sortorder={ items: items };
+      console.log(sortorder);
+      $.ajax({
+        type: "PATCH",
+        url: window.location.pathname.replace("edit",""),
+        data: {page_elements: JSON.stringify( sortorder )},
+        dataType: 'script',
+        success: function(msg) {
+          console.log("success")
+          //NOT WORKING
+        }
 
-<script type="text/javascript" >
-  function pageLoad() {
-    $('.edit_area').editable(function(value, settings) {
-	    	var parent = $(this).parent();
-	    	if(parent.data("type") == "video" && value.includes("youtube")) {
-	    		parent.empty();
-	    		var frame = $('<iframe>').attr("src", value).attr("frameborder", 0).attr("allowfullscreen","");
-	    		parent.append(frame)
-	    		console.log($(this).parent(), value, $(this).parent().data("type"));
-	    	}  	
-	    	return(value);
-	  	}, {
-	  		indicator : 'Saving...',
-	    	tooltip   : 'Click to edit...',
-	    	callback : function(value, settings) {
-	    		//updateWidgetData();
-	    }
-    }); 
-  }
+      });
+    }
+    $(function () {
+      $('#picture-btn')
+          .popover({trigger: "click", html:true, content: function () {
+            return $('<div>').html('<%= escape_javascript(render "pictures") %>');
 
-  function updateWidgetData(){  
-	  var items=[];  
-	  $('.column').each(function(){  
-	    var columnId=$(this).attr('id');  
-	    $('.dragbox', this).each(function(i){
-	       	//console.log($(this).data('id'));   
-	      var item={  
-	        id: $(this).data('id'),   
-	        order : i,  
-	        type: $(this).data('type'),
-	        div_id: columnId  
-	      }; 
-	      if (item["type"] == "markdown_text") {
-	       	item["markdown"] = $(this).text();
-	      } else if (item["type"] == "video") {
-	       	//var text = $(this).text();
-	        	//console.log("video!!!!", $(this).find('iframe').attr("src"))
-	       	item["url"] = $(this).text() || $(this).find('iframe').attr("src") //"https://www.youtube.com/embed/0nCOZyoeA14"//$(this).text();
-	      }
-	      items.push(item);  
-	    });  
-	  });  
-	  var sortorder={ items: items };  
-	  console.log(sortorder);  
-	 	 $.ajax({
-	      type: "PATCH",
-	      url: window.location.pathname.replace("edit",""),
-	      data: {page_elements: JSON.stringify( sortorder )},
-	      dataType: 'json',
-	      success: function(msg) {
-	      	console.log("success")
-	      }
-	           
-	    });
-	}
+          }})
+          .click(function(e) {
+            e.preventDefault();
+            initializeSortable();
+            $(this).focus();
+          });
+      $(document).ready(function() {
+        //$.cloudinary.config({ cloud_name: 'dg1a2dx9d', api_key: '643398365774925'})
 
-	$(document).ready(function() {
-		//console.log($("#text").html())
-		$("#text").off();
-		$("#video").off();
-		$("#picture").off();
+        //$(".dragbox > img").cloudinary();
 
-		pageLoad();
-
-		$('.draggable').draggable({
-			cancel: false,
-    	helper: function(e) {
-	    	var type = this.id
-	    	//console.log(this.id)
-	    	if (type == "picture") {
-	    		
-	    		var innerDiv = $('<div>').addClass('edit_area')
-		    	innerDiv.attr("title", "Click to edit")
-		    	innerDiv.text("New " + type)
-	    	} else {
-		    	var innerDiv = $('<div>').addClass('edit_area')
-		    	innerDiv.attr("title", "Click to edit")
-		    	innerDiv.text("New " + type)
-	    	}
-	    	var res = $('<div>').addClass('dragbox').append(innerDiv);
-	    	if (type == "text") {
-	    		res.data("type", "markdown_text")
-	    	} else if (type == "video") {
-	    		res.data("type", "video")
-	    		//console.log("video type")
-	    	} else if (type == "picture") {
-	    		res.data("type", "picture")
-	    		//console.log("video type")
-	    	}
-
-	    	return res;
-
-    },
-    stop: function( event, ui ) {
-     	console.log("stop")
-     	if(this.id == "picture") $('#choosePictureModel').modal('show')  
-    },
-    connectToSortable: ".column"
-	});
-	$('.column').sortable({  
-    connectWith: '.column',    
-    cursor: 'move',  
-    placeholder: 'placeholder',  
-    forcePlaceholderSize: true,  
-    opacity: 0.4, 
-    update: function(event, ui){  
-    	ui.item.attr('style','');
-    	pageLoad();
-
-    },
-    stop: function(event, ui){  
-      //console.log("stop")
-      //updateWidgetData();
-    },
-
-	})  
-	.disableSelection(); 
-
-	
-	});
+        initializeEditable();
+        initializeSortable();
+      });
 
 
 
 
-//  $( function() {
-//     $( "#tabs" ).tabs({
-//     	beforeLoad: function(event, ui){
-//     alert('loading');
-// 		}, 
-// 		load:function(event, ui){
-//     alert('loaded');
-// }
-//     });
-//   } );
 
-$('#myTabs a').click(function (e) {
-	e.preventDefault();
-  
-	var url = $(this).attr("data-url");
-  	var href = this.hash;
-  	var pane = $(this);
-	
-	// ajax load from data-url
-	$(href).load(url,function(result){      
-	    pane.tab('show');
-	});
-});
+      $("#save").click(function() {
+        updateWidgetData();
+      });
 
-$("#save").click(function() {
-	updateWidgetData();
-});
 
-$(".dragbox").hover( 
-	function() {
-        $(this).find('.close').delay(50).fadeIn(10);
-    },
-    function() {
-        $(this).find('.close').delay(50).fadeOut(10);
+      $(".dragbox").hover(
+          function() {
+            $(this).find('.close').delay(50).fadeIn(10);
+          },
+          function() {
+            $(this).find('.close').delay(50).fadeOut(10);
+          });
+// $('button.close').click(function (e) {
+// 	$(this).parent().remove();
+// });
     });
-$('button.close').click(function (e) {
-	$(this).parent().remove();
-});
-</script>
 
-
-
+  </script>
+</div>

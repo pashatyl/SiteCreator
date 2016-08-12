@@ -4,7 +4,7 @@ class HtmlProcessor
     @html = page.template.html
     @elements = []
     @elements += page.markdown_texts
-    @elements += page.pictures
+    @elements += page.picture_roles
     @elements += page.videos
   end
 
@@ -13,6 +13,7 @@ class HtmlProcessor
     puts res
     res
   end
+
 
 private
   def wrap(element)

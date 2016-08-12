@@ -55,21 +55,23 @@ ActiveRecord::Schema.define(version: 20160810093606) do
   add_index "pages", ["site_id"], name: "index_pages_on_site_id", using: :btree
   add_index "pages", ["template_id"], name: "index_pages_on_template_id", using: :btree
 
-  create_table "pages_pictures", id: false, force: :cascade do |t|
-    t.integer "page_id",    limit: 4
-    t.integer "picture_id", limit: 4
-  end
-
-  add_index "pages_pictures", ["page_id"], name: "index_pages_pictures_on_page_id", using: :btree
-  add_index "pages_pictures", ["picture_id"], name: "index_pages_pictures_on_picture_id", using: :btree
-
-  create_table "pictures", force: :cascade do |t|
+  create_table "picture_roles", force: :cascade do |t|
+    t.integer  "picture_id", limit: 4
+    t.integer  "page_id",    limit: 4
     t.string   "div_id",     limit: 255
     t.integer  "order",      limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "picture_roles", ["page_id"], name: "index_picture_roles_on_page_id", using: :btree
+  add_index "picture_roles", ["picture_id"], name: "index_picture_roles_on_picture_id", using: :btree
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "public_id",  limit: 255
+    t.string   "url",        limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "image_uid",  limit: 255
-    t.string   "image_name", limit: 255
   end
 
   create_table "sites", force: :cascade do |t|
