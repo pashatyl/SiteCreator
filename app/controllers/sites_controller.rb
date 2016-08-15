@@ -16,7 +16,7 @@ class SitesController < ApplicationController
 
   # GET /sites/new
   def new
-    @user = User.find(params[:user_id])
+    @user =  current_user #User.find(params[:user_id])
     @site = Site.new
     @themes = Site.available_themes_with_names #callb!
     @menu = Site.available_menu_with_names #callb!
