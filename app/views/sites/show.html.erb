@@ -17,4 +17,4 @@
  -->
 
 <%= link_to 'Edit', edit_user_site_path(@site.user_id, @site) %> |
-<%= link_to 'Back', user_sites_path %>
+<%= link_to 'Back', user_sites_path(@site.user_id, @site) %>

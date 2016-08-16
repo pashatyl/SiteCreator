@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160812145858) do
+ActiveRecord::Schema.define(version: 20160816133013) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -31,7 +31,10 @@ ActiveRecord::Schema.define(version: 20160812145858) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "weight",     limit: 4
+    t.integer  "site_id",    limit: 4
   end
+
+  add_index "hashtags", ["site_id"], name: "index_hashtags_on_site_id", using: :btree
 
   create_table "markdown_texts", force: :cascade do |t|
     t.text     "markdown",   limit: 65535
@@ -83,9 +86,11 @@ ActiveRecord::Schema.define(version: 20160812145858) do
     t.integer  "default_template_id", limit: 4
     t.integer  "user_id",             limit: 4
     t.text     "description",         limit: 65535
+    t.integer  "hashtag_id",          limit: 4
   end
 
   add_index "sites", ["default_template_id"], name: "index_sites_on_default_template_id", using: :btree
+  add_index "sites", ["hashtag_id"], name: "index_sites_on_hashtag_id", using: :btree
   add_index "sites", ["user_id"], name: "index_sites_on_user_id", using: :btree
 
   create_table "templates", force: :cascade do |t|

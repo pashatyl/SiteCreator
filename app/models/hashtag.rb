@@ -6,7 +6,7 @@ class Hashtag < ActiveRecord::Base
   end
 
   def header
-    "##{tag} at the #{site.title}"
+    "##{tag} from the #{self.site.title}"
   end
 
   def text
