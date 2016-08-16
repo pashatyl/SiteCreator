@@ -24,4 +24,15 @@ class MarkdownText < ActiveRecord::Base
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
 
+  def header
+    "Text"
+  end
+
+  def text
+    ''
+  end
+
+  def link
+    page
+  end
 end

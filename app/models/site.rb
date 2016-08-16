@@ -6,7 +6,7 @@ class Site < ActiveRecord::Base
 	belongs_to :default_template, class_name: "Template", inverse_of: :sites
 	belongs_to :user
 	after_save :create_first_page
-
+	validates :user_id, presence: true
 
 	def self.available_themes
 		%w(black white blue)

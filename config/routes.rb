@@ -1,25 +1,24 @@
 Rails.application.routes.draw do
 
-  devise_for :users #, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  resources :search
   resources :pictures
   resources :sites
 
   resources :users do
       resources :sites do
         resources :pages, on: :member
+        get :autocomplete_hashtag_tag, :on => :collection
       end
-      get :autocomplete_hashtag_tag, :on => :collection
   end
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'users#index'
   get 'users/profile', as: 'user_root'
-  get 'search' => 'search#results'
   get 'users' => 'users#profile'
   get 'index' => 'users#index'
   get 'profile' => 'users#profile'

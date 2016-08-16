@@ -51,4 +51,16 @@ end
   has_many :sites, dependent: :destroy
 
   ROLES = {0 => :guest, 1 => :user, 2 => :admin}
+
+  def header
+    "#{self.name}"
+  end
+
+  def text
+    ''
+  end
+
+  def link
+    self
+  end
 end

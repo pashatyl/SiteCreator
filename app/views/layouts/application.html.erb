@@ -15,7 +15,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><%= link_to (I18n.t :createsite), new_site_path %></li>
       <li>
-        <%= form_tag 'search', method: "get" do %>
+        <%= form_tag search_path(current_user.id), method: "get" do %>
             <%= text_field_tag :search, params[:search] %>
             <%= submit_tag (I18n.t :search), :name => nil %>
         <% end %>
