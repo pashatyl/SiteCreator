@@ -1,4 +1,7 @@
-<%= form_for([@user, @site]) do |f| %>
+
+<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+
+<%= form_for([@site]) do |f| %>
   <% if @site.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
@@ -10,7 +13,6 @@
       </ul>
     </div>
   <% end %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="field">
     <%= f.label :theme %><br>
     <%= f.select :theme do %>
@@ -36,7 +38,34 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <%= f.fields_for :picture do |ff| %>
+  <div>
+    <button type="button" class="btn btn-default" id="logo">Choose logo</button>
+    <%= ff.hidden_field :url %>
+  </div>
+  <div>
+    <%= ff.hidden_field :public_id %>
+  </div>
+
+<% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $("#logo").click(function(){
+    showUploadDialog(this, placeUrlInField);
+  });
+
+  function placeUrlInField(error, result, elem) {
+    var url = result[0]['url']
+    $("#site_picture_attributes_url").val(url);
+    $("#site_picture_attributes_public_id").val(result[0]['public_id']);
+}
+</script>

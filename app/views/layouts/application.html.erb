@@ -20,7 +20,7 @@
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
         <li>
-            <%= link_to user_sites_path(current_user.id) do%>
+            <%= link_to user_path(current_user.id) do%>
               <span class="glyphicon glyphicon-user"></span> My account
             <% end %>
         </li>
@@ -51,7 +51,7 @@
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <% if user_signed_in? %>
-        <p> <%= current_user.name %></p>
+        <p> <%= current_user.name %>, <%= current_user.role %>, <%= current_user.id %></p>
       <% end %>
     	<%= yield %>
     </div>

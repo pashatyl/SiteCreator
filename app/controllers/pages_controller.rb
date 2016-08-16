@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /pages
   # GET /pages.json
   def index
@@ -26,10 +26,8 @@ class PagesController < ApplicationController
     @page_new = Page.new
     @templates = Template.all
 
-    @pictures = Picture.all
+    @pictures = current_user.pictures
     @site = Site.find(params[:site_id])
-    @user = User.find(params[:user_id])
-
     @body = HtmlProcessor.new(@page).process
   end
 
@@ -39,11 +37,10 @@ class PagesController < ApplicationController
     #pry
     @page = Page.new(page_params)
     @site = Site.find(params[:site_id])
-    @user = User.find(params[:user_id])
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to edit_user_site_page_path(@user, @site, @page), notice: 'page was successfully created.' }
+        format.html { redirect_to edit_site_page_path(@site, @page), notice: 'page was successfully created.' }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new }
@@ -105,6 +102,9 @@ class PagesController < ApplicationController
             picture_id = el["picture_attributes"]["id"]
             el.delete("picture_attributes")
             el["picture_id"] = picture_id
+          end
+          if el["type"] == "picture_role" 
+            el["picture_attributes"]["user_id"] = current_user.id
           end
           el.delete("type")
          

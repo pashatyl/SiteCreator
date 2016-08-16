@@ -19,3 +19,5 @@
 //= require jquery.jeditable.mini
 //= require cloudinary
 //= require_tree .
+
+

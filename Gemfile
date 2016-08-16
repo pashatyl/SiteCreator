@@ -13,6 +13,8 @@ gem "redcarpet"
 gem 'jeditable-rails'
 gem 'cloudinary'
 gem 'devise'
+gem 'cancancan', '~> 1.10'
+gem 'rails_admin', '~> 0.8.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7'
 # Use mysql as the database for Active Record

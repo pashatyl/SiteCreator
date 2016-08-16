@@ -2,7 +2,11 @@ class Site < ActiveRecord::Base
 	has_many :pages, dependent: :destroy
 	belongs_to :default_template, class_name: "Template", inverse_of: :sites
 	belongs_to :user
+	has_many :comments, dependent: :destroy
+	has_one :picture
+	accepts_nested_attributes_for :picture
 	after_save :create_first_page
+
 
 
 	def self.available_themes

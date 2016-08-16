@@ -1,0 +1,8 @@
+<%= form_for([site, site.comments.new], :html=>{class: "form-inline"}) do |f| %>
+  <div class="form-group">    
+    <%= f.text_field :content,  class: "form-control", placeholder: "Your comments" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Add", class:"btn btn-default"%>
+  </div>
+<% end %>

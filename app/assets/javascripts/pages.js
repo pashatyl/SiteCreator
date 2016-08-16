@@ -7,7 +7,7 @@ function initializeSortable(){
     	},
 	    stop: function( event, ui ) {
 	     	if(this.id == "picture" && $(this).data("id") == "new"){
-	     		showUploadDialog(this);
+	     		showUploadDialog(this, placePictureInContainer);
 	     	}
 	    },
     	connectToSortable: "div[class*='column']"
@@ -55,10 +55,13 @@ function initializeSortable(){
 	    	if(parent.data("type") == "video") {
 	    		loadVideo(parent, value)
 	    	}  	
-	    	return(value);
+	    	return(value.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
 	  	}, {
+	  		cancel    : 'Cancel',
+         	submit    : 'OK',
 	  		indicator : 'Saving...',
 	    	tooltip   : 'Click to edit...',
+	    	//event   : "dblclick",
 	    	callback : function(value, settings) {
 	    		//updateWidgetData();
 	    }
@@ -93,15 +96,19 @@ function getDraggableElement(elem) {
 	return res;
 }
 
-function showUploadDialog(elem) {
+function showUploadDialog(elem, callback) {
 	cloudinary.openUploadWidget({ cloud_name: 'dg1a2dx9d', upload_preset: 'zothj6or', 'folder': 'user_photos' },
       function(error, result) {
-      	var url = result[0]['url']
+      	callback(error, result, elem)
+    });
+
+}
+
+function placePictureInContainer(error, result, elem) {
+	var url = result[0]['url']
       	var curItem = $(elem)
       	var innerTag = $('<img>').attr("src", url)
       	innerTag.data("public", result[0]['public_id'])	      	
       	curItem.html(innerTag)
       	$(curItem).data("id", null)
-    });
-
 }

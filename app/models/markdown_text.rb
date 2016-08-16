@@ -1,5 +1,6 @@
 class MarkdownText < ActiveRecord::Base
 	belongs_to :page
+  before_save :escape_javascript
 	def to_html
 		#'<div class="edit_area" data-content="' + markdown + '">' + markdown_to_html(markdown) + "</div>"
     '<div class="edit_area">' + markdown + '</div>'
@@ -18,6 +19,10 @@ class MarkdownText < ActiveRecord::Base
       space_after_headers: true
     }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
+  end
+
+  def escape_javascript
+    self.markdown = markdown.gsub(/</, "&lt;").gsub(/>/, "&gt;")
   end
 
 end

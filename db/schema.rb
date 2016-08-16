@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160812145858) do
+ActiveRecord::Schema.define(version: 20160815192650) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content",    limit: 65535
+    t.integer  "user_id",    limit: 4
+    t.integer  "site_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "comments", ["site_id"], name: "index_comments_on_site_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "markdown_texts", force: :cascade do |t|
     t.text     "markdown",   limit: 65535
@@ -60,7 +71,12 @@ ActiveRecord::Schema.define(version: 20160812145858) do
     t.string   "url",        limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "user_id",    limit: 4
+    t.integer  "site_id",    limit: 4
   end
+
+  add_index "pictures", ["site_id"], name: "index_pictures_on_site_id", using: :btree
+  add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree
 
   create_table "sites", force: :cascade do |t|
     t.string   "theme",               limit: 255
@@ -101,6 +117,7 @@ ActiveRecord::Schema.define(version: 20160812145858) do
     t.string   "unconfirmed_email",      limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.integer  "role_id",                limit: 4,   default: 1
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -118,4 +135,5 @@ ActiveRecord::Schema.define(version: 20160812145858) do
 
   add_index "videos", ["page_id"], name: "index_videos_on_page_id", using: :btree
 
+  add_foreign_key "pictures", "users"
 end

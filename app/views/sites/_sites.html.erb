@@ -17,15 +17,21 @@
         <td><%= site.menu_type %></td>
         <td><%= site.title %></td>
         <td>----<%= site.user_id %>----</td>
-
-        <td><%= link_to 'Show', user_site_path(site.user_id, site) %></td>
-        <td><%= link_to 'Edit', edit_user_site_page_path(site.user_id, site, site.first_page) %></td>
-        <td><%= link_to 'Destroy', user_site_path(site.user_id, site), method: :delete %></td>
+        <% if can? :read, site %>
+        <td><%= link_to 'Show', site_path(site) %></td>
+        <% end %>
+        <% if can? :update, site %>
+        <td><%= link_to 'Edit', edit_site_page_path(site, site.first_page) %></td>
+        <% end %>
+        <% if can? :destroy, site %>
+        <td><%= link_to 'Destroy', site_path(site), method: :delete %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-
+<% if can? :create, Site %>
+<%= link_to 'New Site', new_site_path %>
+<% end %>
