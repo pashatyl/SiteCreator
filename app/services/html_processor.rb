@@ -1,11 +1,12 @@
 class HtmlProcessor
 
-  def initialize(page)
+  def initialize(page, action)
     @html = page.template.html
     @elements = []
     @elements += page.markdown_texts
     @elements += page.picture_roles
     @elements += page.videos
+    @action = action
   end
 
   def process
@@ -17,7 +18,11 @@ class HtmlProcessor
 
 private
   def wrap(element)
-    '<div class="dragbox" data-type="' + element.class.name.underscore + '" data-id="'+ element.id.to_s + '">' + element.to_html + '</div>'
+    result = "<div class='#{@action}-class" 
+    if @action == "edit"
+      result << "' data-type='" + element.class.name.underscore + "' data-id='" + element.id.to_s
+    end
+    result << "'>" + element.to_html(@action) + "</div>"
   end 
 
   def add_keys(html, elements)

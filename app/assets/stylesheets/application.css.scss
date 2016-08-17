@@ -29,32 +29,23 @@ body {
   border-radius: 0;
 }
 
-
-
-
-/* Set gray background color and 100% height */
 .sidenav {
-  //padding-top: 20px;
   background-color: #f1f1f1;
-  //height: 100%;
-  //margin-bottom: 0px;
 }
 
-/* Set black background color, white text and some padding */
 footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
   height: 40px;
   background-color: #f5f5f5;
 }
 
-/* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
   .sidenav {
     height: 100%;
     padding: 15px;
+    background-color: #f1f1f1;
   }
   .row.content {height:1auto;}
 }
@@ -68,7 +59,7 @@ footer {
   height: auto; 
   overflow: hidden;
 }
-.dragbox{
+.edit-class {
 	margin:5px 2px 2px 20px;
 	background:#fff;
 	position:relative;
@@ -76,6 +67,12 @@ footer {
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 }
+.show-class {
+  margin:5px 2px 2px 20px;
+  position:relative;
+  padding: 10px;
+}
+
 .placeholder{
 	background: #f0f0f0;
 	border:1px dashed #ddd;
@@ -107,10 +104,10 @@ div iframe{
 }
 
 button.close {
-    display: none;
-    position: absolute;
-    top: -0.5em;
-    left: -0.5em;
+  display: none;
+  position: absolute;
+  top: -0.5em;
+  left: -0.5em;
 }
 
 .popover-content {
@@ -139,11 +136,10 @@ button.close {
 }
 
 .col-sm-9, .col-sm-3, .col-sm-6, .col-sm-12 {
-    min-height: 200px;
-    //margin: 0 10px;
+  min-height: 200px;
+  //margin: 0 10px;
 
 }
-
 
 .profile-userpic img {
   float: none;

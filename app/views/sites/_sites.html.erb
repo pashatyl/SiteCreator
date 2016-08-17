@@ -20,6 +20,9 @@
         <% if can? :read, site %>
         <td><%= link_to 'Show', site_path(site) %></td>
         <% end %>
+        <% if can? :read, site.pages.first %>
+        <td><%= link_to 'preview', site_page_path(site, site.first_page) %></td>
+        <% end %>
         <% if can? :update, site %>
         <td><%= link_to 'Edit', edit_site_page_path(site, site.first_page) %></td>
         <% end %>

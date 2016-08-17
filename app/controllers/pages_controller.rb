@@ -11,7 +11,8 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
   	@site = Site.find(params[:site_id])
-    @body = HtmlProcessor.new(@page).process
+    @body = HtmlProcessor.new(@page, "show").process
+    render layout: "user_layout"
   end
 
 
@@ -28,7 +29,7 @@ class PagesController < ApplicationController
 
     @pictures = current_user.pictures
     @site = Site.find(params[:site_id])
-    @body = HtmlProcessor.new(@page).process
+    @body = HtmlProcessor.new(@page, "edit").process
   end
 
   # POST /pages
@@ -59,7 +60,7 @@ class PagesController < ApplicationController
     #pry
     respond_to do |format|      
       if @page.update(update_params)
-        @body = HtmlProcessor.new(@page).process
+        @body = HtmlProcessor.new(@page, "edit").process
         Rails.logger.error("Hello")
         format.js {render :edit}
         format.html { redirect_to @page, notice: 'page was successfully updated.' }

@@ -80,14 +80,14 @@ function loadVideo(parent, value) {
 function getDraggableElement(elem) {
 	var type = elem.id
 	if (type == "picture") {
-		return $(elem).addClass('dragbox');
+		return $(elem).addClass('edit-class');
 
     }
 	var innerTag = $('<div>').addClass('edit_area')
 	innerTag.attr("title", "Click to edit")
 	innerTag.text("New " + type)
 
-	var res = $('<div>').addClass('dragbox').append(innerTag);
+	var res = $('<div>').addClass('edit-class').append(innerTag);
 	if (type == "text-btn") {
 		res.data("type", "markdown_text")
 	} else if (type == "video-btn") {
