@@ -8,7 +8,7 @@
    */
   var word_array = [
     <% Hashtag.all.each do |hashtag| %>
-      {text: "<%= hashtag.tag %>", weight: <%= hashtag.weight %>, link: "<%= search_path(current_user.id) %>" },
+      {text: "<%= hashtag.tag %>", weight: <%= hashtag.weight %>, link: "<%= search_path(:tag => hashtag.tag) %>" },
     <% end %>
   ];
 

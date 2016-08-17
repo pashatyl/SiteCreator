@@ -22,8 +22,8 @@
 -->
 <config>
   <!-- In all configuration below, a prefix of "solr." for class names
-       is an alias that causes solr to search appropriate packages,
-       including org.apache.solr.(search|update|request|core|analysis)
+       is an alias that causes solr to searches appropriate packages,
+       including org.apache.solr.(searches|update|request|core|analysis)
 
        You may also specify a fully qualified Java classname if you
        have your own custom plugins.
@@ -286,9 +286,9 @@
 
    <!-- Result Window Size
 
-        An optimization for use with the queryResultCache.  When a search
+        An optimization for use with the queryResultCache.  When a searches
         is requested, a superset of the requested number of document ids
-        are collected.  For example, if a search for a particular query
+        are collected.  For example, if a searches for a particular query
         requests matching documents 10 through 19, and queryWindowSize is 50,
         then documents 0 through 49 will be collected and cached.  Any further
         requests in that range can be satisfied via the cache.  
@@ -302,7 +302,7 @@
 
     <!-- Use Cold Searcher
 
-         If a search request comes in and there is no current
+         If a searches request comes in and there is no current
          registered searcher, then immediately register the still
          warming searcher and use it.  If "false" then all requests
          will block until the first searcher is done warming.

@@ -1,7 +1,6 @@
-class SearchController < ApplicationController
+class SearchesController < ApplicationController
   def show
-    @results = search params[:search]
-    puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + @results.count.to_s
+    @results = search (params[:tag] || params[:searches])
   end
 
   private
