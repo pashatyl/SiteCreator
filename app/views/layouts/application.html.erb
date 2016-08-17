@@ -10,8 +10,14 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
       <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
       <li class="active"><%= link_to "Home", root_path %></li>
       <li><a href="#">Page 1</a></li>
@@ -44,17 +50,19 @@
       <% end %>
     </ul>
   </div>
+  </div>
 </nav>
 <div class="container-fluid text-center">
   <div class="row content">
-    <div class="col-sm-8 text-left">
+    <div class="col-sm-12">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <% if user_signed_in? %>
         <p> <%= current_user.name %>, <%= current_user.role %>, <%= current_user.id %></p>
       <% end %>
+
     	<%= yield %>
-    </div>
+      </div>
   </div>
 </div>
 <!-- 

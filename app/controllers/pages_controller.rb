@@ -103,7 +103,7 @@ class PagesController < ApplicationController
             el.delete("picture_attributes")
             el["picture_id"] = picture_id
           end
-          if el["type"] == "picture_role" 
+          if el["type"] == "picture_role" && el.has_key?("picture_attributes")
             el["picture_attributes"]["user_id"] = current_user.id
           end
           el.delete("type")

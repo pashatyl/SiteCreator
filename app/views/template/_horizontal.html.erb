@@ -1,0 +1,30 @@
+
+<nav class="navbar navbar-default <%= @site.theme %>">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#horNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+       <a class="navbar-brand" href="" style="padding: 0px;"><img  style="height: 100%; padding: 2px; width: auto;" src="<%= @site.picture.url %>">
+        <%= @site.title %></a>
+    </div>
+    <div class="collapse navbar-collapse" id="horNavbar">
+      <ul class="nav navbar-nav">
+        <% @site.pages.each do |page| %>
+          <li class="<%= @page.id == page.id ? 'active' : ''%>"><%= link_to page.title, edit_site_page_path(@site, page) %> </li>
+       <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+
+  <div class="col-sm-12 height-column">
+     <%= @body.html_safe %>
+
+</div>
+</div>
+</div>

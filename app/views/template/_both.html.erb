@@ -1,0 +1,82 @@
+<style>
+
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;}
+    }
+.col-sm-9, .col-sm-3, .col-sm-6{
+    overflow: hidden;
+    padding-bottom: 100%;
+    margin-bottom: -100%;
+
+}
+.col-sm-12 {
+  min-height: 200px;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 90% !important;
+  -moz-border-radius: 90% !important;
+  border-radius: 90% !important;
+}
+
+.navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      height: 100%;
+    }
+</style>
+
+<nav class="navbar navbar-default <%= @site.theme %>">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+       <a class="navbar-brand" href="" style="padding: 0px;"><img  style="height: 100%; padding: 2px; width: auto;" src="<%= @site.picture.url %>">
+        <%= @site.title %></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <% @site.pages.each do |page| %>
+          <li><!-- <a href="#"><%= page.title %></a> -->
+            <%= link_to page.title, edit_site_page_path(@site, page) %></li>
+       <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav  <%= @site.theme %>">
+        <ul class="nav nav-pills nav-stacked">
+        <% @site.pages.each do |page| %>
+          <li><a href="#"><%= page.title %></a></li>
+       <% end %>
+      </ul><br>
+      </div>
+    
+    <div class="col-sm-9">
+      <div id="content">
+        <%= @body.html_safe %>
+
+        </div>
+
+    </div>
+  </div>
+  <br></div>

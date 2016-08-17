@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row content height-column">
+    <div class="col-sm-3 sidenav height-column">
+        <div class="profile-userpic">
+          <img src="<%= @site.picture.url %>" class="img-responsive" alt="">
+        </div>
+
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            <%= @site.title %>
+          </div>
+      </div>
+        <ul class="nav nav-pills nav-stacked">
+        <% @site.pages.each do |page| %>
+          <li><%= link_to page.title, edit_site_page_path(@site, page) %> </li>
+       <% end %>
+      </ul><br>
+      </div>
+    
+    <div class="col-sm-9 col">
+       <%= @body.html_safe %>
+
+    </div>
+  </div>
+  </div>

@@ -10,11 +10,11 @@ function initializeSortable(){
 	     		showUploadDialog(this, placePictureInContainer);
 	     	}
 	    },
-    	connectToSortable: "div[class*='column']"
+    	connectToSortable: "div[id^='col']"
 	});
 
-	$("div[class*='column']").sortable({  
-	    connectWith: "div[class*='column']",    
+	$("div[id^='col']").sortable({  
+	    connectWith: "div[id^='col']",    
 	    cursor: 'move',  
 	    placeholder: 'placeholder',  
 	    forcePlaceholderSize: true,  
