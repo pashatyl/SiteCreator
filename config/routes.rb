@@ -5,12 +5,13 @@ Rails.application.routes.draw do
 
   resource :search
   resources :pictures
-  resources :sites
+  resources :sites do
+    get :autocomplete_hashtag_tag, :on => :collection
+  end
 
   resources :users do
       resources :sites do
         resources :pages, on: :member
-        get :autocomplete_hashtag_tag, :on => :collection
       end
   end
   # The priority is based upon order of creation: first created -> highest priority.
