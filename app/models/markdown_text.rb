@@ -6,6 +6,22 @@ class MarkdownText < ActiveRecord::Base
     '<div class="edit_area">' + markdown + '</div>'
 	end
 
+  searchable do
+    text :markdown
+  end
+
+  def header
+    "Text"
+  end
+
+  def text
+    ''
+  end
+
+  def link
+    [page.site, page]
+  end
+
 	private
 	def markdown_to_html(text)
     renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)

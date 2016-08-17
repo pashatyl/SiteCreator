@@ -20,6 +20,12 @@
     <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
       <li><%= active_link_to "Home", root_path, :wrap_tag => :li, :active => :exclusive %></li>
+      <li>
+        <%= form_tag search_path, method: "get" do %>
+            <%= text_field_tag :searches, params[:searches] %>
+            <%= submit_tag "search", :name => nil %>
+        <% end %>
+      </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>

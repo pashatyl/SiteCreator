@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_many :pictures
   ROLES = {0 => :guest, 1 => :user, 2 => :admin}
 
+  searchable do
+    text :name
+  end
+
   def role?(role_name)
     role == role_name
   end
@@ -15,4 +19,17 @@ class User < ActiveRecord::Base
   def role
   	ROLES[role_id]  
   end
+
+  def header
+    "#{self.name}"
+  end
+
+  def text
+    ''
+  end
+
+  def link
+    self #TODO bad idea!!!
+  end
+
 end
