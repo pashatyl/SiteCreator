@@ -60,8 +60,20 @@ function initializeSortable(){
 	$('.edit_area').editable({
 	    type: 'textarea',
 	    title: 'Enter ...',
-	    emptytext   : "Empty",
+	    emptytext   : function() {
+	    	var parent = $(this).parent(); 
+	    	if (parent.data("type") == "video") {
+	    		return "Enter video url";
+	    	} else if (parent.data("type") == "markdown_text") {
+	    		return "Enter text";
+	    	}
+	    	return parent.data("type");
+	    },
 	    success: function(response, newValue) {
+	    	var parent = $(this).parent();
+	    	if(parent.data("type") == "video") {
+	    		loadVideo(parent, newValue)
+	    	} 
 	        //userModel.set('username', newValue); //update backbone model
 	    }
 
