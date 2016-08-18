@@ -13,48 +13,47 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :theme %><br>
-    <%= f.select :theme do %>
+    <%= f.select :theme, {}, {}, {class: "form-control"} do %>
       <% @themes.each do |theme| %>
         <%= content_tag(:option, theme[:name], value: theme[:value]) %>
       <% end %>
     <% end %>
   </div>
- <div class="field">
+ <div class="form-group">
     <%= f.label :menu_type %><br>
-    <%= f.select :menu_type do %>
-      <% @menu.each do |m| %>
-        <%= content_tag(:option, m[:name], value: m[:value]) %>
+    <%= f.select :menu_type, {}, {}, {class: "form-control"} do %>
+      <% @menu.each do |menu| %>
+        <%= content_tag(:option, menu[:name], value: menu[:value]) %>
       <% end %>
     <% end %>
   </div>  
-  <div class="field">
+  <div class="form-group">
     <%= f.label :default_template_id %><br>
-    <%= f.collection_select(:default_template_id, @templates, :id, :title) %>
+    <%= f.collection_select(:default_template_id, @templates, :id, :title, {}, {class: "form-control"}) %>
 
   </div> 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control", placeholder: "Site title" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.text_field :description, class: "form-control", placeholder: "Site description"  %>
   </div>
   <%= f.fields_for :picture do |ff| %>
-  <div>
-    <button type="button" class="btn btn-default" id="logo">Choose logo</button>
+  <div  class="form-group">
+    <button type="button" class="btn btn-default btn-sm" id="logo">Choose logo</button>
+    <img src="" alt="File is not selected" id="imgLogo" width="150" class="img-rounded">
     <%= ff.hidden_field :url %>
-  </div>
-  <div>
     <%= ff.hidden_field :public_id %>
   </div>
 
 <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create", class: "btn btn-default" %>
   </div>
 <% end %>
 
@@ -66,6 +65,7 @@
   function placeUrlInField(error, result, elem) {
     var url = result[0]['url']
     $("#site_picture_attributes_url").val(url);
+    $("#imgLogo").attr("src", url)
     $("#site_picture_attributes_public_id").val(result[0]['public_id']);
 }
 </script>

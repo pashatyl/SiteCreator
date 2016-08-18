@@ -1,15 +1,15 @@
 <div class="container-fluid">
   <div class="row content height-column">
-    <div class="col-sm-3 sidenav height-column">
+    <div class="col-sm-3 sidenav height-column <%= @site.theme %>">
       <div class="profile-userpic">
-        <img src="<%= @site.picture.url %>" class="img-responsive" alt="">
+        <img src="<%= @site.picture.url %>" class="img-rounded" alt="">
       </div>
       <div class="profile-usertitle">
         <div class="profile-usertitle-name">
           <%= @site.title %>
         </div>
       </div>
-      <ul class="nav nav-pills nav-stacked">
+      <ul class="nav">
         <% @site.pages.each do |page| %>
           <li><%=  active_link_to page.title, { controller: "pages", action: action_name, id: page }, :wrap_tag => :li  %> </li>
         <% end %>

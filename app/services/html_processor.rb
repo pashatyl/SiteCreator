@@ -22,7 +22,7 @@ private
     if @action == "edit"
       result << "' data-type='" + element.class.name.underscore + "' data-id='" + element.id.to_s
     end
-    result << "'>" + element.to_html(@action) + "</div>"
+    result << "'>" + "<button class='close'>X</button>" + element.to_html(@action) + "</div>"
   end 
 
   def add_keys(html, elements)

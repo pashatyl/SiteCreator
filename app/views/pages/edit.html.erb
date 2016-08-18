@@ -19,39 +19,10 @@
  
 </div>
   </div>
-  <div class="panel-body height-row"><%= render "page", locals: {action: "edit"} %></div>
+  <div class="panel-body height-row editor-panel"><%= render "page", locals: {action: "edit"} %></div>
 </div>
 
-<!-- 
-       
 
-
-<div class="container">
-
-
-	<div class="row">
-  	<div class="col-xs-6 col-md-4">
-  		<div class="btn-toolbar">
-	  		<div class="btn-group">
-	       	<button class="btn" id="picture-btn" data-original-title="Drag picture" 
-   data-placement="bottom" rel="popover"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
-	     
-	       	</button>
-	      	<button class="btn draggable" id="video-btn"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
-	      	<button class="btn draggable" id="text-btn"><i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
-	      	<button class="btn" id="add-page" data-toggle="modal" data-target="#newPageDialog"> Add page </button>
-	      	<button class="btn" id="save"> Save </button>
-	      	
-
-	  		</div>
-	  		
-			</div>
-  	</div>
-  	<div class="col-xs-12 col-md-8">
-  		  	</div>
-
-	</div>
- -->
 <div class="modal fade" id="newPageDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -71,92 +42,28 @@
       </div>
     </div>
   </div>
-<script type="text/javascript" >
-  
-  function updateWidgetData(){  
-	  var items=[];  
-	  $("div[id^='col']").each(function(){  
-	    var columnId=$(this).attr('id'); 
-	    $('.edit-class', this).each(function(i){
-  
-	      var item={  
-	        id : $(this).data('id'),   
-	        order : i,  
-	        type : $(this).data('type'),
-	        div_id : columnId  
-	      }; 
-	      if (item["type"] == "markdown_text") {
-	       	item["markdown"] = $(this).text();
-	      } else if (item["type"] == "video") {
-	       	//var text = $(this).text();
-	       	item["url"] = $(this).find('iframe').attr("src") //"https://www.youtube.com/embed/0nCOZyoeA14"//$(this).text();
-	      } else if (item["type"] == "picture_role") {
-	      	//item["public_id"] = $(this).find('img').data("public");
-	      	var pictureItem = {
-	      		url : $(this).find('img').attr("src"),
-	      		public_id : $(this).find('img').data("public"),
-	      		id : $(this).find('img').data("id")
-	      		//item["public_id"] = $(this).find('img').data("public")
-	      	}
-	      	item["picture_attributes"] = pictureItem
-	      }
-	      items.push(item);  
-	    });  
-	  });  
-	  var sortorder={ items: items };  
-	  console.log(sortorder);  
-	 	 $.ajax({
-	      type: "PATCH",
-	      url: window.location.pathname.replace("edit",""),
-	      data: {page_elements: JSON.stringify( sortorder )},
-	      dataType: 'script',
-	      success: function(msg) {
-	      	console.log("success")
-	      	//NOT WORKING
-	      }
-	           
-	    });
-	}
-	$(function () {
-		$('#picture-btn')
-   .popover({trigger: "click", html:true, content: function () {
-        return $('<div>').html('<%= escape_javascript(render "pictures") %>');
 
-      }})
-   .click(function(e) { 
-       e.preventDefault(); 
-       initializeSortable();
-       $(this).focus(); 
-   });
+<script type="text/javascript">
+$(document).ready(function() {
+	initializeEditable();
+	initializeSortable();
+	initializeCloseButon();
+		
 });
-	$(document).ready(function() {
-		//$.cloudinary.config({ cloud_name: 'dg1a2dx9d', api_key: '643398365774925'})
+	$('#picture-btn')
+	   .popover({trigger: "click", html:true, content: function () {
+	        return $('<div>').html('<%= escape_javascript(render "pictures") %>');
 
-		//$(".dragbox > img").cloudinary();
+	      }})
+	   .click(function(e) { 
+	       e.preventDefault(); 
+	       initializeSortable();
+	       $(this).focus(); 
+	   });
 
-		initializeEditable();
-		initializeSortable();	
-	});
-
-
-
-
-
-$("#save").click(function() {
-	updateWidgetData();
-});
-
-
-$(".edit-class").hover( 
-	function() {
-        $(this).find('.close').delay(50).fadeIn(10);
-    },
-    function() {
-        $(this).find('.close').delay(50).fadeOut(10);
-    });
-// $('button.close').click(function (e) {
-// 	$(this).parent().remove();
-// });
+	   $("#save").click(function() {
+	        updateWidgetData();
+   }); 
 </script>
 
 

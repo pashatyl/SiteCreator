@@ -55,11 +55,12 @@ class PagesController < ApplicationController
   def update
     #puts JSON.parse params[:page_elements]
     update_params = parse_params(JSON.parse params[:page_elements])
+    deleted_elements = JSON.parse(params[:deleted_elements])
     #pry
     #puts update_params
     #pry
     respond_to do |format|      
-      if @page.update(update_params)
+      if @page.update(update_params) && delete_elements(deleted_elements)
         @body = HtmlProcessor.new(@page, "edit").process
         #Rails.logger.error("Hello")
         format.js {render :edit}
@@ -114,5 +115,11 @@ class PagesController < ApplicationController
       .transform_keys!{ |key| key.pluralize + "_attributes" }
 
       elements
+    end
+
+    def delete_elements(deleted_elements)
+      deleted_elements.each do |element|
+        element["type"].camelize.constantize.find(element["id"]).destroy
+      end
     end
 end
