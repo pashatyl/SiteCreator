@@ -1,5 +1,7 @@
 
-<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<link rel="stylesheet" href="jquery-ui.theme.css">
+<%= stylesheet_link_tag 'jquery-ui.theme.css'%>
 
 <%= form_for([@site]) do |f| %>
   <% if @site.errors.any? %>
@@ -49,7 +51,8 @@
     <%= ff.hidden_field :url %>
     <%= ff.hidden_field :public_id %>
   </div>
-
+        <%= f.autocomplete_field :hashtags, autocomplete_hashtag_tag_sites_path,
+            'data-delimiter' => ' ', :multiple => true %>
 <% end %>
 
   <div class="actions">

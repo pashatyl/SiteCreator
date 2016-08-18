@@ -25,8 +25,6 @@ Rails.application.configure do
     enable_starttls_auto: true,
     user_name: ENV.fetch('EMAIL'),
     password: ENV.fetch('EMAIL_PASSWORD')
-
-
   }
 
   # Print deprecation notices to the Rails logger.

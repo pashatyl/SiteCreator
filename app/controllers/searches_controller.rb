@@ -1,7 +1,8 @@
 class SearchesController < ApplicationController
+  require 'tag_search'
+
   def show
     @results = search (params[:tag] || params[:searches])
-    #pry
   end
 
   private
@@ -12,6 +13,7 @@ class SearchesController < ApplicationController
       search = model.search { fulltext text }
       results.concat search.results
     end
+    results.concat Tag.search(text)
     results
   end
 end

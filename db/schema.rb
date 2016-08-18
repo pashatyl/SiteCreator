@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815192650) do
+ActiveRecord::Schema.define(version: 20160818140148) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",    limit: 65535
@@ -23,6 +23,21 @@ ActiveRecord::Schema.define(version: 20160815192650) do
 
   add_index "comments", ["site_id"], name: "index_comments_on_site_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string   "tag",        limit: 255,             null: false
+    t.integer  "weight",     limit: 4,   default: 1
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  create_table "hashtags_sites", id: false, force: :cascade do |t|
+    t.integer "site_id",    limit: 4
+    t.integer "hashtag_id", limit: 4
+  end
+
+  add_index "hashtags_sites", ["hashtag_id"], name: "index_hashtags_sites_on_hashtag_id", using: :btree
+  add_index "hashtags_sites", ["site_id"], name: "index_hashtags_sites_on_site_id", using: :btree
 
   create_table "markdown_texts", force: :cascade do |t|
     t.text     "markdown",   limit: 65535
@@ -45,14 +60,6 @@ ActiveRecord::Schema.define(version: 20160815192650) do
 
   add_index "pages", ["site_id"], name: "index_pages_on_site_id", using: :btree
   add_index "pages", ["template_id"], name: "index_pages_on_template_id", using: :btree
-
-  create_table "pages_templates", id: false, force: :cascade do |t|
-    t.integer "page_id",     limit: 4
-    t.integer "template_id", limit: 4
-  end
-
-  add_index "pages_templates", ["page_id"], name: "index_pages_templates_on_page_id", using: :btree
-  add_index "pages_templates", ["template_id"], name: "index_pages_templates_on_template_id", using: :btree
 
   create_table "picture_roles", force: :cascade do |t|
     t.integer  "picture_id", limit: 4
@@ -91,6 +98,33 @@ ActiveRecord::Schema.define(version: 20160815192650) do
 
   add_index "sites", ["default_template_id"], name: "index_sites_on_default_template_id", using: :btree
   add_index "sites", ["user_id"], name: "index_sites_on_user_id", using: :btree
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id",        limit: 4
+    t.integer  "taggable_id",   limit: 4
+    t.string   "taggable_type", limit: 255
+    t.integer  "tagger_id",     limit: 4
+    t.string   "tagger_type",   limit: 255
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["context"], name: "index_taggings_on_context", using: :btree
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
+  add_index "taggings", ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
+  add_index "taggings", ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
+  add_index "taggings", ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
+  add_index "taggings", ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name",           limit: 255
+    t.integer "taggings_count", limit: 4,   default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "templates", force: :cascade do |t|
     t.text     "html",       limit: 65535

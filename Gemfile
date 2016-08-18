@@ -6,6 +6,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
 gem 'jquery-ui-rails'
+gem 'rails4-autocomplete'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
 gem "font-awesome-rails"
@@ -17,9 +18,17 @@ gem 'rails_admin', '~> 0.8.1'
 gem 'active_link_to'
 gem 'x-editable-rails'
 
+gem 'jqcloud-rails'
+
+gem 'acts-as-taggable-on', '~> 4.0'
+
+gem 'rails-jquery-autocomplete'
+
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'rails-jquery-autocomplete'
+
+gem 'magic_suggest'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7'

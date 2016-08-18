@@ -18,4 +18,7 @@
 //= require tether
 //= require cloudinary
 //= require editable/bootstrap-editable
-//= require_tree .
+//= require jquery-ui/autocomplete
+//= require autocomplete-rails
+//= require jquery-ui
+// = require_tree .

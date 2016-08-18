@@ -1,6 +1,9 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
+  autocomplete :hashtag, :tag
+  ActsAsTaggableOn.delimiter = ' '
+  
   # GET /sites
   # GET /sites.json
   def index
@@ -30,6 +33,7 @@ class SitesController < ApplicationController
   # POST /sites.json
   def create
     @site = Site.new(site_params.deep_merge(user_id: current_user.id, picture_attributes: {user_id: current_user.id}))
+    @site.hashtag_list.add(params[:site][:hashtags][0].split(' '))
 
     respond_to do |format|
       if @site.save
@@ -74,6 +78,6 @@ class SitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:theme, :menu_type, :title, :default_template_id, :description, picture_attributes: [ :public_id, :url ])
+      params.require(:site).permit(:theme, :menu_type, :title, :default_template_id, :description, :hashtags, picture_attributes: [ :public_id, :url ])
     end
 end
