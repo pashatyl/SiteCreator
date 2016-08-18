@@ -6,6 +6,7 @@ class Site < ActiveRecord::Base
 	has_one :picture
 	accepts_nested_attributes_for :picture
 	after_save :create_first_page
+	
 
 
 

@@ -3,7 +3,14 @@ function initializeSortable(){
 			cancel: false,
 			revert: "invalid",
     	helper: function(e) {
-	    	return getDraggableElement(this);
+    		var type = this.id
+	    	if (type == "picture") {
+				return $(this).clone().addClass('edit-class');
+
+    		}
+			else {
+				return '<i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>';
+			}
     	},
 	    stop: function( event, ui ) {
 	     	if(this.id == "picture" && $(this).data("id") == "new"){
@@ -83,17 +90,20 @@ function getDraggableElement(elem) {
 		return $(elem).addClass('edit-class');
 
     }
-	var innerTag = $('<div>').addClass('edit_area')
-	innerTag.attr("title", "Click to edit")
-	innerTag.text("New " + type)
+	// var innerTag = $('<div>').addClass('edit_area')
+	// innerTag.attr("title", "Click to edit")
+	// innerTag.text("New " + type)
 
-	var res = $('<div>').addClass('edit-class').append(innerTag);
-	if (type == "text-btn") {
-		res.data("type", "markdown_text")
-	} else if (type == "video-btn") {
-		res.data("type", "video")
+	// var res = $('<div>').addClass('edit-class').append(innerTag);
+	// if (type == "text-btn") {
+	// 	res.data("type", "markdown_text")
+	// } else if (type == "video-btn") {
+	// 	res.data("type", "video")
+	// }
+	// return res;
+	else {
+		return '<i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>';
 	}
-	return res;
 }
 
 function showUploadDialog(elem, callback) {
