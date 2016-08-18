@@ -12,7 +12,6 @@ function initializeSortable(){
 			}
     	},
 	    stop: function( event, ui ) {
-	    	//console.log(ui.helper)
 	    	showDraggedElement(ui.helper, this.id)
 	     	
 	    },
@@ -56,24 +55,17 @@ function initializeSortable(){
 
  //   }).trigger("focus");
  // })
-    $('.edit_area').editable(function(value, settings) {
-	    	var parent = $(this).parent();
-	    	if(parent.data("type") == "video") {
-	    		loadVideo(parent, value)
-	    	}  	
-	    	return(value.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
-	  	}, {
-	  		indicator : 'Saving...',
-	    	tooltip   : 'Click to edit...',
-	    	placeholder: 'click to edit',
-	    	type: "textarea",
-	    	cancel    : 'Cancel',
-         submit    : 'OK',
-	    	//event   : "dblclick",
-	    	callback : function(value, settings) {
-	    		//updateWidgetData();
+//########
+	$.fn.editable.defaults.mode = 'inline';
+	$('.edit_area').editable({
+	    type: 'textarea',
+	    title: 'Enter ...',
+	    emptytext   : "Empty",
+	    success: function(response, newValue) {
+	        //userModel.set('username', newValue); //update backbone model
 	    }
-    }); 
+
+	});
 }
 
 function loadVideo(parent, value) {
@@ -96,11 +88,11 @@ function showDraggedElement(elem, type) {
 
 	var innerTag = $('<div>').addClass('edit_area')
 	innerTag.attr("title", "Click to edit")
-	innerTag.text("Click to edit")
-
+	//innerTag.text("New " + type)
 	var res = $('<div>').addClass('edit-class').append(innerTag);
 	if (type == "text-btn") {
 		res.data("type", "markdown_text")
+
 	} else if (type == "video-btn") {
 		res.data("type", "video")
 	}

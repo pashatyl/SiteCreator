@@ -10,12 +10,12 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
 gem "font-awesome-rails"
 gem "redcarpet"
-gem 'jeditable-rails'
 gem 'cloudinary'
 gem 'devise'
 gem 'cancancan', '~> 1.10'
 gem 'rails_admin', '~> 0.8.1'
 gem 'active_link_to'
+gem 'x-editable-rails'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'

@@ -16,6 +16,6 @@
 //= require jquery-ui
 //= require turbolinks
 //= require tether
-//= require jquery.jeditable.mini
 //= require cloudinary
+//= require editable/bootstrap-editable
 //= require_tree .
