@@ -6,16 +6,15 @@ function initializeSortable(){
     		var type = this.id
 	    	if (type == "picture") {
 				return $(this).clone().addClass('edit-class');
-
     		}
 			else {
 				return '<i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>';
 			}
     	},
 	    stop: function( event, ui ) {
-	     	if(this.id == "picture" && $(this).data("id") == "new"){
-	     		showUploadDialog(this, placePictureInContainer);
-	     	}
+	    	//console.log(ui.helper)
+	    	showDraggedElement(ui.helper, this.id)
+	     	
 	    },
     	connectToSortable: "div[id^='col']"
 	});
@@ -64,10 +63,12 @@ function initializeSortable(){
 	    	}  	
 	    	return(value.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
 	  	}, {
-	  		cancel    : 'Cancel',
-         	submit    : 'OK',
 	  		indicator : 'Saving...',
 	    	tooltip   : 'Click to edit...',
+	    	placeholder: 'click to edit',
+	    	type: "textarea",
+	    	cancel    : 'Cancel',
+         submit    : 'OK',
 	    	//event   : "dblclick",
 	    	callback : function(value, settings) {
 	    		//updateWidgetData();
@@ -84,26 +85,28 @@ function loadVideo(parent, value) {
 
 }
 
-function getDraggableElement(elem) {
-	var type = elem.id
-	if (type == "picture") {
-		return $(elem).addClass('edit-class');
-
-    }
-	// var innerTag = $('<div>').addClass('edit_area')
-	// innerTag.attr("title", "Click to edit")
-	// innerTag.text("New " + type)
-
-	// var res = $('<div>').addClass('edit-class').append(innerTag);
-	// if (type == "text-btn") {
-	// 	res.data("type", "markdown_text")
-	// } else if (type == "video-btn") {
-	// 	res.data("type", "video")
-	// }
-	// return res;
-	else {
-		return '<i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>';
+function showDraggedElement(elem, type) {
+	if(type == "picture"){
+		if ($(elem).data("id") == "new") {
+	    	showUploadDialog(elem, placePictureInContainer);
+	    } else {
+	    	return;
+	    }
 	}
+
+	var innerTag = $('<div>').addClass('edit_area')
+	innerTag.attr("title", "Click to edit")
+	innerTag.text("Click to edit")
+
+	var res = $('<div>').addClass('edit-class').append(innerTag);
+	if (type == "text-btn") {
+		res.data("type", "markdown_text")
+	} else if (type == "video-btn") {
+		res.data("type", "video")
+	}
+	$(elem).replaceWith(res)
+	initializeEditable();
+	//return res;
 }
 
 function showUploadDialog(elem, callback) {
@@ -116,9 +119,9 @@ function showUploadDialog(elem, callback) {
 
 function placePictureInContainer(error, result, elem) {
 	var url = result[0]['url']
-      	var curItem = $(elem)
-      	var innerTag = $('<img>').attr("src", url)
-      	innerTag.data("public", result[0]['public_id'])	      	
-      	curItem.html(innerTag)
-      	$(curItem).data("id", null)
+  	var curItem = $(elem)
+  	var innerTag = $('<img>').attr("src", url)
+  	innerTag.data("public", result[0]['public_id'])	      	
+  	curItem.html(innerTag)
+  	$(curItem).data("id", null)
 }
