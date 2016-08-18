@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
   private
   def search(text)
     results = []
-    [Hashtag, Comment, User, MarkdownText].each do |model|
+    [Hashtag, Comment, User, MarkdownText, Site, Page].each do |model|
       search = model.search { fulltext text }
       results.concat search.results
     end
