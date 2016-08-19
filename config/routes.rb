@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   resource :search
   resources :pictures
   resources :users 
-  resources :sites do
-    get :autocomplete_hashtag_tag, :on => :collection
-    resources :comments
-    resources :pages, on: :member
+  scope '(:locale)' do
+    resources :sites do
+      get :autocomplete_hashtag_tag, :on => :collection
+      resources :comments
+      resources :pages, on: :member
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

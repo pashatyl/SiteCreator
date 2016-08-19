@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require jquery-ui
+//= require jquery-ui/draggable
+//= require jquery-ui/sortable
 //= require turbolinks
 //= require tether
 //= require cloudinary
