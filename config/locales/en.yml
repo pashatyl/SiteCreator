@@ -35,4 +35,33 @@ en:
   comments:
     header: 'Comments'
     add: 'Add'
-  prohibited this site from being saved:
+    your_comment: 'Your comment'
+  editor:
+    dragPicture: 'Drag picture'
+    newPage: 'New page'
+    close: Cancel
+  site:
+    error:
+      one: error
+      other: errors
+    notSavedMessage: 'prohibited this site from being saved:'
+    chooseLogo: Choose logo
+    fileNotChoosed: File isn't choosed
+    dropdown:
+      description: Description
+      show: Show
+      edit: Edit
+      delete: Delete
+    editing: Editing
+    new: New site
+    theme: Theme
+    menutype: Menu
+    title: Title
+    description: Description
+    logo: Logo
+    userName: User
+  page:
+    enter:
+      video: Add video
+      text: Enter text
+    clickToEdit: Click to add
