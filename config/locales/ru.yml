@@ -14,11 +14,37 @@ ru:
     header: 'Комментарии'
     add: 'Добавить'
     your_comment: 'Ваш комментарий'
-
-
-
-
-
+  editor:
+    dragPicture: 'Перетяните картинку'
+    newPage: 'Новая страница'
+    close: 'Отмена'
+  site:
+    error:
+      few: ошибок
+      many: ошибок
+      one: ошибка
+      other: ошибки
+    notSavedMessage: не позволяют сохранить
+    chooseLogo: Выберите логотип
+    fileNotChoosed: Файл не выбран
+    dropdown:
+      description: Описание
+      show: Просмотреть
+      edit: Редактировать
+      delete: Удалить
+    editing: Редактирование
+    new: Новый сайт
+    theme: Тема
+    menutype: Меню
+    title: Заголовок
+    description: Описание
+    logo: Логотип
+    userName: Пользователь
+  page:
+    enter:
+      video: Добавьте видео
+      text: Введите текст
+    clickToEdit: Нажмите для редактирования
 
   activerecord:
     errors:

@@ -4,60 +4,60 @@
 <%= stylesheet_link_tag 'jquery-ui.theme.css'%>
 
 <%= form_for([@site]) do |f| %>
-  <% if @site.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
+    <% if @site.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@site.errors.count, t('error')) %><%= t('site.notSavedMessage') %></h2>
 
-      <ul>
-      <% @site.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+            <% @site.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :theme %><br>
+      <%= f.select :theme, {}, {}, {class: "form-control"} do %>
+          <% @themes.each do |theme| %>
+              <%= content_tag(:option, theme[:name], value: theme[:value]) %>
+          <% end %>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-  <div class="form-group">
-    <%= f.label :theme %><br>
-    <%= f.select :theme, {}, {}, {class: "form-control"} do %>
-      <% @themes.each do |theme| %>
-        <%= content_tag(:option, theme[:name], value: theme[:value]) %>
+    <div class="form-group">
+      <%= f.label :menu_type %><br>
+      <%= f.select :menu_type, {}, {}, {class: "form-control"} do %>
+          <% @menu.each do |menu| %>
+              <%= content_tag(:option, menu[:name], value: menu[:value]) %>
+          <% end %>
       <% end %>
-    <% end %>
-  </div>
- <div class="form-group">
-    <%= f.label :menu_type %><br>
-    <%= f.select :menu_type, {}, {}, {class: "form-control"} do %>
-      <% @menu.each do |menu| %>
-        <%= content_tag(:option, menu[:name], value: menu[:value]) %>
-      <% end %>
-    <% end %>
-  </div>  
-  <div class="form-group">
-    <%= f.label :default_template_id %><br>
-    <%= f.collection_select(:default_template_id, @templates, :id, :title, {}, {class: "form-control"}) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :default_template_id %><br>
+      <%= f.collection_select(:default_template_id, @templates, :id, :title, {}, {class: "form-control"}) %>
 
-  </div> 
-  <div class="form-group">
-    <%= f.label :title %><br>
-    <%= f.text_field :title, class: "form-control", placeholder: "Site title" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :description %><br>
-    <%= f.text_field :description, class: "form-control", placeholder: "Site description"  %>
-  </div>
-  <%= f.fields_for :picture do |ff| %>
-  <div  class="form-group">
-    <button type="button" class="btn btn-default btn-sm" id="logo">Choose logo</button>
-    <img src="" alt="File is not selected" id="imgLogo" width="150" class="img-rounded">
-    <%= ff.hidden_field :url %>
-    <%= ff.hidden_field :public_id %>
-  </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: "form-control", placeholder: "Site title" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %><br>
+      <%= f.text_field :description, class: "form-control", placeholder: "Site description"  %>
+    </div>
+    <%= f.fields_for :picture do |ff| %>
+        <div  class="form-group">
+          <button type="button" class="btn btn-default btn-sm" id="logo"><%= t('site.chooseLogo') %></button>
+          <img src="" alt="<%= t('site.fileNotChoosed') %>" id="imgLogo" width="150" class="img-rounded">
+          <%= ff.hidden_field :url %>
+          <%= ff.hidden_field :public_id %>
+        </div>
         <%= f.autocomplete_field :tag_list, autocomplete_tag_name_sites_path,
-            'data-delimiter' => ' ', :multiple => true %>
-<% end %>
+                                 'data-delimiter' => ' ', :multiple => true %>
+    <% end %>
 
-  <div class="actions">
-    <%= f.submit "Create", class: "btn btn-default" %>
-  </div>
+    <div class="actions">
+      <%= f.submit "Create", class: "btn btn-default" %>
+    </div>
 <% end %>
 
 <script type="text/javascript">
@@ -70,5 +70,5 @@
     $("#site_picture_attributes_url").val(url);
     $("#imgLogo").attr("src", url)
     $("#site_picture_attributes_public_id").val(result[0]['public_id']);
-}
+  }
 </script>
