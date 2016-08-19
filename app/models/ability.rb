@@ -5,6 +5,7 @@ class Ability
     user ||= User.new(role_id: 0)
     can :create, Comment
     can :index, User
+    can :change_locale, User
     if user.role?(:admin)
       can :access, :rails_admin  
       can :dashboard 

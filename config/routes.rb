@@ -10,12 +10,15 @@ Rails.application.routes.draw do
       resources :comments
       resources :pages, on: :member
     end
+    root 'sites#index'
   end
+
+  get '/change_locale/:new_locale', to: 'users#change_locale', as: :change_locale
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'sites#index'
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
