@@ -8,6 +8,10 @@ class Site < ActiveRecord::Base
 	accepts_nested_attributes_for :picture
 	after_save :create_first_page
 
+	searchable do
+		text :title
+		text :description
+	end
 
 	def self.available_themes
 		%w(black white blue)
