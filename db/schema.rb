@@ -24,21 +24,6 @@ ActiveRecord::Schema.define(version: 20160818140148) do
   add_index "comments", ["site_id"], name: "index_comments_on_site_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "hashtags", force: :cascade do |t|
-    t.string   "tag",        limit: 255,             null: false
-    t.integer  "weight",     limit: 4,   default: 1
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
-
-  create_table "hashtags_sites", id: false, force: :cascade do |t|
-    t.integer "site_id",    limit: 4
-    t.integer "hashtag_id", limit: 4
-  end
-
-  add_index "hashtags_sites", ["hashtag_id"], name: "index_hashtags_sites_on_hashtag_id", using: :btree
-  add_index "hashtags_sites", ["site_id"], name: "index_hashtags_sites_on_site_id", using: :btree
-
   create_table "markdown_texts", force: :cascade do |t|
     t.text     "markdown",   limit: 65535
     t.string   "div_id",     limit: 255
@@ -60,6 +45,14 @@ ActiveRecord::Schema.define(version: 20160818140148) do
 
   add_index "pages", ["site_id"], name: "index_pages_on_site_id", using: :btree
   add_index "pages", ["template_id"], name: "index_pages_on_template_id", using: :btree
+
+  create_table "pages_templates", id: false, force: :cascade do |t|
+    t.integer "page_id",     limit: 4
+    t.integer "template_id", limit: 4
+  end
+
+  add_index "pages_templates", ["page_id"], name: "index_pages_templates_on_page_id", using: :btree
+  add_index "pages_templates", ["template_id"], name: "index_pages_templates_on_template_id", using: :btree
 
   create_table "picture_roles", force: :cascade do |t|
     t.integer  "picture_id", limit: 4
