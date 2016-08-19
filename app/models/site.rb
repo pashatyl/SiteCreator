@@ -40,4 +40,16 @@ class Site < ActiveRecord::Base
 	def first_page
 		pages.first
 	end
+
+	def header
+		"##{self.title}"
+	end
+
+	def text
+		''
+	end
+
+	def link
+		self
+	end
 end

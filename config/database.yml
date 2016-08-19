@@ -1,4 +1,4 @@
-# MySQL.  Versions 5.0 are recommended.
+# MySQL.  Versions 5.0+ are recommended.
 #
 # Install the MYSQL driver
 #   gem install mysql2
@@ -13,20 +13,20 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: itr_user
-  password: 1111
-  socket: /tmp/mysql.sock
+  username: root
+  password: '0277'
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
-  database: SiteBuilder_development
+  database: SiteCreator_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: SiteBuilder_test
+  database: SiteCreator_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: SiteBuilder_production
-  username: SiteBuilder
-  password: <%= ENV['SITEBUILDER_DATABASE_PASSWORD'] %>
+  database: SiteCreator_production
+  username: SiteCreator
+  password: <%= ENV['SITECREATOR_DATABASE_PASSWORD'] %>

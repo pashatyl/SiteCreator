@@ -22,5 +22,4 @@
 //= require editable/bootstrap-editable
 //= require jquery-ui/autocomplete
 //= require autocomplete-rails
-//= require jquery-ui
 // = require_tree .

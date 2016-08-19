@@ -2,21 +2,19 @@ class Tag
   def self.search(text)
     res = []
     Site.tagged_with(text).each do |tag|
-      res.join Result.new(tag)
+      res << Result.new(tag)
     end
     res
   end
 end
 
 class Result
-  attr_accessor :tag
-
   def initialize tag
-    self.tag = tag
+    @site = tag
   end
 
   def header
-    "##{tag.name} from the #{}"
+    "#{@site.title}"
   end
 
   def text
@@ -24,6 +22,6 @@ class Result
   end
 
   def link
-    tag.name
+    @site
   end
 end
