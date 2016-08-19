@@ -6,9 +6,10 @@ class Ability
     can :create, Comment
     can :index, User
     can :change_locale, User
+
     if user.role?(:admin)
-      can :access, :rails_admin  
-      can :dashboard 
+      can :access, :rails_admin
+      can :dashboard
       can :manage, :all
     elsif user.role?(:user)
       can :manage, Site do |site|
