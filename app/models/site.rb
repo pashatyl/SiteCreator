@@ -40,4 +40,9 @@ class Site < ActiveRecord::Base
 	def first_page
 		pages.first
 	end
+
+	def get_short_description
+		#COMMENTLENGTH = 100
+		description[0..30]
+	end
 end
