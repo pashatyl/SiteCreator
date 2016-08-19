@@ -27,6 +27,9 @@ gem 'rails-jquery-autocomplete'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'rails-jquery-autocomplete'
+gem 'will_paginate',           '3.1.0'
+gem 'bootstrap-will_paginate', '0.0.10'
+
 
 gem 'magic_suggest'
 

@@ -7,7 +7,7 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites = Site.all #.includes
+    @sites = Site.paginate(page: params[:page], :per_page => 3).order('created_at DESC') #.includes
   end
 
   # GET /sites/1

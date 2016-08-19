@@ -1,11 +1,5 @@
 var deletedItems = [];
-$(document).ready(function() {
-	initializeEditable();
-	initializeSortable();
-	initializeCloseButon();
-	alert("Hello")
-		
-});
+
 function initializeSortable(){ 
 	$('.draggable').draggable({
 			cancel: false,
