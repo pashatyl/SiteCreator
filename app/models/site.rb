@@ -7,7 +7,7 @@ class Site < ActiveRecord::Base
 	acts_as_taggable_on :hashtags
 	accepts_nested_attributes_for :picture
 	after_save :create_first_page
-
+	ratyrate_rateable 'original_score'
 	searchable do
 		text :title
 		text :description

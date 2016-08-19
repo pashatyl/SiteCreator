@@ -20,6 +20,9 @@ gem 'x-editable-rails'
 
 gem 'jqcloud-rails'
 
+#gem 'acts_as_votable', '~> 0.10.0'
+gem 'ratyrate'
+
 gem 'acts-as-taggable-on', '~> 4.0'
 
 gem 'rails-jquery-autocomplete'

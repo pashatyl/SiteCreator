@@ -18,3 +18,4 @@ config/database.yml
 database.yml
 solr/*
 .idea/
+config/sumspot.yml

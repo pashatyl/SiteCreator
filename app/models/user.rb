@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :pictures
   ROLES = {0 => :guest, 1 => :user, 2 => :admin}
-
+  ratyrate_rater
   searchable do
     text :name
   end

@@ -60,6 +60,13 @@
         <td><%= site.picture.to_html("show").html_safe %></td>
         <td><p><%= site.user.name%></p></td>
         <td><p><%= site.created_at %></p></td>
+        <td>
+           <div class="small-2 large-4 columns">
+              <% if current_user %>
+                Original Score: <%= rating_for site, "original_score", disable_after_rate: true, imdb_avg: true  %>
+              <% end %>
+            </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
