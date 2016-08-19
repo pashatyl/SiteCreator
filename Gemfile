@@ -20,7 +20,8 @@ gem 'x-editable-rails'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'rails-jquery-autocomplete'
-
+gem 'will_paginate',           '3.1.0'
+gem 'bootstrap-will_paginate', '0.0.10'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
