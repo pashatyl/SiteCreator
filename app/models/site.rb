@@ -4,15 +4,14 @@ class Site < ActiveRecord::Base
 	belongs_to :user
 	has_many :comments, dependent: :destroy
 	has_one :picture
-	has_and_belongs_to_many :hashtags
 	acts_as_taggable_on :hashtags
 	accepts_nested_attributes_for :picture
 	after_save :create_first_page
 
 	searchable do
-		text :hashtag
+		text :title
+		text :description
 	end
-
 
 	def self.available_themes
 		%w(black white blue)

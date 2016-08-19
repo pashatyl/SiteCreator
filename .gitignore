@@ -15,5 +15,6 @@ public/system/dragonfly
 Gemfile.lock
 .env
 config/database.yml
+database.yml
 solr/*
 .idea/
