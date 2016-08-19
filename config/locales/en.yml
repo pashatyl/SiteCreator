@@ -32,3 +32,6 @@ en:
         lang: "Language"
         en: "English"
         ru: "Russian"
+  comments:
+    header: 'Comments'
+    add: 'Add'

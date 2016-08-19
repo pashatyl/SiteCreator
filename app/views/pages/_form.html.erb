@@ -4,12 +4,10 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
- <div class="field">
   <div class="field">
     <%= f.label :template_id %><br>
     <%= f.collection_select(:template_id, @templates, :id, :title) %>
-
-  </div> 
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

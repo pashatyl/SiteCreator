@@ -51,7 +51,7 @@
     <%= ff.hidden_field :url %>
     <%= ff.hidden_field :public_id %>
   </div>
-        <%= f.autocomplete_field :hashtags, autocomplete_hashtag_tag_sites_path,
+        <%= f.autocomplete_field :tag_list, autocomplete_tag_name_sites_path,
             'data-delimiter' => ' ', :multiple => true %>
 <% end %>
 
