@@ -1,0 +1,12 @@
+ru:
+  menu:
+    logout: "Выйти"
+    my_account: "Мой профиль"
+    root: "Главная"
+    sign_up: "Зарегистрироваться"
+    login: "Войти"
+    search: "Поиск"
+    languages:
+        lang: "Язык"
+        en: "Английский"
+        ru: "Русский"
