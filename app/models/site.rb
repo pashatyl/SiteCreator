@@ -45,6 +45,7 @@ class Site < ActiveRecord::Base
 	def get_short_description
 		#COMMENTLENGTH = 100
 		description[0..30]
+	end
 
 	def header
 		"#{self.title}"

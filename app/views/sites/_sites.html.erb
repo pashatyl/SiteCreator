@@ -24,8 +24,8 @@
           | <i class="icon-comment"></i> <%= link_to "#{site.comments.count} Comments", site_path(site) %>
           </p>
           <p><i class="icon-tags"></i> Tags : 
-          <% site.hashtag_list.each do |tag| %>
-          <a href="#"><span class="label label-info"><%= tag %></span></a> 
+          <% site.tag_list.each do |tag| %>
+          <%= link_to search_path(tag: tag) do %><span class="label label-info"><%= tag %></span><% end %> 
           <% end %>
         </p>
 
