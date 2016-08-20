@@ -6,7 +6,8 @@ class Ability
     can :create, Comment
     can :index, User
     can :change_locale, User
-
+    can :read, Site
+    can :read, Page
     if user.role?(:admin)
       can :access, :rails_admin
       can :dashboard
@@ -21,10 +22,8 @@ class Ability
       can :show, User do |u|
         u.id == user.id
       end
-      can :read, Site
       can :create, Site
     elsif user.role?(:guest)
-      can :read, Site
       cannot :create, Comment
     end
 

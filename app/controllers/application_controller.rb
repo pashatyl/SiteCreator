@@ -5,7 +5,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_i18n_locale_from_params
 
-
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+  
   def after_sign_out_path_for(resource_or_scope)
   	root_path
 	end

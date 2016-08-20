@@ -89,7 +89,8 @@ function loadVideo(parent, value) {
 	if (value.includes("youtube")) {
 		parent.empty();
 		var frame = $('<iframe>').attr("src", value).attr("frameborder", 0).attr("allowfullscreen","");
-		parent.append(frame);
+		var div = $('<div>').addClass("embed-responsive embed-responsive-4by3");
+		parent.append(div.append(frame));
 	}
 
 }
