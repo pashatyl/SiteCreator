@@ -14,11 +14,9 @@
 public/system/dragonfly
 Gemfile.lock
 .env
-config/database.yml
-database.yml
 solr/*
 .idea/
 
-config/sumspot.yml
-sunspot.yml
+config/sunspot.yml
+config/database.yml
 
