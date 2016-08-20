@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
+  before_action :set_recent
   load_and_authorize_resource
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
   ActsAsTaggableOn.delimiter = ' '
@@ -74,6 +75,10 @@ class SitesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_site
       @site = Site.find(params[:id])
+    end
+
+    def set_recent
+      @recentSites = Site.last(5)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
