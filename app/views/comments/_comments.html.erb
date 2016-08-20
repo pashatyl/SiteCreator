@@ -1,26 +1,14 @@
-<div class="detailBox">
-    <div class="titleBox">
-      <label><%= t('comments.header') %></label>
-    </div>
-    <div class="commentBox">
-        <p class="taskDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-    </div>
-    <div class="actionBox">
-        <ul class="commentList">
-            <% site.comments.each do |comment| %>
-            <li>
-                <div class="commenterImage">
-                  <img src="http://placekitten.com/50/50" />
-                </div>
-                <div class="commentText">
-                    <p class=""><%= comment.content %></p> <span class="date sub-text"><%= comment.user.name %>
-                    <%= l comment.created_at, format: :long %></span>
-                </div>
-            </li>
-            <% end %>
-        </ul>
-        <% if can? :create, Comment %>
-        <%= render partial: "comments/form", locals: { site: site } %>
-        <% end %>
-    </div>
-</div>
+ <% if can? :create, Comment %>
+    <%= render partial: "comments/form", locals: { site: site } %>
+<% end %>
+
+<ul>
+    <% site.comments.persisted.each do |comment| %>
+    <li>
+        <h3><i class="fa fa-comment"></i> <%= comment.user.name %> says:
+            <small> <%= l comment.created_at, format: :long %> </small>
+        </h3>
+        <p><%= comment.content %></p>
+    </li>
+    <% end %>
+</ul>
