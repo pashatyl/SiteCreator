@@ -9,7 +9,7 @@ class SearchesController < ApplicationController
   def search(text)
     results = []
     #TODO not searching in page titles
-    [Comment, User, MarkdownText, Page, Site].each do |model|
+    [Comment, MarkdownText, Page, Site].each do |model|
       search = model.search { fulltext text }
       results.concat search.results
     end

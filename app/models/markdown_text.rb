@@ -10,16 +10,22 @@ class MarkdownText < ActiveRecord::Base
     text :markdown
   end
 
+  MARKDOWNSIZE = 100
+
   def header
-    "Text"
+    page.site.header
   end
 
   def text
-    ''
+    markdown[0..MARKDOWNSIZE]
   end
 
   def link
     [page.site, page]
+  end
+
+  def img
+    page.site.img
   end
 
 	private

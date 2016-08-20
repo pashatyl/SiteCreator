@@ -8,6 +8,7 @@ class Site < ActiveRecord::Base
 	accepts_nested_attributes_for :picture
 	after_save :create_first_page
 	ratyrate_rateable 'original_score'
+
 	searchable do
 		text :title
 		text :description
@@ -52,10 +53,14 @@ class Site < ActiveRecord::Base
 	end
 
 	def text
-		''
+		self.description
 	end
 
 	def link
 		self
+	end
+
+	def img
+		self.picture.url
 	end
 end

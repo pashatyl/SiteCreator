@@ -14,14 +14,26 @@ class Result
   end
 
   def header
-    "#{@site.title}"
+    @dite.header
   end
 
   def text
-    ''
+    @site.text
   end
 
   def link
-    @site
+    @site.link
+  end
+
+  def updated_at
+    @site.updated_at
+  end
+
+  def img
+    @site.img
+  end
+
+  def class
+    'Tag'
   end
 end

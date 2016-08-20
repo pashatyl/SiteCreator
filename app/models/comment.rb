@@ -10,7 +10,7 @@ class Comment < ActiveRecord::Base
   end
 
   def header
-    "#{user.name} comments at #{site.title}"
+    "#{user.name} #{ I18n.t('comment.comments_at')} #{site.title}"
   end
 
   def text
@@ -18,6 +18,10 @@ class Comment < ActiveRecord::Base
   end
 
   def link
-    site
+    site.link
+  end
+
+  def img
+    site.img
   end
 end

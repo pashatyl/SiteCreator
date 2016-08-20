@@ -45,6 +45,16 @@ ru:
       video: Добавьте видео
       text: Введите текст
     clickToEdit: Нажмите для редактирования
+  search:
+    search_results: 'Результаты поиска'
+    results:
+      one: '%{count} результат был найден по запросу'
+      few: '%{count} результата были найдены по запросу'
+      many: '%{count} результатов были найдены по запросу'
+      other: '%{count} результатов были найдены по запросу'
+    empty: 'Ничего не найдено'
+  comment:
+    comments_at: 'прокомментировал'
 
   activerecord:
     errors:

@@ -12,14 +12,18 @@ class Page < ActiveRecord::Base
 	end
 
 	def header
-    "Page #{self.title}"
+    self.site.header
   end
 
   def text
-    ''
+    title
   end
 
   def link
     [self.site, self]
-  end
+	end
+
+	def img
+		self.site.img
+	end
 end
