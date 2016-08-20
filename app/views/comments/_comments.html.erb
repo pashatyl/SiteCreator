@@ -1,10 +1,8 @@
 <div class="detailBox">
     <div class="titleBox">
-      <label>Comment Box</label>
-       
+      <label><%= t('comments.header') %></label>
     </div>
     <div class="commentBox">
-        
         <p class="taskDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
     </div>
     <div class="actionBox">
@@ -15,8 +13,8 @@
                   <img src="http://placekitten.com/50/50" />
                 </div>
                 <div class="commentText">
-                    <p class=""><%= comment.content %></p> <span class="date sub-text">on <%= comment.created_at %> by <%= comment.user.name %></span>
-
+                    <p class=""><%= comment.content %></p> <span class="date sub-text"><%= comment.user.name %>
+                    <%= l comment.created_at, format: :long %></span>
                 </div>
             </li>
             <% end %>

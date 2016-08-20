@@ -2,7 +2,6 @@
 	@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
 
 .detailBox {
-    width:;
     border:1px solid #bbb;
     margin:50px;
 }
@@ -69,21 +68,21 @@
 }
 </style>
 <p>
-  <strong>Theme:</strong>
+  <strong><%= t('site.theme') %>:</strong>
   <%= @site.theme %>
 </p>
 
 <p>
-  <strong>Menu type:</strong>
+  <strong><%= t('site.menutype') %>:</strong>
   <%= @site.menu_type %>
 </p>
 
 <p>
-  <strong>Title:</strong>
+  <strong><%= t('site.title') %>:</strong>
   <%= @site.title %>
 </p>
  <p>
-  <strong>Description:</strong>
+  <strong><%= t('site.description') %>:</strong>
   <%= @site.description %>
 </p>
 

@@ -12,7 +12,7 @@ class Page < ActiveRecord::Base
 	end
 
 	def header
-    "Text"
+    "Page #{self.title}"
   end
 
   def text
@@ -20,6 +20,6 @@ class Page < ActiveRecord::Base
   end
 
   def link
-    [page.site, page]
+    [self.site, self]
   end
 end

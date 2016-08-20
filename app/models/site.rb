@@ -4,7 +4,7 @@ class Site < ActiveRecord::Base
 	belongs_to :user
 	has_many :comments, dependent: :destroy
 	has_one :picture
-	acts_as_taggable_on :hashtags
+	acts_as_taggable_on :tags
 	accepts_nested_attributes_for :picture
 	after_save :create_first_page
 	ratyrate_rateable 'original_score'
@@ -41,8 +41,20 @@ class Site < ActiveRecord::Base
 		pages.first
 	end
 
+
 	def get_short_description
 		#COMMENTLENGTH = 100
 		description[0..30]
+
+	def header
+		"#{self.title}"
+	end
+
+	def text
+		''
+	end
+
+	def link
+		self
 	end
 end

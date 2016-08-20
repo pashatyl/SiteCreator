@@ -1,14 +1,12 @@
-<!-- <link rel="stylesheet" type="text/css" href="jqcloud.css" />
+<link rel="stylesheet" type="text/css" href="jqcloud.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <%= javascript_include_tag('jqcloud.js') %>
 
 <script type="text/javascript">
-  /*!
-   * Create an array of word objects, each representing a word in the cloud
-   */
+
   var word_array = [
-    <% Site.tag_counts_on(:hashtags).each do |hashtag| %>
-    {text: "<%= hashtag.name %>", weight: <%= hashtag.taggings_count %>, link: "<%= search_path(:tag => hashtag.name) %>" },
+    <% Site.tag_counts.each do |tag| %>
+    {text: "<%= tag.name %>", weight: <%= tag.taggings_count %>, link: "<%= search_path(:tag => tag.name) %>" },
     <% end %>
   ];
 
@@ -64,3 +62,4 @@
                 </div>
     
 </div>
+

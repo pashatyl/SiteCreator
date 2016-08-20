@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users 
   scope '(:locale)' do
     resources :sites do
-      get :autocomplete_hashtag_tag, :on => :collection
+      get :autocomplete_tag_name, :on => :collection
       resources :comments
       resources :pages, on: :member
     end
