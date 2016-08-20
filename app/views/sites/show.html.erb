@@ -1,126 +1,128 @@
 <style type="text/css">
   @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
 
-.detailBox {
-    width:;
+  .detailBox {
     border:1px solid #bbb;
     margin:50px;
-}
-.titleBox {
+  }
+  .titleBox {
     background-color:#fdfdfd;
     padding:10px;
-}
-.titleBox label{
-  color:#444;
-  margin:0;
-  display:inline-block;
-}
+  }
+  .titleBox label{
+    color:#444;
+    margin:0;
+    display:inline-block;
+  }
 
-.commentBox {
+  .commentBox {
     padding:10px;
     border-top:1px dotted #bbb;
-}
-.commentBox .form-group:first-child, .actionBox .form-group:first-child {
+  }
+  .commentBox .form-group:first-child, .actionBox .form-group:first-child {
     width:85%;
-}
-.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+  }
+  .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
     width:13%;
-}
-.actionBox .form-group * {
+  }
+  .actionBox .form-group * {
     width:100%;
-}
-.taskDescription {
-    margin-top:10px 0;
-}
-.commentList {
+  }
+  .taskDescription {
+    margin-top:10px;
+  }
+  .commentList {
     padding:0;
     list-style:none;
     max-height:200px;
     overflow:auto;
-}
-.commentList li {
+  }
+  .commentList li {
     margin:0;
     margin-top:10px;
-}
-.commentList li > div {
+  }
+  .commentList li > div {
     display:table-cell;
-}
-.commenterImage {
+  }
+  .commenterImage {
     width:30px;
     margin-right:5px;
     height:100%;
     float:left;
-}
-.commenterImage img {
+  }
+  .commenterImage img {
     width:100%;
     border-radius:50%;
-}
-.commentText p {
+  }
+  .commentText p {
     margin:0;
-}
-.sub-text {
+  }
+  .sub-text {
     color:#aaa;
     font-family:verdana;
     font-size:11px;
-}
-.actionBox {
+  }
+  .actionBox {
     border-top:1px dotted #bbb;
     padding:10px;
-}
+  }
 </style>
 <div class="col-sm-8">
- <!-- the actual blog post: title/author/date/content -->
- <div class="row">
-  <div class="col-xs-6">
-                <h1><%= link_to @site.title, site_page_path(@site, @site.first_page) %></h1>
-                <p class="lead"><i class="fa fa-user"></i> by <%= @site.user.name %></p>
-                </div>
-                <div class="col-xs-6">
-                 <%= image_tag @site.picture.url, class:"img-responsive img-thumbnail", style:"height:100px;float:right;"%> 
-                 </div>
-                </div>
-                <hr>
-                <p><i class="fa fa-calendar"></i> Posted on <%= I18n.l (@site.created_at) %></p>
-        <p><i class="fa fa-tags"></i> Tags: 
-          <% @site.tag_list.each do |tag| %>
-          <%= link_to search_path(tag: tag) do %><span class="badge badge-info"><%= tag %></span>
-          <% end %> 
-          <% end %>
-        </p>
-          
-                <hr>
-                   <p class="lead" > <strong>Description</br></br></strong><%= @site.description %></p>
-                
-                <br/>
+  <!-- the actual blog post: title/author/date/content -->
+  <div class="row">
+    <div class="col-xs-6">
+      <h1><%= link_to @site.title, site_page_path(@site, @site.first_page) %></h1>
+      <p class="lead"><i class="fa fa-user"></i> by <%= @site.user.name %></p>
+    </div>
+    <div class="col-xs-6">
+      <%= image_tag @site.picture.url, class:"img-responsive img-thumbnail", style:"height:100px;float:right;"%>
+    </div>
+  </div>
+  <hr>
+  <p><i class="fa fa-calendar"></i> Posted on <%= I18n.l (@site.created_at) %></p>
+  <p><i class="fa fa-tags"></i> Tags:
+    <% @site.tag_list.each do |tag| %>
+        <%= link_to search_path(tag: tag) do %><span class="badge badge-info"><%= tag %></span>
+        <% end %>
+    <% end %>
+  </p>
 
-                   <hr>
-                <!-- the comment box -->
-                <div class="well">
-                    <h4><i class="fa fa-paper-plane-o"></i> Leave a Comment:</h4>
-                    <form role="form">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-reply"></i> Submit</button>
-                    </form>
-                </div>
-                  <hr>
+  <hr>
+  <p class="lead" > <strong>Description
+    </br>
+    </br>
+  </strong><%= @site.description %></p>
 
-                <!-- the comments -->
-                <h3><i class="fa fa-comment"></i> User One says:
-                    <small> 9:41 PM on August 24, 2014</small>
-                </h3>
-                <p>Excellent post! Thank You the great article, it was useful!</p>
+  <br/>
 
-                <h3><i class="fa fa-comment"></i> User Two says:
-                    <small> 9:47 PM on August 24, 2014</small>
-                </h3>
-                <p>Excellent post! Thank You the great article, it was useful!</p>
+  <hr>
+  <!-- the comment box -->
+  <div class="well">
+    <h4><i class="fa fa-paper-plane-o"></i> Leave a Comment:</h4>
+    <form role="form">
+      <div class="form-group">
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary"><i class="fa fa-reply"></i> Submit</button>
+    </form>
+  </div>
+  <hr>
 
-            </div>
+  <!-- the comments -->
+  <h3><i class="fa fa-comment"></i> User One says:
+    <small> 9:41 PM on August 24, 2014</small>
+  </h3>
+  <p>Excellent post! Thank You the great article, it was useful!</p>
+
+  <h3><i class="fa fa-comment"></i> User Two says:
+    <small> 9:47 PM on August 24, 2014</small>
+  </h3>
+  <p>Excellent post! Thank You the great article, it was useful!</p>
+
+</div>
 <div class="col-sm-4">
   <%= render "sidebar" %>
-    
+
 </div>
-<!-- 
- <%= render partial: "comments/comments", locals: { site: @site } %> -->
+<!--
+<%= render partial: "comments/comments", locals: { site: @site } %> -->
