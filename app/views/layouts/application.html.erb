@@ -7,75 +7,89 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to "Website Builder", root_path, class:"navbar-brand" %>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><%= active_link_to t('menu.root'), root_path, :wrap_tag => :li, :active => :exclusive %></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <%= link_to "Website Builder", root_path, class:"navbar-brand" %>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav">
+                  <li><%= active_link_to root_path, :wrap_tag => :li, :active => :exclusive do%>
+                    <i class="fa fa-home"></i> <%= t('menu.root') %>
+                    <% end %>
+                  </li>
+                  <%= form_tag search_path, method: "get", class: "navbar-form navbar-left" do %>
+          <div class="form-group">
+            <%= text_field_tag :searches, params[:searches],  class: "form-control", placeholder: t('menu.search') %>
+          </div>
+            <%= submit_tag t('menu.search'), :name => nil, class: "btn btn-default" %>
+        <% end %>
+        
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+      <li>
+          <% if can? :create, Site %>
+            <%= active_link_to 'New Site', new_site_path, :wrap_tag => :li, :active => :exclusive %>
+            <% end %>
+      </li>
+      <% if user_signed_in? %>
         <li>
-          <%= form_tag search_path, method: "get", class: "navbar-form navbar-left" do %>
-              <div class="form-group">
-                <%= text_field_tag :searches, params[:searches],  class: "form-control", placeholder: t('menu.search') %>
-              </div>
-              <%= submit_tag t('menu.search'), :name => nil, class: "btn btn-default" %>
+            <%= active_link_to user_path(current_user.id), :wrap_tag => :li  do %>
+              <span class="glyphicon glyphicon-user"></span> <%= t('menu.my_account') %>
+            <% end %>
+        </li>
+
+        <li>
+          <%= link_to destroy_user_session_path, :method => :delete do%>
+            <span class="glyphicon glyphicon-log-out"></span> <%= t('menu.logout') %>
           <% end %>
         </li>
-        <% if user_signed_in? %>
-            <li>
-              <%= active_link_to user_path(current_user.id), :wrap_tag => :li  do %>
-                  <span class="glyphicon glyphicon-user"></span> <%= t('menu.my_account') %>
-              <% end %>
-            </li>
+              <% else %>
+          <li>
+            <%= link_to new_user_registration_path do%>
+              <span class="glyphicon glyphicon-user"></span> <%= t('menu.sign_up') %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path do %>
+              <span class="glyphicon glyphicon-log-in"></span>  <%= t('menu.login') %>
+            <% end %>
+          </li>
+      <% end %>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <%= t('menu.languages.lang') %>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <%= link_to t('menu.languages.en'), change_locale_path(:en) %>
+          </li>
+          <li>
+            <%= link_to t('menu.languages.ru'), change_locale_path(:ru) %>
+          </li>
+        </ul>
+      </li>
 
-            <li>
-              <%= link_to destroy_user_session_path, :method => :delete do%>
-                  <span class="glyphicon glyphicon-log-out"></span> <%= t('menu.logout') %>
-              <% end %>
-            </li>
-        <% else %>
-            <li>
-              <%= link_to new_user_registration_path do%>
-                  <span class="glyphicon glyphicon-user"></span> <%= t('menu.sign_up') %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_user_session_path do %>
-                  <span class="glyphicon glyphicon-log-in"></span>  <%= t('menu.login') %>
-              <% end %>
-            </li>
-        <% end %>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <%= t('menu.languages.lang') %>
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li>
-              <%= link_to t('menu.languages.en'), change_locale_path(:en) %>
-            </li>
-            <li>
-              <%= link_to t('menu.languages.ru'), change_locale_path(:ru) %>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<div class="container-fluid text-center">
+    </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+  </nav>
+
+<div class="container-fluid text-left">
   <div class="row content">
     <div class="col-sm-12">
-      <% unless notice.nil? %>
+       <% unless notice.nil? %>
           <div class="alert alert-success fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong><%= notice %></strong>
@@ -87,13 +101,12 @@
             <strong><%= alert %></strong>
           </div>
       <% end %>
-
       <% if user_signed_in? %>
-          <p> <%= current_user.name %>, <%= current_user.role %>, <%= current_user.id %></p>
+        <p> <%= current_user.name %>, <%= current_user.role %>, <%= current_user.id %></p>
       <% end %>
 
       <%= yield %>
-    </div>
+      </div>
   </div>
 </div>
 </body>

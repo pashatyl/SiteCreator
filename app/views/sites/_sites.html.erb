@@ -1,84 +1,50 @@
-<style type="text/css">
-  .dropdown-actions {
-    display: none;
-    float:left;
-    padding: 0;
-  }
-  .btn-dropdown{
-  //padding: 0;
-    border: none;
-    background: #e6e6e6;
+  <div class="container">
+    <div class="row stylish-panel">
+      <% @sites.each_slice(2).to_a.each do |pair|%>
+      <div class="row">
+        <% pair.each do |site| %>
+      <div class="col-md-4">
+        <div id="rating">
+ 
+      <h2><%= link_to site.title, site_page_path(site, site.first_page) %></a></h2>
+         <%= image_tag site.picture.url, class:"img-responsive img-thumbnail", style:"height:200px;" %> 
+         <p class="description"><%= site.get_short_description %></p>
+        <% if can? :read, site %>
+               <p> <%= link_to 'More info', site_path(site), class: "btn btn-primary" %> </p>
+        <% end %>
+        <% if can? :update, site %>
+               <p> <%= link_to 'Edit', edit_site_page_path(site, site.first_page), class: "btn btn-primary" %> </p>
+        <% end %>
+        <% if current_user %>
+             <%= rating_for site, "original_score", disable_after_rate: true, imdb_avg: true, cancel: false %>
+        <% end %>
+        <p>
+          <i class="icon-user"></i> by <%= site.user.name %>
+          | <i class="icon-calendar"></i> <%= site.created_at %>
+          | <i class="icon-comment"></i> <%= link_to "#{site.comments.count} Comments", site_path(site) %>
+          </p>
+          <p><i class="icon-tags"></i> Tags : 
+          <% site.hashtag_list.each do |tag| %>
+          <a href="#"><span class="label label-info"><%= tag %></span></a> 
+          <% end %>
+        </p>
 
-  }
-</style>
-<% if can? :create, Site %>
-    <%= link_to t('site.new'), new_site_path, class:"btn btn-default" %>
+  </div>
+
+</div>
 <% end %>
-<table class="table table-hover" id="sites-table">
-  <thead>
-  <tr>
-    <th><%= t('site.title') %></th>
-    <th><%= t('site.logo') %></th>
-    <th><%= t('site.userName') %></th>
-  </tr>
-  </thead>
+        </div>
+      <% end %>
 
-  <tbody>
-  <% @sites.each do |site| %>
-      <tr>
-        <td>
-          <div class="dropdown dropdown-actions">
-            <button class="btn dropdown-toggle btn-dropdown" type="button" data-toggle="dropdown">
-              <i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-            <ul class="dropdown-menu">
-              <li>
-                <% if can? :read, site %>
-                    <%= link_to t('site.dropdown.description'), site_path(site) %>
-                <% end %>
-              </li>
-              <li>
-                <% if can? :read, site.pages.first %>
-                    <%= link_to t('site.dropdown.show'), site_page_path(site, site.first_page) %>
-                <% end %>
-              </li>
-              <li>
-                <% if can? :update, site %>
-                    <%= link_to t('site.dropdown.edit'), edit_site_page_path(site, site.first_page) %>
-                <% end %>
-              </li>
-              <li>
-                <% if can? :destroy, site %>
-                    <%= link_to t('site.dropdown.delete'), site_path(site), method: :delete %>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-          <p><%= site.title %></p>
-        </td>
-        <td><%= site.picture.to_html("show").html_safe %></td>
-        <td><p><%= site.user.name%></p></td>
-        <td><p><%= l site.created_at, format: :long %></p></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= will_paginate @sites %>
-<br>
-
-
+  <%= will_paginate @sites %>
+    </div>
+  
+  </div>
 <script type="text/javascript">
-  $('#sites-table tbody tr').hover(function() {
-    $(this).find(".dropdown").show();
-  }, function() {
-
-    $(this).find(".btn-dropdown").css("background", "#e6e6e6");
-    $(this).find("div.dropdown").removeClass('open')
-    $(this).find(".dropdown").hide();
-  });
-
-  $('.btn-dropdown').click(function() {
-    $(this).css("background", "#cccccc");
-  });
-
-
+//   $("#rating div").each(function( index, value ) {
+//   console.log( index + ": " + $(value).html() );
+//   $(value).css("float:right;")
+//   $(value).css("margin-bottom:3px;")
+//   $(value).css("margin-top:0;")
+// });
 </script>

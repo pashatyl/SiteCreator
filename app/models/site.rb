@@ -7,7 +7,7 @@ class Site < ActiveRecord::Base
 	acts_as_taggable_on :tags
 	accepts_nested_attributes_for :picture
 	after_save :create_first_page
-
+	ratyrate_rateable 'original_score'
 	searchable do
 		text :title
 		text :description
@@ -40,6 +40,11 @@ class Site < ActiveRecord::Base
 	def first_page
 		pages.first
 	end
+
+
+	def get_short_description
+		#COMMENTLENGTH = 100
+		description[0..30]
 
 	def header
 		"#{self.title}"

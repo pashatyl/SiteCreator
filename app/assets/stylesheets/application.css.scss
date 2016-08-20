@@ -9,6 +9,8 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
+ *= require_tree .
+ *= require_self
  *
  */
 @import "bootstrap-sprockets";
@@ -25,7 +27,9 @@ html {
 
 body {
   margin-bottom: 0px;
+  background-color: #f2f2f2;
 }
+
 .navbar {
   margin-bottom: 0;
   border-radius: 0;
@@ -194,6 +198,7 @@ button.close {
   min-height: 400px;
 
 }
+
 
 
 

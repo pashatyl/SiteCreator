@@ -8,7 +8,7 @@
 	background:#fff;
 	float:left;
 }
- .dragbox{
+.dragbox{
 	margin:5px 2px  20px;
 	background:#fff;
 	position:relative;
@@ -22,9 +22,9 @@
 }
 
 div iframe{
-		display:block; 
-		margin:10px 1% 10px 1%;
-		width:98%;
+	display:block; 
+	margin:10px 1% 10px 1%;
+	width:98%;
 }
 .panel {
 	margin:10px 10px 10px 10px;
@@ -33,15 +33,15 @@ div iframe{
 
 .panel-heading span
 {
-    margin-top: -26px;
-    font-size: 15px;
-    margin-right: -12px;
+	margin-top: -26px;
+	font-size: 15px;
+	margin-right: -12px;
 }
 
 .clickable {
-    background: rgba(0, 0, 0, 0.15);
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
+	background: rgba(0, 0, 0, 0.15);
+	display: inline-block;
+	padding: 6px 12px;
+	border-radius: 4px;
+	cursor: pointer;
 }

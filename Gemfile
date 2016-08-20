@@ -13,12 +13,19 @@ gem "font-awesome-rails"
 gem "redcarpet"
 gem 'cloudinary'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-vkontakte'
 gem 'cancancan', '~> 1.10'
 gem 'rails_admin', '~> 0.8.1'
 gem 'active_link_to'
 gem 'x-editable-rails'
 
 gem 'jqcloud-rails'
+
+#gem 'acts_as_votable', '~> 0.10.0'
+gem 'ratyrate'
 
 gem 'acts-as-taggable-on', '~> 4.0'
 
