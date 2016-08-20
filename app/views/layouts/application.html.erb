@@ -7,28 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-      <%= link_to "Website Builder", root_path, class:"navbar-brand" %>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-    <ul class="nav navbar-nav">
-      <li><%= active_link_to t('menu.root'), root_path, :wrap_tag => :li, :active => :exclusive %></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li>
-        <%= form_tag search_path, method: "get", class: "navbar-form navbar-left" do %>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <%= link_to "Website Builder", root_path, class:"navbar-brand" %>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav">
+                  <li><%= active_link_to root_path, :wrap_tag => :li, :active => :exclusive do%>
+                    <i class="fa fa-home"></i> <%= t('menu.root') %>
+                    <% end %>
+                  </li>
+                  <%= form_tag search_path, method: "get", class: "navbar-form navbar-left" do %>
           <div class="form-group">
             <%= text_field_tag :searches, params[:searches],  class: "form-control", placeholder: t('menu.search') %>
           </div>
             <%= submit_tag t('menu.search'), :name => nil, class: "btn btn-default" %>
         <% end %>
+        
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+      <li>
+
       </li>
       <% if user_signed_in? %>
         <li>
@@ -70,9 +78,12 @@
       </li>
 
     </ul>
-  </div>
-  </div>
-</nav>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+  </nav>
+
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-12">
