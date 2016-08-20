@@ -52,12 +52,8 @@
           <%= ff.hidden_field :url %>
           <%= ff.hidden_field :public_id %>
         </div>
-        <div id="tag-info" class="input-append">
           <%= f.autocomplete_field :tag_list, autocomplete_tag_name_sites_path,
                                    'data-delimiter' => ' ', :multiple => true %>
-          <button class="btn" type="button">Add <i class="icon-plus"></i></button>
-        </div>
-        <ul id="tag-cloud"></ul>
     <% end %>
 
     <div class="actions">
