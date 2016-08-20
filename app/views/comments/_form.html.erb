@@ -1,8 +1,16 @@
+ <div class="well">
+    <h4><i class="fa fa-paper-plane-o"></i> Leave a Comment:</h4>
 <%= form_for([site, site.comments.new], :html=>{class: "form-inline"}) do |f| %>
-  <div class="form-group">    
-    <%= f.text_field :content,  class: "form-control", placeholder: t('comments.your_comment') %>
+<div class="row">
+  <div class="form-group col-sm-8">    
+    <%= f.text_area :content,  class: "form-control", placeholder: t('comments.your_comment') %>
   </div>
-  <div class="form-group">
-    <%= f.submit I18n.t('comments.add'), class:"btn btn-default"%>
+  
+  <div class="form-group col-sm-4">
+    <%= f.submit class:"btn btn-primary" do%>
+    <i class="fa fa-reply" aria-hidden="true"></i> 
+    <% end %>
+  </div>
   </div>
 <% end %>
+</div>
