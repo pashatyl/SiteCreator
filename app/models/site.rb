@@ -42,7 +42,7 @@ class Site < ActiveRecord::Base
 	end
 
 	def header
-		"##{self.title}"
+		"#{self.title}"
 	end
 
 	def text
