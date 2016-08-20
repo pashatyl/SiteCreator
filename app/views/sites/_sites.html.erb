@@ -1,45 +1,42 @@
-  <div class="container">
-    <div class="row stylish-panel">
-      <% @sites.each_slice(2).to_a.each do |pair|%>
-      <div class="row">
-        <% pair.each do |site| %>
-      <div class="col-md-4">
-        <div id="rating">
- 
-      <h2><%= link_to site.title, site_page_path(site, site.first_page) %></a></h2>
-         <%= image_tag site.picture.url, class:"img-responsive img-thumbnail", style:"height:200px;" %> 
-         <p class="description"><%= site.get_short_description %></p>
-        <% if can? :read, site %>
-               <p> <%= link_to 'More info', site_path(site), class: "btn btn-primary" %> </p>
-        <% end %>
-        <% if can? :update, site %>
-               <p> <%= link_to 'Edit', edit_site_page_path(site, site.first_page), class: "btn btn-primary" %> </p>
-        <% end %>
-        <% if current_user %>
-             <%= rating_for site, "original_score", disable_after_rate: true, imdb_avg: true, cancel: false %>
-        <% end %>
-        <p>
-          <i class="icon-user"></i> by <%= site.user.name %>
-          | <i class="icon-calendar"></i> <%= site.created_at %>
-          | <i class="icon-comment"></i> <%= link_to "#{site.comments.count} Comments", site_path(site) %>
-          </p>
-          <p><i class="icon-tags"></i> Tags : 
-          <% site.tag_list.each do |tag| %>
-          <%= link_to search_path(tag: tag) do %><span class="label label-info"><%= tag %></span><% end %> 
-          <% end %>
-        </p>
-
-  </div>
-
-</div>
-<% end %>
+<div class="row stylish-panel">
+  <% @sites.each_slice(2).to_a.each do |pair|%>
+    <div class="row">
+      <% pair.each do |site| %>
+        <div class="col-md-6">
+          <div id="rating">
+            <h2><%= link_to site.title, site_page_path(site, site.first_page) %></a></h2>
+            <%= image_tag site.picture.url, class:"img-responsive img-thumbnail", style:"height:200px;" %>
+            <p class="description"><%= site.get_short_description %></p>
+            <% if can? :read, site %>
+              <p> <%= link_to 'More info', site_path(site), class: "btn btn-primary" %> </p>
+            <% end %>
+            <% if can? :update, site %>
+              <p> <%= link_to 'Edit', edit_site_page_path(site, site.first_page), class: "btn btn-primary" %> </p>
+            <% end %>
+            <% if current_user %>
+              <%= rating_for site, "original_score", disable_after_rate: true, imdb_avg: true, cancel: false %>
+            <% end %>
+            <p>
+              <i class="icon-user"></i> by <%= site.user.name %>
+              | <i class="icon-calendar"></i> <%= site.created_at.to_formatted_s(:short) %>
+              | <i class="icon-comment"></i> <%= link_to "#{site.comments.count} Comments", site_path(site) %>
+            </p>
+            <p>
+              <% if site.tag_list.count > 0 %>
+                  <i class="icon-tags"></i> Tags :
+                  <% site.tag_list.each do |tag| %>
+                    <%= link_to search_path(tag: tag) do %><span class="label label-info"><%= tag %></span><% end %>
+                  <% end %>
+              <% end %>
+            </p>
+          </div>
         </div>
       <% end %>
-
-  <%= will_paginate @sites %>
     </div>
-  
-  </div>
+  <% end %>
+  <%= will_paginate @sites %>
+</div>
+
 <script type="text/javascript">
 //   $("#rating div").each(function( index, value ) {
 //   console.log( index + ": " + $(value).html() );
