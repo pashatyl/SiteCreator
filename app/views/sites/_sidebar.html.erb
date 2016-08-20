@@ -1,38 +1,27 @@
+
 <div class="well">
-                    <h4><i class="fa fa-tags"></i>Tags:</h4>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href=""><span class="badge badge-info">Windows 8</span></a>
-                                </li>
-                                 <li><a href=""><span class="badge badge-info">C#</span></a>
-                                </li>
-                                 <li><a href=""><span class="badge badge-info">Windows Forms</span></a>
-                                </li>
-                                 <li><a href=""><span class="badge badge-info">WPF</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href=""><span class="badge badge-info">Bootstrap</span></a>
-                                </li>
-                                 <li><a href=""><span class="badge badge-info">Joomla!</span></a>
-                                </li>
-                                 <li><a href=""><span class="badge badge-info">CMS</span></a>
-                                </li>
-                                 <li><a href=""><span class="badge badge-info">Java</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
- <div class="well">
-                    <h4><i class="fa fa-fire"></i> Recent sites:</h4>
-          <ul>
-            <% @recent_sites.each do |site| %>
-                    <li><%= link_to site.title, site_page_path(site, site.first_page) %></li>
-                    <% end %>
-        
-          </ul>
-                </div>
+  <h4><i class="fa fa-tags"></i>Tags:</h4>
+  <div class="row">
+    <script type="text/javascript">
+
+      var word_array = [
+        <% Site.tag_counts.each do |tag| %>
+        {text: "<%= tag.name %>", weight: <%= tag.taggings_count %>, link: "<%= search_path(:tag => tag.name) %>" },
+        <% end %>
+      ];
+
+      $(function() {
+        $("#tag-cloud").jQCloud(word_array, {});
+      });
+    </script>
+    <div id="tag-cloud" style="height: 350px; color: black;"></div>
+  </div>
+</div>
+<div class="well">
+  <h4><i class="fa fa-fire"></i> Recent sites:</h4>
+  <ul>
+   <% @recent_sites.each do |site| %>
+       <li><%= link_to site.title, site_page_path(site, site.first_page) %></li>
+    <% end %>
+  </ul>
+</div>

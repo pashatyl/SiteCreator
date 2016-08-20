@@ -1,4 +1,39 @@
-<% @results.each do |result| %>
-  <%= link_to result.header, result.link %>
-  <%= result.text %><br>
+<% if @results.count > 0 %>
+    <div class="container">
+
+      <hgroup class="mb20">
+        <h1><%= I18n.t('search.search_results') %></h1>
+        <h2 class="lead"><%= I18n.t('search.results', count: @results.count) %> <strong class="text-danger">
+          <%= params[:searches] %></strong></h2>
+      </hgroup>
+
+      <section class="col-xs-12 col-sm-6 col-md-12">
+        <% @results.each do |result| %>
+            <article class="search-result row">
+              <div class="col-xs-12 col-sm-12 col-md-3">
+                <div class="thumbnail"><img src="<%= result.img %>"/></div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-2">
+                <ul class="meta-search">
+                  <li><i class="glyphicon glyphicon-calendar"></i> <span><%= I18n.l result.updated_at.to_date, format: :long %></span></li>
+                  <li><i class="glyphicon glyphicon-time"></i> <span><%= result.updated_at.localtime.strftime("%I:%M%p")%></span></li>
+                  <li><i class="glyphicon glyphicon-tags"></i> <span><%= result.class.model_name.human %></span></li>
+                </ul>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                <h3><%= link_to result.header, result.link %></h3>
+                <p><%= result.text %></p>
+                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+              </div>
+              <span class="clearfix borda"></span>
+            </article>
+        <% end %>
+      </section>
+    </div>
+<% else %>
+    <div class="container">
+      <hgroup class="mb20">
+        <h1><%= I18n.t('search.empty') %></h1>
+      </hgroup>
+    </div>
 <% end %>

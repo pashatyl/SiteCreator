@@ -45,6 +45,16 @@ ru:
       video: Добавьте видео
       text: Введите текст
     clickToEdit: Нажмите для редактирования
+  search:
+    search_results: 'Результаты поиска'
+    results:
+      one: '%{count} результат был найден по запросу'
+      few: '%{count} результата были найдены по запросу'
+      many: '%{count} результатов были найдены по запросу'
+      other: '%{count} результатов были найдены по запросу'
+    empty: 'Ничего не найдено'
+  comment:
+    comments_at: 'прокомментировал'
 
   activerecord:
     errors:
@@ -53,6 +63,38 @@ ru:
         restrict_dependent_destroy:
           has_one: 'Невозможно удалить запись, так как существует зависимость: %{record}'
           has_many: 'Невозможно удалить запись, так как существуют зависимости: %{record}'
+    models:
+      user:
+        one: Пользователь
+        few: Пользователя
+        many: Пользователей
+        other: Пользователя
+      comment:
+        one: Комментарий
+        few: Комментария
+        many: Комментариев
+        other: Комминтария
+      page:
+        one: Страница
+        few: Страницы
+        many: Страниц
+        other: Страницы
+      picture:
+        one: Картинка
+        few: Картинки
+        many: Картинок
+        other: Картиноки
+      site:
+        one: Сайт
+        few: Сайта
+        many: Сайтов
+        other: Сайта
+      rate:
+        one: Рейтинг
+        few: Рейтинга
+        many: Рейтингов
+        other: Рейтинга
+      video: Видео
   date:
     abbr_day_names:
     - Вс
@@ -311,49 +353,261 @@ ru:
     pm: вечера
 
   devise:
+    confirmations:
+      confirmed: "Ваш адрес эл. почты успешно подтвержден."
+      new:
+        resend_confirmation_instructions: "Выслать повторно письмо с активацией"
+      send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по подтверждению адреса эл. почты."
+      send_paranoid_instructions: "Если ваш адрес эл. почты есть в системе, то в течение нескольких минут вы получите письмо с инструкциями по его подтверждению."
     failure:
       already_authenticated: "Вы уже вошли в систему."
-      unauthenticated: "Вам необходимо войти в систему или зарегистрироваться."
-      unconfirmed: "Вы должны подтвердить вашу учётную запись."
-      locked: "Ваша учётная запись заблокирована."
-      invalid: "Неверный адрес e-mail или пароль."
-      invalid_token: "Неверный ключ аутентификации."
+      inactive: "Ваша учетная запись еще не активирована."
+      invalid: "Неверный адрес эл. почты или пароль."
+      last_attempt: "У вас осталась последняя попытка ввода пароля до блокировки учетной записи."
+      locked: "Ваша учетная запись заблокирована."
+      not_found_in_database: "Неверный адрес эл. почты или пароль."
       timeout: "Ваш сеанс закончился. Пожалуйста, войдите в систему снова."
-      inactive: "Ваша учётная запись ещё не активирована."
-      not_found_in_database: "Неверный e-mail или пароль."
-    sessions:
-      signed_in: "Вход в систему выполнен."
-      signed_out: "Выход из системы выполнен."
-    passwords:
-      send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по восстановлению вашего пароля."
-      updated: "Ваш пароль изменён. Теперь вы вошли в систему."
-      updated_not_active: 'Ваш пароль изменен.'
-      send_paranoid_instructions: "Если ваш адрес e-mail есть в нашей базе данных, то в течение нескольких минут вы получите письмо с инструкциями по восстановлению вашего пароля."
-    confirmations:
-      send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по подтверждению вашей учётной записи."
-      send_paranoid_instructions: "Если ваш адрес e-mail есть в нашей базе данных, то в течение нескольких минут вы получите письмо с инструкциями по подтверждению вашей учётной записи."
-      confirmed: "Ваша учётная запись подтверждена. Теперь вы вошли в систему."
-    registrations:
-      signed_up: "Добро пожаловать! Вы успешно зарегистрировались."
-      inactive_signed_up: "Добро пожаловать! Вы успешно зарегистрировались. Но пока вы не можете войти в систему, т.к. ваша учётная запись %{reason}."
-      updated: "Ваша учётная запись изменена."
-      destroyed: "До свидания! Ваша учётная запись удалена. Надеемся снова увидеть вас."
-      reasons:
-        inactive: 'неактивна'
-        unconfirmed: 'не подтверждена'
-        locked: 'заблокирована'
-    unlocks:
-      send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по разблокировке вашей учётной записи."
-      unlocked: "Ваша учётная запись разблокирована. Теперь вы вошли в систему."
-      send_paranoid_instructions: "Если ваша учётная запись существует, то в течение нескольких минут вы получите письмо с инструкциями по её разблокировке."
-    omniauth_callbacks:
-      success: "Вход в систему выполнен с учётной записью из %{kind}."
-      failure: "Вы не можете войти в систему с учётной записью из %{kind}, т.к. \"%{reason}\"."
+      unauthenticated: "Вам необходимо войти в систему или зарегистрироваться."
+      unconfirmed: "Вы должны подтвердить вашу учетную запись."
     mailer:
       confirmation_instructions:
-        subject: "Инструкции по подтверждению учётной записи"
+        action: "Активировать"
+        greeting: "Привет %{recipient}!"
+        instruction: "Вы можете активировать свою учетную запись, нажав ссылку снизу:"
+        subject: "Инструкции по подтверждению учетной записи"
+      password_change:
+        greeting: "Приветствуем %{recipient}!"
+        message: "Мы пытаемся связаться с вами, что бы сообщить, что ваш пароль был изменен."
+        subject: "Пароль изменен"
       reset_password_instructions:
+        action: "Изменить пароль"
+        greeting: "Привет, %{recipient}!"
+        instruction: "Вы (или кто-то еще) запросили изменение пароля. Для изменение пароля нажимите ссылку ниже:"
+        instruction_2: "Если вы не запрашивали изменение пароля - проигнорируйте это сообщение"
+        instruction_3: "Ваш пароль не изменится пока вы не нажмете на ссылку и не введете новый."
         subject: "Инструкции по восстановлению пароля"
       unlock_instructions:
-        subject: "Инструкции по разблокировке учётной записи"
+        action: "Разблокировать учетную запись"
+        greeting: "Привет, %{recipient}!"
+        instruction: "Нажмите ссылку для активации учетной записи:"
+        message: "Ваша учетная запись была заблокирована в связи с превышением лимита неудачных попыток входа."
+        subject: "Инструкции по разблокировке учетной записи"
+    omniauth_callbacks:
+      failure: Вы не можете войти в систему с учетной записью из %{kind}, т.к. "%{reason}".
+      success: "Вход в систему выполнен с учетной записью из %{kind}."
+    passwords:
+      edit:
+        change_my_password: "Изменить мой пароль"
+        change_your_password: "Изменить пароль"
+        confirm_new_password: "Повторите новый пароль"
+        new_password: "Новый пароль"
+      new:
+        forgot_your_password: "Забыли пароль?"
+        send_me_reset_password_instructions: "Выслать новый пароль"
+      no_token: "Доступ к этой странице возможен только по ссылке из письма о восстановлении пароля. Если вы пришли по такой ссылке, пожалуйста, убедитесь, что Вы скопировали всю ссылку целиком."
+      send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по восстановлению пароля."
+      send_paranoid_instructions: "Если ваш адрес эл. почты есть в системе, то в течение нескольких минут вы получите письмо с инструкциями по восстановлению пароля."
+      updated: "Ваш пароль изменен. Теперь вы вошли в систему."
+      updated_not_active: "Ваш пароль изменен."
+    registrations:
+      destroyed: "До свидания! Ваша учетная запись удалена. Надеемся снова увидеть вас."
+      edit:
+        are_you_sure: "Вы уверены?"
+        cancel_my_account: "Удалить учетную запись"
+        currently_waiting_confirmation_for_email: "Ожидается подтверждение адреса E-mail: %{email}"
+        leave_blank_if_you_don_t_want_to_change_it: "оставьте поле пустым, если не хотите его менять"
+        title: "Редактировать %{resource}"
+        unhappy: "Разочарованы"
+        update: "Обновить"
+        we_need_your_current_password_to_confirm_your_changes: "введите текущий пароль для подтверждения изменений"
+      new:
+        sign_up: "Регистрация"
+      signed_up: "Добро пожаловать! Вы успешно зарегистрировались."
+      signed_up_but_inactive: "Вы успешно зарегистрированы. Однако, вы не можете войти в систему, потому что ваша учетная запись не активирована."
+      signed_up_but_locked: "Вы успешно зарегистрированы. Однако, вы не можете войти в систему, потому что ваша учетная запись заблокирована."
+      signed_up_but_unconfirmed: "Письмо со ссылкой для подтверждения было отправлено на ваш адрес эл. почты. Пожалуйста, перейдите по ссылке, чтобы подтвердить учетную запись."
+      update_needs_confirmation: "Вы успешно обновили данные учетной записи, но необходимо подтвердить новый адрес эл. почты. Пожалуйста, проверьте почтовый ящик и перейдите по ссылке, чтобы закончить процедуру проверки нового адреса эл. почты."
+      updated: "Ваша учетная запись изменена."
+    sessions:
+      already_signed_out: "Выход из системы уже выполнен."
+      new:
+        sign_in: "Войти"
+      signed_in: "Вход в систему выполнен."
+      signed_out: "Выход из системы выполнен."
+    shared:
+      links:
+        back: "Назад"
+        didn_t_receive_confirmation_instructions: "Не получили подтверждение?"
+        didn_t_receive_unlock_instructions: "Не получили код разблокировки?"
+        forgot_your_password: "Забыли пароль?"
+        sign_in: "Войти"
+        sign_in_with_provider: "Войти с помощью: %{provider}"
+        sign_up: "Регистрация"
+    unlocks:
+      new:
+        resend_unlock_instructions: "Выслать подтверждение заново"
+      send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по разблокировке учетной записи."
+      send_paranoid_instructions: "Если ваша учетная запись существует, то в течение нескольких минут вы получите письмо с инструкциями по ее разблокировке."
+      unlocked: "Ваша учетная запись разблокирована. Теперь вы можете войти в систему."
+    characters_minimum: 'символов минимум'
 
+  errors:
+    messages:
+      already_confirmed: "уже подтверждён. Пожалуйста, попробуйте войти в систему"
+      confirmation_period_expired: "должен быть подтвержден в течение %{period}, пожалуйста, повторите запрос на подтверждение"
+      expired: "устарела. Пожалуйста, запросите новую"
+      not_found: "не найден"
+      not_locked: "не заблокирован"
+      not_saved:
+        few: "%{resource}: сохранение не удалось из-за %{count} ошибок:"
+        many: "%{resource}: сохранение не удалось из-за %{count} ошибок:"
+        one: "%{resource}: сохранение не удалось из-за %{count} ошибки:"
+        other: "%{resource}: сохранение не удалось из-за %{count} ошибки:"
+
+  admin:
+    js:
+      true: Истинно
+      false: Ложно
+      is_present: Представлено
+      is_blank: Пусто
+      date: Дата ...
+      between_and_: Между ... и ...
+      today: Сегодня
+      yesterday: Вчера
+      this_week: На этой неделе
+      last_week: На прошлой неделе
+      number: Число ...
+      contains: Включает
+      is_exactly: Точно
+      starts_with: Начинается с
+      ends_with: Заканчивается на
+    loading: "Загрузка..."
+    home:
+      name: "Главная"
+    pagination:
+      previous: "&laquo; Назад"
+      next: "Вперед &raquo;"
+      truncate: "…"
+    misc:
+      filter_date_format: "dd/mm/yy"
+      search: "Поиск"
+      filter: "Фильтрация"
+      refresh: "Обновить"
+      show_all: "Показать все"
+      add_filter: "Добавить фильтр..."
+      bulk_menu_title: "Выбранные элементы..."
+      remove: "Удалить"
+      add_new: "Добавить"
+      chosen: "Выбран %{name}"
+      chose_all: "Выбрать все"
+      clear_all: "Очистить все"
+      up: "Вверх"
+      down: "Вниз"
+      navigation: "Навигация"
+      navigation_static_label: "Ссылки"
+      log_out: "Выйти"
+      ago: "назад"
+    flash:
+      successful: "%{name} успешно %{action}"
+      error: "%{name} не удалось %{action}"
+      noaction: "Никаких изменений не выполнено"
+      model_not_found: "Модель '%{model}' не найдена"
+      object_not_found: "Объект %{model} с id '%{id}' не найден"
+    table_headers:
+      model_name: "Название модели"
+      last_used: "Последнее раз использовалось"
+      records: "Записи"
+      username: "Пользователь"
+      changes: "Изменения"
+      created_at: "Дата/Время"
+      item: "Элемент"
+      message: "Сообщение"
+    actions:
+      dashboard:
+        title: "Управление сайтом"
+        menu: "Панель управления"
+        breadcrumb: "панель управления"
+      index:
+        title: "Список %{model_label_plural}"
+        menu: "Список"
+        breadcrumb: "%{model_label_plural}"
+      show:
+        title: "Детали %{model_label} '%{object_label}'"
+        menu: "Просмотр"
+        breadcrumb: "%{object_label}"
+      show_in_app:
+        menu: "Показать в приложении"
+      new:
+        title: "Новый %{model_label}"
+        menu: "Создание"
+        breadcrumb: "новый"
+        link: "Добавить %{model_label}"
+        done: "создано"
+      edit:
+        title: "Редактировение %{model_label} '%{object_label}'"
+        menu: "Редактирование"
+        breadcrumb: "редактирование"
+        link: "Редактировать %{model_label}"
+        done: "сохранено"
+      delete:
+        title: "Удаление %{model_label} '%{object_label}'"
+        menu: "Удаление"
+        breadcrumb: "удаление"
+        link: "Удалить '%{object_label}'"
+        done: "удалено"
+      bulk_delete:
+        title: "Удалить много %{model_label_plural}"
+        menu: "Мульти-удаление"
+        breadcrumb: "мульти-удаление"
+        bulk_link: "Удалить выбранные %{model_label_plural}"
+      export:
+        title: "Экспорт %{model_label}"
+        menu: "Экспорт"
+        breadcrumb: "экспорт"
+        link: "Экспорт найденных %{model_label_plural}"
+        bulk_link: "Экспорт выбраных %{model_label_plural}"
+        done: "экспортировано"
+      history_index:
+        title: "История для %{model_label_plural}"
+        menu: "История"
+        breadcrumb: "история"
+      history_show:
+        title: "История для %{model_label} '%{object_label}'"
+        menu: "История"
+        breadcrumb: "история"
+    form:
+      cancel: "Отмена"
+      basic_info: "Основное"
+      required: "Требуемое"
+      optional: "Необязательное"
+      one_char: "символ"
+      char_length_up_to: "длина не более"
+      char_length_of: "длина"
+      save: "Сохранить"
+      save_and_add_another: "Сохранить и добавить новый"
+      save_and_edit: "Сохранить и продолжить редактирование"
+      all_of_the_following_related_items_will_be_deleted: "Следующие объекты будут удалены:"
+      are_you_sure_you_want_to_delete_the_object: "Вы уверены что хотите удалить %{model_name}"
+      confirmation: "Да, уверен"
+      bulk_delete: "Следующие объекты будут удалены, что может сломать связи с другими объектами:"
+      new_model: "%{name} (новый)"
+    export:
+      confirmation: "Экспортировать как %{name}"
+      select: "Выберите поля для экспорта"
+      select_all_fields: "Выбрать все поля"
+      fields_from: "Поля из %{name}"
+      fields_from_associated: "Поля из ассоциированной %{name}"
+      display: "Показать %{name}: %{type}"
+      options_for: "Настройки для %{name}"
+      empty_value_for_associated_objects: "<пусто>"
+      click_to_reverse_selection: 'Обратить выделение'
+      csv:
+        header_for_root_methods: "%{name}" # 'model' is available
+        header_for_association_methods: "%{name} [%{association}]"
+        encoding_to: "Декодировать как"
+        encoding_to_help: "Выберите результирующую кодировку. Оставьте пустой, чтобы оставить исходную кодировку нетронутой: (%{name})"
+        skip_header: "Без заголовка"
+        skip_header_help: "Не выводить заголовок (без описаний полей)"
+        default_col_sep: ","
+        col_sep: "Разделитель столбцов"
+        col_sep_help: "Оставьте пустым, чтобы было по умолчанию ('%{value}')" # value is default_col_sep

@@ -16,6 +16,8 @@
 //= require jquery-ui
 //= require jquery-ui/draggable
 //= require jquery-ui/sortable
+//= require jquery.raty
+//= require ratyrate
 //= require turbolinks
 //= require tether
 //= require cloudinary

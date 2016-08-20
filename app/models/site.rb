@@ -10,6 +10,7 @@ class Site < ActiveRecord::Base
 	ratyrate_rateable 'original_score'
 	validates :title, :theme, :menu_type, :description, :user, :default_template, :picture, presence: true
 
+
 	searchable do
 		text :title
 		text :description
@@ -54,7 +55,7 @@ class Site < ActiveRecord::Base
 	end
 
 	def text
-		''
+		self.description
 	end
 
 	def link
@@ -66,4 +67,8 @@ class Site < ActiveRecord::Base
 	def empty_logo(attributes)
       !attributes['url'].present? && !attributes['public_id'].present?
     end
+
+	def img
+		self.picture.url
+	end
 end
