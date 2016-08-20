@@ -67,27 +67,33 @@ ru:
       user:
         one: Пользователь
         few: Пользователя
-        other: Пользователей
+        many: Пользователей
+        other: Пользователя
       comment:
         one: Комментарий
         few: Комментария
-        other: Комминтариев
+        many: Комментариев
+        other: Комминтария
       page:
         one: Страница
         few: Страницы
-        other: Страниц
+        many: Страниц
+        other: Страницы
       picture:
         one: Картинка
         few: Картинки
-        other: Картинок
+        many: Картинок
+        other: Картиноки
       site:
         one: Сайт
         few: Сайта
-        other: Сайтов
+        many: Сайтов
+        other: Сайта
       rate:
         one: Рейтинг
         few: Рейтинга
-        other: Рейтингов
+        many: Рейтингов
+        other: Рейтинга
       video: Видео
   date:
     abbr_day_names:
