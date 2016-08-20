@@ -13,6 +13,10 @@ gem "font-awesome-rails"
 gem "redcarpet"
 gem 'cloudinary'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-vkontakte'
 gem 'cancancan', '~> 1.10'
 gem 'rails_admin', '~> 0.8.1'
 gem 'active_link_to'

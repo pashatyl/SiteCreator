@@ -305,7 +305,7 @@ ru:
   time:
     am: утра
     formats:
-      default: "%a, %d %b %Y, %H:%M:%S %z"
+      default: "%a, %d %b %Y"
       long: "%d %B %Y, %H:%M"
       short: "%d %b, %H:%M"
     pm: вечера
@@ -356,3 +356,4 @@ ru:
         subject: "Инструкции по восстановлению пароля"
       unlock_instructions:
         subject: "Инструкции по разблокировке учётной записи"
+
