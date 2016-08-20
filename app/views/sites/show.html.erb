@@ -83,7 +83,7 @@
                 <p><i class="fa fa-calendar"></i> Posted on <%= I18n.l (@site.created_at) %></p>
         <p><i class="fa fa-tags"></i> Tags: 
           <% @site.tag_list.each do |tag| %>
-          <%= link_to search_path(:tag => tag.name) do %><span class="badge badge-info"><%= tag %></span>
+          <%= link_to search_path(tag: tag) do %><span class="badge badge-info"><%= tag %></span>
           <% end %> 
           <% end %>
         </p>
