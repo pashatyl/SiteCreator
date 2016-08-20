@@ -1,36 +1,39 @@
 <div class="col-sm-8">
-<div class="panel panel-default">
-  <div class="panel-body">
- <div class="row">
-  <div class="col-xs-6">
-                <h1><%= link_to @site.title, site_page_path(@site, @site.first_page) %></h1>
-                <p class="lead"><i class="fa fa-user"></i> by <%= @site.user.name %></p>
-                </div>
-                <div class="col-xs-6">
-                 <%= image_tag @site.picture.url, class:"img-responsive img-thumbnail", style:"height:100px;float:right;"%> 
-                 </div>
-                </div>
-                <hr>
-                <p><i class="fa fa-calendar"></i> Posted on <%= I18n.l (@site.created_at) %></p>
-        <p><i class="fa fa-tags"></i> Tags: 
-          <% @site.tag_list.each do |tag| %>
-          <%= link_to search_path(tag: tag) do %><span class="badge badge-info"><%= tag %></span>
-          <% end %> 
-          <% end %>
-        </p>
-          
-                <hr>
-                   <p class="lead" > <strong>Description</br></br></strong><%= @site.description %></p>
-                
-                <br/>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-6">
+          <h1><%= link_to @site.title, site_page_path(@site, @site.first_page) %></h1>
+          <p class="lead"><i class="fa fa-user"></i> by <%= @site.user.name %></p>
+        </div>
+        <div class="col-xs-6">
+          <%= image_tag @site.picture.url, class:"img-responsive img-thumbnail", style:"height:100px;float:right;"%>
+        </div>
+      </div>
+      <hr>
+      <p><i class="fa fa-calendar"></i> Posted on <%= I18n.l (@site.created_at) %></p>
+      <p><i class="fa fa-tags"></i> Tags:
+        <% @site.tag_list.each do |tag| %>
+            <%= link_to search_path(tag: tag) do %><span class="badge badge-info"><%= tag %></span>
+            <% end %>
+        <% end %>
+      </p>
 
-                   <hr>
-                <!-- the comment box -->
-                <%= render partial: "comments/comments", locals: { site: @site } %> 
+      <hr>
+      <p class="lead" > <strong>Description
+        </br>
+        </br>
+      </strong><%= @site.description %></p>
 
-            </div>
-            </div>
-            </div>
+      <br/>
+
+      <hr>
+      <!-- the comment box -->
+      <%= render partial: "comments/comments", locals: { site: @site } %>
+
+    </div>
+  </div>
+</div>
 <div class="col-sm-4">
   <%= render "sidebar" %>
 </div>

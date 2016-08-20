@@ -14,7 +14,7 @@ class Result
   end
 
   def header
-    @dite.header
+    @site.header
   end
 
   def text
