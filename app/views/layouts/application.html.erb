@@ -36,7 +36,9 @@
               </ul>
               <ul class="nav navbar-nav navbar-right">
       <li>
-
+          <% if can? :create, Site %>
+            <%= active_link_to 'New Site', new_site_path, :wrap_tag => :li, :active => :exclusive %>
+            <% end %>
       </li>
       <% if user_signed_in? %>
         <li>
@@ -84,7 +86,7 @@
       <!-- /.container -->
   </nav>
 
-<div class="container-fluid text-center">
+<div class="container-fluid text-left">
   <div class="row content">
     <div class="col-sm-12">
       <p class="notice"><%= notice %></p>
