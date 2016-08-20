@@ -30,6 +30,7 @@
             <!--/col--> 
             <div class="col-xs-12 col-sm-8">
               <h2><%= current_user.name %></h2>
+              <p><i class="glyphicon glyphicon-user"></i><%= current_user.role %> </p>
               <p><i class="glyphicon glyphicon-envelope"></i> <%= current_user.email %></p>
               <p><i class="glyphicon glyphicon-calendar"></i>Since <%=I18n.l (current_user.created_at) %></p>
             </div>

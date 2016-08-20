@@ -7,7 +7,7 @@ function initializeSortable(){
     	helper: function(e) {
     		var type = this.id
 	    	if (type == "picture") {
-				return $(this).clone().addClass('edit-class');
+				return $(this).clone().addClass('edit-class').prepend("<button class='close'>X</button>");
     		}
 			else {
 				return '<i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>';
@@ -77,7 +77,8 @@ function initializeSortable(){
 	    success: function(response, newValue) {
 	    	var parent = $(this).parent();
 	    	if(parent.data("type") == "video") {
-	    		loadVideo(parent, newValue)
+	    		loadVideo(parent, newValue);
+	    		initializeCloseButon();
 	    	} 
 	        //userModel.set('username', newValue); //update backbone model
 	    }
@@ -85,14 +86,24 @@ function initializeSortable(){
 	});
 }
 
-function loadVideo(parent, value) {
-	if (value.includes("youtube")) {
+function loadVideo(parent, url) {
+	var matches = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/.exec(url);
+	if (matches) {
 		parent.empty();
-		var frame = $('<iframe>').attr("src", value).attr("frameborder", 0).attr("allowfullscreen","");
+
+		var frame = $('<iframe>').attr("src", getFullUrl(matches[5])).attr("frameborder", 0).attr("allowfullscreen","");
 		var div = $('<div>').addClass("embed-responsive embed-responsive-4by3");
-		parent.append(div.append(frame));
+		parent.append("<button class='close'>X</button>").append(div.append(frame));
+	} else {
+		alert("Only youtube videos allowed");
+		console.log(parent.find("edit-area").text())
+		parent.find("edit-area").text("")
 	}
 
+}
+
+function getFullUrl(videoId) {
+	return "https://www.youtube.com/embed/" + videoId;
 }
 
 function showDraggedElement(elem, type) {
@@ -162,7 +173,7 @@ function initializeCloseButon() {
 	});
 }
 
-function updateWidgetData(){  
+function updatePageData(){  
 	  var items=[];  
 	  $("div[id^='col']").each(function(){  
 	    var columnId=$(this).attr('id'); 
@@ -202,6 +213,9 @@ function updateWidgetData(){
 	      success: function(msg) {
 	      	console.log("success")
 	      	deletedItems = [];
+	      },
+	      error: function(msg) {
+	         
 	      }
 	           
 	    });

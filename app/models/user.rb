@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :omniauthable, :omniauth_providers => [:facebook, :twitter, :vkontakte]
-  has_many :sites, dependent: :destroy
-  has_many :comments
-  has_many :pictures
+  has_many :sites, dependent: :destroy, inverse_of: :user
+  has_many :comments, inverse_of: :user
+  has_many :pictures, inverse_of: :user
   ratyrate_rater
   searchable do
     text :name

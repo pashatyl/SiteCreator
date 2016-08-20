@@ -1,13 +1,15 @@
 class Site < ActiveRecord::Base
-	has_many :pages, dependent: :destroy
+	has_many :pages, dependent: :destroy, inverse_of: :site
 	belongs_to :default_template, class_name: "Template", inverse_of: :sites
 	belongs_to :user
-	has_many :comments, dependent: :destroy
+	has_many :comments, dependent: :destroy, inverse_of: :site
 	has_one :picture
 	acts_as_taggable_on :tags
-	accepts_nested_attributes_for :picture
+	accepts_nested_attributes_for :picture, reject_if: :empty_logo
 	after_save :create_first_page
 	ratyrate_rateable 'original_score'
+	validates :title, :theme, :menu_type, :description, :user, :default_template, :picture, presence: true
+
 	searchable do
 		text :title
 		text :description
@@ -58,4 +60,10 @@ class Site < ActiveRecord::Base
 	def link
 		self
 	end
+
+	private
+
+	def empty_logo(attributes)
+      !attributes['url'].present? && !attributes['public_id'].present?
+    end
 end

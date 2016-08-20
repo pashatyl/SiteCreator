@@ -2,6 +2,7 @@ class Comment < ActiveRecord::Base
 	belongs_to :site
 	belongs_to :user
   scope :persisted, -> { where "id IS NOT NULL" }
+  validates :content, :site, :user, presence: true
 
 	COMMENTLENGTH = 100
 

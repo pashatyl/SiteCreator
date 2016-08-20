@@ -24,12 +24,7 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
-    @page_new = Page.new
-    @templates = Template.all
-
-    @pictures = current_user.pictures
-    @site = Site.find(params[:site_id])
-    @body = HtmlProcessor.new(@page, "edit").process
+    get_elements_for_edit_action
   end
 
   # POST /pages
@@ -56,20 +51,20 @@ class PagesController < ApplicationController
     #puts JSON.parse params[:page_elements]
     update_params = parse_params(JSON.parse params[:page_elements])
     deleted_elements = JSON.parse(params[:deleted_elements])
-    #pry
-    #puts update_params
-    #pry
     respond_to do |format|      
       if @page.update(update_params) && delete_elements(deleted_elements)
         @body = HtmlProcessor.new(@page, "edit").process
-        #Rails.logger.error("Hello")
         format.js {render :edit}
         format.html { redirect_to @page, notice: 'page was successfully updated.' }
         
         format.json { render json: @body.to_json, status: 200}
       else
+        #Rails.logger.error( @page.errors.messages)
+        flash[:notice] = 'There was a problem updating page'
+        get_elements_for_edit_action
+        format.js{render :edit}
         format.html { render :edit }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
+        format.json { render json: @errors, status: :unprocessable_entity }
       end
     end
   end
@@ -93,7 +88,15 @@ class PagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
       params.require(:page).permit(:title, :template_id, :site_id)
-      #params
+    end
+
+    def get_elements_for_edit_action
+      set_page
+      @page_new = Page.new
+      @templates = Template.all
+      @pictures = current_user.pictures
+      @site = Site.find(params[:site_id])
+      @body = HtmlProcessor.new(@page, "edit").process
     end
 
     def parse_params(page_elements)

@@ -1,9 +1,12 @@
 class MarkdownText < ActiveRecord::Base
 	belongs_to :page
+  validates :markdown, :page, :div_id, :order, presence: true
+  validates :order, numericality: { only_integer: true }
   before_save :escape_javascript
 	def to_html(action)
 		#'<div class="edit_area" data-content="' + markdown + '">' + markdown_to_html(markdown) + "</div>"
-    '<div class="edit_area">' + markdown + '</div>'
+    text = action == "show" ? markdown_to_html(markdown) : markdown
+    '<div class="edit_area">' + text + '</div>'
 	end
 
   searchable do

@@ -89,22 +89,7 @@
 <div class="container-fluid text-left">
   <div class="row content">
     <div class="col-sm-12">
-       <% unless notice.nil? %>
-          <div class="alert alert-success fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong><%= notice %></strong>
-          </div>
-      <% end %>
-      <% unless alert.nil? %>
-          <div class="alert alert-danger fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong><%= alert %></strong>
-          </div>
-      <% end %>
-      <% if user_signed_in? %>
-        <p> <%= current_user.name %>, <%= current_user.role %>, <%= current_user.id %></p>
-      <% end %>
-
+       <%= render "sites/flash_messages" %>
       <%= yield %>
       </div>
   </div>

@@ -30,11 +30,9 @@
  <div class="well">
                     <h4><i class="fa fa-fire"></i> Recent sites:</h4>
           <ul>
-                    <li><a href="">WPF vs. Windows Forms-Which is better?</a></li>
-          <li><a href="">How to create responsive website with Bootstrap?</a></li>
-          <li><a href="">The best Joomla! templates 2014</a></li>
-          <li><a href="">ASP .NET cms list</a></li>
-              <li><a href="">C# Hello, World! program</a></li>
-          <li><a href="">Java random generator</a></li>
+            <% @recent_sites.each do |site| %>
+                    <li><%= link_to site.title, site_page_path(site, site.first_page) %></li>
+                    <% end %>
+        
           </ul>
                 </div>

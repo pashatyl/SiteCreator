@@ -7,22 +7,21 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites = Site.paginate(page: params[:page], :per_page => 4).order('created_at DESC') #.includes
+    @sites = Site.includes(:original_score_average).order('rating_caches.avg DESC').paginate(page: params[:page], :per_page => 4) #.includes
+    get_recent_sites
   end
 
   # GET /sites/1
   # GET /sites/1.json
   def show
+    get_recent_sites
   end
 
 
   # GET /sites/new
   def new
     @site = Site.new
-    @site.picture = Picture.new(user_id: current_user.id)
-    @themes = Site.available_themes_with_names #callb!
-    @menu = Site.available_menu_with_names #callb!
-    @templates = Template.all
+    get_info_for_new_form
   end
 
   # GET /sites/1/edit
@@ -34,12 +33,12 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(site_params.deep_merge(user_id: current_user.id, picture_attributes: {user_id: current_user.id}))
     @site.tag_list.add(params[:site][:tag_list][0].split(' '))
-
     respond_to do |format|
       if @site.save
         format.html { redirect_to [@site], notice: 'Site was successfully created.' }
         format.json { render :show, status: :created, location: @site }
       else
+        get_info_for_new_form
         format.html { render :new }
         format.json { render json: @site.errors, status: :unprocessable_entity }
       end
@@ -71,6 +70,16 @@ class SitesController < ApplicationController
   end
 
   private
+    def get_recent_sites
+      @recent_sites = Site.order("created_at desc").limit(6)
+    end
+
+    def get_info_for_new_form
+      @themes = Site.available_themes_with_names #callb!
+      @menu = Site.available_menu_with_names #callb!
+      @templates = Template.all
+      @site.picture = Picture.new(user_id: current_user.id)
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_site
       @site = Site.find(params[:id])
