@@ -63,7 +63,38 @@ ru:
         restrict_dependent_destroy:
           has_one: 'Невозможно удалить запись, так как существует зависимость: %{record}'
           has_many: 'Невозможно удалить запись, так как существуют зависимости: %{record}'
-
+    models:
+      user:
+        one: Пользователь
+        few: Пользователя
+        many: Пользователей
+        other: Пользователя
+      comment:
+        one: Комментарий
+        few: Комментария
+        many: Комментариев
+        other: Комминтария
+      page:
+        one: Страница
+        few: Страницы
+        many: Страниц
+        other: Страницы
+      picture:
+        one: Картинка
+        few: Картинки
+        many: Картинок
+        other: Картиноки
+      site:
+        one: Сайт
+        few: Сайта
+        many: Сайтов
+        other: Сайта
+      rate:
+        one: Рейтинг
+        few: Рейтинга
+        many: Рейтингов
+        other: Рейтинга
+      video: Видео
   date:
     abbr_day_names:
     - Вс

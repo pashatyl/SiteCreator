@@ -17,7 +17,7 @@
                 <ul class="meta-search">
                   <li><i class="glyphicon glyphicon-calendar"></i> <span><%= I18n.l result.updated_at.to_date, format: :long %></span></li>
                   <li><i class="glyphicon glyphicon-time"></i> <span><%= result.updated_at.localtime.strftime("%I:%M%p")%></span></li>
-                  <li><i class="glyphicon glyphicon-tags"></i> <span><%= result.class %></span></li>
+                  <li><i class="glyphicon glyphicon-tags"></i> <span><%= result.class.model_name.human %></span></li>
                 </ul>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-7 excerpet">

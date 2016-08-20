@@ -1,63 +1,44 @@
 <div class="col-sm-8">
-<%= render "sites/sites" %>
+  <%= render "sites/sites" %>
 </div>
 <div class="col-sm-4">
   <div class="well panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-xs-12 col-sm-4 text-center">
-              <img src="http://api.randomuser.me/portraits/women/21.jpg" alt="" class="center-block img-circle img-thumbnail img-responsive">
-              <figcaption class="ratings">
-                            <p>Ratings
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                 <span class="fa fa-star-o"></span>
-                            </a> 
-                            </p>
-                        </figcaption>
-            </div>
-            <!--/col--> 
-            <div class="col-xs-12 col-sm-8">
-              <h2><%= current_user.name %></h2>
-              <p><i class="glyphicon glyphicon-envelope"></i> <%= current_user.email %></p>
-              <p><i class="glyphicon glyphicon-calendar"></i>Since <%=I18n.l (current_user.created_at) %></p>
-            </div>
-            <!--/col-->          
-            <div class="clearfix"></div>
-            <div class="col-xs-12 col-sm-4">
-              <h2><strong> 20,7K </strong></h2>
-              <p><small>Followers</small></p>
-               <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
-             
-            </div>
-            <!--/col-->
-            <div class="col-xs-12 col-sm-4">
-              <h2><strong>245</strong></h2>
-              <p><small>Following</small></p>
-            </div>
-            <!--/col-->
-            <div class="col-xs-12 col-sm-4">
-              <h2><strong>43</strong></h2>
-              <p><small>Snippets</small></p>
-             
-
-            </div>
-            <!--/col-->
-          </div>
-          <!--/row-->
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 text-center">
+          <img src="http://api.randomuser.me/portraits/women/21.jpg" alt="" class="center-block img-circle img-thumbnail img-responsive">
         </div>
-        <!--/panel-body-->
+        <!--/col-->
+        <div class="col-xs-12 col-sm-8">
+          <h2><%= current_user.name %></h2>
+          <p><i class="glyphicon glyphicon-envelope"></i> <%= current_user.email %></p>
+          <p><i class="glyphicon glyphicon-calendar"></i><%=I18n.l (current_user.created_at) %></p>
+        </div>
+        <!--/col-->
+        <div class="clearfix"></div>
+        <div class="col-xs-12 col-sm-4">
+          <h2><strong><%= @user.sites.count %></strong></h2>
+          <p><small><%= I18n.t 'activerecord.models.site', count: @user.sites.count %></small></p>
+          <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
+
+        </div>
+        <!--/col-->
+        <div class="col-xs-12 col-sm-4">
+          <h2><strong><%= @user.comments.count %></strong></h2>
+          <p><small><%= I18n.t 'activerecord.models.comment', count: @user.comments.count %></small></p>
+        </div>
+        <!--/col-->
+        <div class="col-xs-12 col-sm-4">
+          <h2><strong><%= @count = pages_count @user %></strong></h2>
+          <p><small><%= I18n.t 'activerecord.models.page', count: @count %></small></p>
+
+
+        </div>
+        <!--/col-->
       </div>
-    
+      <!--/row-->
+    </div>
+    <!--/panel-body-->
+  </div>
+
 </div>
