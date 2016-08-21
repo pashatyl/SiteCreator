@@ -33,21 +33,6 @@ ActiveRecord::Schema.define(version: 20160819221822) do
   add_index "comments", ["site_id"], name: "index_comments_on_site_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "hashtags", force: :cascade do |t|
-    t.string   "tag",        limit: 255,             null: false
-    t.integer  "weight",     limit: 4,   default: 1
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
-
-  create_table "hashtags_sites", id: false, force: :cascade do |t|
-    t.integer "site_id",    limit: 4
-    t.integer "hashtag_id", limit: 4
-  end
-
-  add_index "hashtags_sites", ["hashtag_id"], name: "index_hashtags_sites_on_hashtag_id", using: :btree
-  add_index "hashtags_sites", ["site_id"], name: "index_hashtags_sites_on_site_id", using: :btree
-
   create_table "markdown_texts", force: :cascade do |t|
     t.text     "markdown",   limit: 65535
     t.string   "div_id",     limit: 255
@@ -212,21 +197,6 @@ ActiveRecord::Schema.define(version: 20160819221822) do
   end
 
   add_index "videos", ["page_id"], name: "index_videos_on_page_id", using: :btree
-
-  create_table "votes", force: :cascade do |t|
-    t.integer  "votable_id",   limit: 4
-    t.string   "votable_type", limit: 255
-    t.integer  "voter_id",     limit: 4
-    t.string   "voter_type",   limit: 255
-    t.boolean  "vote_flag"
-    t.string   "vote_scope",   limit: 255
-    t.integer  "vote_weight",  limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
   add_foreign_key "pictures", "users"
 end

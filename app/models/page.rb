@@ -9,22 +9,18 @@ class Page < ActiveRecord::Base
 	validates :title, :template, :site, presence: true
 
 	searchable do
-		text :title
+		text :title, :stored => true
 	end
 
-	def header
-    self.site.header
-  end
-
-  def text
-    title
-  end
-
-  def link
-    [self.site, self]
+	def self.get_fields_for_search
+		[:title]
 	end
 
-	def img
-		self.site.img
+	def get_info(field)
+    "Site #{site.title} has page with #{field}: "
+  end
+
+  def get_link
+		"<a href='#{Rails.application.routes.url_helpers.site_page_path(site, self)}'  class='search-link'>#{site.title}</a>"
 	end
 end
