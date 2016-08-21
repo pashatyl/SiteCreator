@@ -33,7 +33,7 @@ en:
         en: "English"
         ru: "Russian"
   comments:
-    header: 'Comments'
+    comment: 'Comments'
     add: 'Add'
     your_comment: 'Your comment'
   editor:
@@ -73,3 +73,4 @@ en:
     empty: 'Nothing found'
   comment:
     comments_at: 'comments'
+  tags: Tags

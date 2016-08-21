@@ -11,7 +11,7 @@ ru:
         en: "Английский"
         ru: "Русский"
   comments:
-    header: 'Комментарии'
+    comment: 'Комментарии'
     add: 'Добавить'
     your_comment: 'Ваш комментарий'
   editor:
@@ -55,6 +55,7 @@ ru:
     empty: 'Ничего не найдено'
   comment:
     comments_at: 'прокомментировал'
+  tags: 'Теги'
 
   activerecord:
     errors:
@@ -88,7 +89,7 @@ ru:
         one: Комментарий
         few: Комментария
         many: Комментариев
-        other: Комминтария
+        other: Комментария
       page:
         one: Страница
         few: Страницы

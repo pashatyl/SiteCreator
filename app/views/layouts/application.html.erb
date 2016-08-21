@@ -37,7 +37,7 @@
               <ul class="nav navbar-nav navbar-right">
       <li>
           <% if can? :create, Site %>
-            <%= active_link_to 'New Site', new_site_path, :wrap_tag => :li, :active => :exclusive %>
+            <%= active_link_to t('site.new'), new_site_path, :wrap_tag => :li, :active => :exclusive %>
             <% end %>
       </li>
       <% if user_signed_in? %>
