@@ -11,10 +11,10 @@ class Site < ActiveRecord::Base
 	validates :title, :theme, :menu_type, :description, :user, :default_template, :picture, presence: true
 
 
-	searchable do
-		text :title
-		text :description
-	end
+	# searchable do
+	# 	text :title
+	# 	text :description
+	# end
 
 	def self.available_themes
 		%w(black white blue)
@@ -50,17 +50,21 @@ class Site < ActiveRecord::Base
 		description[0..30]
 	end
 
-	def header
-		"#{self.title}"
-	end
+	# def header
+	# 	"#{self.title}"
+	# end
 
-	def text
-		self.description
-	end
+	# def text
+	# 	self.description
+	# end
 
-	def link
-		self
-	end
+	# def link
+	# 	self
+	# end
+
+	# def img
+	# 	self.picture.url
+	# end
 
 	private
 
@@ -68,7 +72,5 @@ class Site < ActiveRecord::Base
       !attributes['url'].present? && !attributes['public_id'].present?
     end
 
-	def img
-		self.picture.url
-	end
+	
 end

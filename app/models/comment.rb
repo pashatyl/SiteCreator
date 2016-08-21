@@ -6,23 +6,23 @@ class Comment < ActiveRecord::Base
 
 	COMMENTLENGTH = 100
 
-	searchable do
-    text :content
-  end
+# 	searchable do
+#     text :content
+#   end
 
-  def header
-    "#{user.name} #{ I18n.t('comment.comments_at')} #{site.title}"
-  end
+#   def header
+#     "#{user.name} #{ I18n.t('comment.comments_at')} #{site.title}"
+#   end
 
-  def text
-    content[0..COMMENTLENGTH]
-  end
+#   def text
+#     content[0..COMMENTLENGTH]
+#   end
 
-  def link
-    site.link
-  end
+#   def link
+#     site.link
+#   end
 
-  def img
-    site.img
-  end
+#   def img
+#     site.img
+#   end
 end

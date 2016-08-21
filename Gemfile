@@ -31,8 +31,8 @@ gem 'acts-as-taggable-on', '~> 4.0'
 
 gem 'rails-jquery-autocomplete'
 
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+# gem 'sunspot_rails'
+# gem 'sunspot_solr'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 

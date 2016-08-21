@@ -9,27 +9,27 @@ class MarkdownText < ActiveRecord::Base
     '<div class="edit_area">' + text + '</div>'
 	end
 
-  searchable do
-    text :markdown
-  end
+  # searchable do
+  #   text :markdown
+  # end
 
   MARKDOWNSIZE = 100
 
-  def header
-    page.site.header
-  end
+  # def header
+  #   page.site.header
+  # end
 
-  def text
-    markdown[0..MARKDOWNSIZE]
-  end
+  # def text
+  #   markdown[0..MARKDOWNSIZE]
+  # end
 
-  def link
-    [page.site, page]
-  end
+  # def link
+  #   [page.site, page]
+  # end
 
-  def img
-    page.site.img
-  end
+  # def img
+  #   page.site.img
+  # end
 
 	private
 	def markdown_to_html(text)

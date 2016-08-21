@@ -7,7 +7,8 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites = Site.includes(:original_score_average).order('rating_caches.avg DESC').paginate(page: params[:page], :per_page => 4) #.includes
+    @sites = Site.includes(:original_score_average).order('rating_caches.avg DESC')
+      .paginate(page: params[:page], :per_page => 4) #.includes
     get_recent_sites
   end
 
@@ -31,8 +32,8 @@ class SitesController < ApplicationController
   # POST /sites
   # POST /sites.json
   def create
-    @site = Site.new(site_params.deep_merge(user_id: current_user.id, picture_attributes: {user_id: current_user.id}))
-    @site.tag_list.add(params[:site][:tag_list][0].split(' '))
+    @site = Site.new(site_params.deep_merge(user_id: current_user.id, 
+      picture_attributes: {user_id: current_user.id}))
     respond_to do |format|
       if @site.save
         format.html { redirect_to [@site], notice: 'Site was successfully created.' }
@@ -85,8 +86,8 @@ class SitesController < ApplicationController
       @site = Site.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:theme, :menu_type, :title, :default_template_id, :description, picture_attributes: [ :public_id, :url ])
+      params.require(:site).permit(:theme, :menu_type, :title, :default_template_id, :description, 
+        :tag_list, picture_attributes: [ :public_id, :url ])
     end
 end

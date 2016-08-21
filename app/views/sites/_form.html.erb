@@ -48,10 +48,12 @@
           <%= ff.hidden_field :url %>
           <%= ff.hidden_field :public_id %>
         </div>
-          <%= f.autocomplete_field :tag_list, autocomplete_tag_name_sites_path,
-                                   'data-delimiter' => ' ', :multiple => true %>
+         
     <% end %>
-
+    <div class="form-group">
+      <%= f.autocomplete_field :tag_list, autocomplete_tag_name_sites_path,
+                                   'data-delimiter' => ' ' %>
+    </div>
     <div class="actions">
       <%= f.submit "Create", class: "btn btn-default" %>
     </div>

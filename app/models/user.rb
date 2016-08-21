@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
   has_many :comments, inverse_of: :user
   has_many :pictures, inverse_of: :user
   ratyrate_rater
-  searchable do
-    text :name
-  end
+  # searchable do
+  #   text :name
+  # end
 
   ROLES = {0 => :guest, 1 => :user, 2 => :admin}
   TEMP_EMAIL_PREFIX = 'change@me'
@@ -23,17 +23,17 @@ class User < ActiveRecord::Base
   	ROLES[role_id]  
   end
 
-  def header
-    "#{self.name}"
-  end
+  # def header
+  #   "#{self.name}"
+  # end
 
-  def text
-    ''
-  end
+  # def text
+  #   ''
+  # end
 
-  def link
-    self #TODO bad idea!!!
-  end
+  # def link
+  #   self #TODO bad idea!!!
+  # end
 
   def self.find_for_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|

@@ -8,23 +8,23 @@ class Page < ActiveRecord::Base
 	accepts_nested_attributes_for :markdown_texts, :videos, :picture_roles
 	validates :title, :template, :site, presence: true
 
-	searchable do
-		text :title
-	end
+	# searchable do
+	# 	text :title
+	# end
 
-	def header
-    self.site.header
-  end
+	# def header
+ #    self.site.header
+ #  end
 
-  def text
-    title
-  end
+ #  def text
+ #    title
+ #  end
 
-  def link
-    [self.site, self]
-	end
+ #  def link
+ #    [self.site, self]
+	# end
 
-	def img
-		self.site.img
-	end
+	# def img
+	# 	self.site.img
+	# end
 end

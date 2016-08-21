@@ -134,6 +134,7 @@ function showDraggedElement(elem, type) {
 function showUploadDialog(elem, callback) {
 	cloudinary.openUploadWidget({ cloud_name: 'dg1a2dx9d', upload_preset: 'zothj6or', 'folder': 'user_photos' },
       function(error, result) {
+      	//add check if closed
       	callback(error, result, elem)
     });
 
