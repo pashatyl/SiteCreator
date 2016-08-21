@@ -5,8 +5,8 @@
     <script type="text/javascript">
 
       var word_array = [
-        <% Site.tag_counts.each do |tag| %>
-        {text: "<%= tag.name %>", weight: <%= tag.taggings_count %>, link: "<%= search_path(:tag => tag.name) %>" },
+        <% @tags.each do |tag| %>
+        {text: "<%= tag.name %>", weight: <%= tag.taggings_count %>, link: "<%= tag_path(tag) %>" },
         <% end %>
       ];
 

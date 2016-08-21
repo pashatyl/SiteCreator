@@ -1,19 +1,18 @@
 class SearchesController < ApplicationController
-  #require 'tag_search'
 
   def show
-      #@results = search params[:tag] || params[:searches]
+      @search = Sunspot.search params[:filter].singularize.constantize do
+        fulltext params[:searches], :highlight => true
+      end
+      @results = Array.new
+      @search.each_hit_with_result.each do |hit, result|
+        params[:filter].singularize.constantize.get_fields_for_search.each do |field|
+          hit.highlights(field).each do |highlight|
+              fr=highlight.format { |word| "<span class='highlight'>#{word}</span>" }
+              @results << [result,fr, field]
+          end
+        end        
+      end
   end
 
-  private
-  def search(text)
-    # results = []
-    # #TODO not searching in page titles
-    # [Comment, MarkdownText, Page, Site].each do |model|
-    #   search = model.search { fulltext text }
-    #   results.concat search.results
-    # end
-    # results.concat Tag.search(text)
-    # results
-  end
 end

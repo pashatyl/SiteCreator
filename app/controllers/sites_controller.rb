@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
+  before_action :set_tags, only: [:index, :show]
   load_and_authorize_resource
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
   ActsAsTaggableOn.delimiter = ' '
@@ -84,6 +85,10 @@ class SitesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_site
       @site = Site.find(params[:id])
+    end
+
+    def set_tags
+      @tags = ActsAsTaggableOn::Tag.all
     end
 
     def site_params

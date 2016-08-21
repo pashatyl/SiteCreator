@@ -8,23 +8,19 @@ class Page < ActiveRecord::Base
 	accepts_nested_attributes_for :markdown_texts, :videos, :picture_roles
 	validates :title, :template, :site, presence: true
 
-	# searchable do
-	# 	text :title
-	# end
+	searchable do
+		text :title, :stored => true
+	end
 
-	# def header
- #    self.site.header
- #  end
+	def self.get_fields_for_search
+		[:title]
+	end
 
- #  def text
- #    title
- #  end
+	def get_info(field)
+    "Site #{site.title} has page with #{field}: "
+  end
 
- #  def link
- #    [self.site, self]
-	# end
-
-	# def img
-	# 	self.site.img
-	# end
+  def get_link
+		"<a href='#{Rails.application.routes.url_helpers.site_page_path(site, self)}'  class='search-link'>#{site.title}</a>"
+	end
 end

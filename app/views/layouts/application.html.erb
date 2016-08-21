@@ -26,12 +26,6 @@
                     <i class="fa fa-home"></i> <%= t('menu.root') %>
                     <% end %>
                   </li>
-                  <%= form_tag search_path, method: "get", class: "navbar-form navbar-left" do %>
-          <div class="form-group">
-            <%= text_field_tag :searches, params[:searches],  class: "form-control", placeholder: t('menu.search') %>
-          </div>
-            <%= submit_tag t('menu.search'), :name => nil, class: "btn btn-default" %>
-        <% end %>
         
               </ul>
               <ul class="nav navbar-nav navbar-right">
