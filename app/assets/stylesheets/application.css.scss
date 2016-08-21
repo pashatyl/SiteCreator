@@ -194,11 +194,13 @@ button.close {
   margin-bottom: 7px;
 }
 
-
-.editor-panel{
-	padding:10px 0;
+.editor-panel {
+  padding: 10px 0;
   min-height: 400px;
+}
 
+.well:first-child {
+  margin-top: 20px;
 }
 
 
