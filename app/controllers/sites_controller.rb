@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
-  before_action :set_tags, only: [:index, :show]
+  before_action :set_tags, :set_recent_sites, only: [:index, :show]
   load_and_authorize_resource
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
   ActsAsTaggableOn.delimiter = ' '
@@ -8,15 +8,18 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites = Site.includes(:original_score_average).order('rating_caches.avg DESC')
-      .paginate(page: params[:page], :per_page => 4) #.includes
-    get_recent_sites
+    if params[:tag].present?
+      Rails.logger.error("!!!")
+      @sites = Site.tagged_with(params[:tag]).paginate(page: params[:page], :per_page => 4)
+    else
+      @sites = Site.includes(:original_score_average, :picture).order('rating_caches.avg DESC')
+        .paginate(page: params[:page], :per_page => 4)
+    end
   end
 
   # GET /sites/1
   # GET /sites/1.json
   def show
-    get_recent_sites
   end
 
 
@@ -37,7 +40,7 @@ class SitesController < ApplicationController
       picture_attributes: {user_id: current_user.id}))
     respond_to do |format|
       if @site.save
-        format.html { redirect_to [@site], notice: 'Site was successfully created.' }
+        format.html { redirect_to [@site]}
         format.json { render :show, status: :created, location: @site }
       else
         get_info_for_new_form
@@ -52,7 +55,7 @@ class SitesController < ApplicationController
   def update
     respond_to do |format|
       if @site.update(site_params)
-        format.html { redirect_to @site, notice: 'Site was successfully updated.' }
+        format.html { redirect_to @site }
         format.json { render :show, status: :ok, location: @site }
       else
         format.html { render :edit }
@@ -66,13 +69,13 @@ class SitesController < ApplicationController
   def destroy
     @site.destroy
     respond_to do |format|
-      format.html { redirect_to sites_url, notice: 'Site was successfully destroyed.' }
+      format.html { redirect_to sites_url}
       format.json { head :no_content }
     end
   end
 
   private
-    def get_recent_sites
+    def set_recent_sites
       @recent_sites = Site.order("created_at desc").limit(6)
     end
 
@@ -80,7 +83,7 @@ class SitesController < ApplicationController
       @themes = Site.available_themes_with_names #callb!
       @menu = Site.available_menu_with_names #callb!
       @templates = Template.all
-      @site.picture = Picture.new(user_id: current_user.id)
+      @site.picture = Picture.new
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_site

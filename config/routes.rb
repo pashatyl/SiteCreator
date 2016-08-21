@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :pictures
   resources :users 
   scope '(:locale)' do
-    resources :tags, only: :show
     resource :search, only: :show
     resources :sites do
       get :autocomplete_tag_name, :on => :collection

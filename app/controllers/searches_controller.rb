@@ -1,6 +1,7 @@
 class SearchesController < ApplicationController
 
   def show
+    if ["Comments", "Sites", "Pages"].include? params[:filter]
       @search = Sunspot.search params[:filter].singularize.constantize do
         fulltext params[:searches], :highlight => true
       end
@@ -13,6 +14,9 @@ class SearchesController < ApplicationController
           end
         end        
       end
+    else 
+      redirect_to sites_path
+    end
   end
 
 end
