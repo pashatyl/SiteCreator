@@ -3,8 +3,7 @@
 <%= form_for([@site]) do |f| %>
     <% if @site.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@site.errors.count, t('error')) %><%= t('site.notSavedMessage') %></h2>
-
+          <h2><%= t('site.error', count: @site.errors.count) + ' ' + t('site.notSavedMessage') %></h2>
           <ul>
             <% @site.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
