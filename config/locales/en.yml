@@ -42,8 +42,8 @@ en:
     close: Cancel
   site:
     error:
-      one: error
-      other: errors
+      one: '%{count} error'
+      other: '%{count} errors'
     notSavedMessage: 'prohibited this site from being saved:'
     chooseLogo: Choose logo
     fileNotChoosed: File isn't choosed
@@ -65,3 +65,11 @@ en:
       video: Add video
       text: Enter text
     clickToEdit: Click to add
+  search:
+    search_results: Search results
+    results:
+      one: '%{count} result was found for'
+      other: '%{count} results were found for'
+    empty: 'Nothing found'
+  comment:
+    comments_at: 'comments'
