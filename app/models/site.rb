@@ -11,10 +11,14 @@ class Site < ActiveRecord::Base
 	validates :title, :theme, :menu_type, :description, :user, :default_template, :picture, presence: true
 
 
-	# searchable do
-	# 	text :title
-	# 	text :description
-	# end
+	searchable do
+	  text :title, :boost => 2, :stored => true
+    text :description, :stored => true
+	end
+
+	def self.get_fields_for_search
+		[:title, :description]
+	end
 
 	def self.available_themes
 		%w(black white blue)
@@ -46,29 +50,17 @@ class Site < ActiveRecord::Base
 
 
 	def get_short_description
-		#COMMENTLENGTH = 100
 		description[0..30]
 	end
 
-	# def header
-	# 	"#{self.title}"
-	# end
-
-	# def text
-	# 	self.description
-	# end
-
-	# def link
-	# 	self
-	# end
-
-	# def img
-	# 	self.picture.url
-	# end
-
-	def img
-		self.picture.url
+	def get_link
+		"<a href='#{Rails.application.routes.url_helpers.site_path(self)}' class='search-link'>#{title}</a>"
 	end
+
+	def get_info(field)
+    "Site #{title} has #{field}: "
+  end
+
 
 	private
 

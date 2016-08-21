@@ -1,4 +1,23 @@
 var deletedItems = [];
+$(document).ready(function() {
+	initializeEditable();
+    initializeSortable();
+    initializeCloseButon();
+	 $('#picture-btn')
+	  .popover({trigger: "click", html:true, content: function () {
+	    return $('<div>').html(Data.pictures);
+
+	  }})
+	  .click(function(e) {
+	    e.preventDefault();
+	    initializeSortable();
+	    $(this).focus();
+	  });
+  $("#save").click(function() {
+    updatePageData();
+  });
+  
+});
 
 function initializeSortable(){ 
 	$('.draggable').draggable({
@@ -44,23 +63,6 @@ function initializeSortable(){
 
 
  function initializeEditable() {
-  	//jquery delegate
- //  	$("body").on("click",".editable",function(e){
-
- //  // Add editable plugin
- //  // but! for `focus` instead common `clik` event
-
- //  $(this).editable('go.to',
- //    {
- //      event : 'focus.editable',
- //      ..
- //      ..
-
- //     // Then trigger focus event
-
- //   }).trigger("focus");
- // })
-//########
 	$.fn.editable.defaults.mode = 'inline';
 	$('.edit_area').editable({
 	    type: 'textarea',
@@ -68,9 +70,9 @@ function initializeSortable(){
 	    emptytext   : function() {
 	    	var parent = $(this).parent(); 
 	    	if (parent.data("type") == "video") {
-	    		return "<%= I18n.t('page.enter.video') %> URL";
+	    		return Data.videoEmptyText;
 	    	} else if (parent.data("type") == "markdown_text") {
-	    		return "<%= I18n.t('page.enter.text') %>";
+	    		return Data.markdownEmptyText;
 	    	}
 	    	return parent.data("type");
 	    },
@@ -80,7 +82,6 @@ function initializeSortable(){
 	    		loadVideo(parent, newValue);
 	    		initializeCloseButon();
 	    	} 
-	        //userModel.set('username', newValue); //update backbone model
 	    }
 
 	});
@@ -116,8 +117,8 @@ function showDraggedElement(elem, type) {
 	    }
 	}
 
-	var innerTag = $('<div>').addClass('edit_area')
-	innerTag.attr("title", "<%= I18n.t('page.clickToEdit') %>")
+	var innerTag = $('<div>').addClass('edit_area');
+	innerTag.attr("title", Data.clickToEdit);
 	//innerTag.text("New " + type)
 	var res = $('<div>').addClass('edit-class').append("<button class='close'>X</button>").append(innerTag);
 	if (type == "text-btn") {
@@ -189,15 +190,12 @@ function updatePageData(){
 	      if (item["type"] == "markdown_text") {
 	       	item["markdown"] = $(this).find("div").text();
 	      } else if (item["type"] == "video") {
-	       	//var text = $(this).text();
-	       	item["url"] = $(this).find('iframe').attr("src") //"https://www.youtube.com/embed/0nCOZyoeA14"//$(this).text();
+	       	item["url"] = $(this).find('iframe').attr("src") 
 	      } else if (item["type"] == "picture_role") {
-	      	//item["public_id"] = $(this).find('img').data("public");
 	      	var pictureItem = {
 	      		url : $(this).find('img').attr("src"),
 	      		public_id : $(this).find('img').data("public"),
 	      		id : $(this).find('img').data("id")
-	      		//item["public_id"] = $(this).find('img').data("public")
 	      	}
 	      	item["picture_attributes"] = pictureItem
 	      }

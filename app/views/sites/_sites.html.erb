@@ -10,19 +10,16 @@
             <% if can? :read, site %>
               <p> <%= link_to 'More info', site_path(site), class: "btn btn-primary" %> </p>
             <% end %>
-            <% if can? :update, site %>
-              <p> <%= link_to 'Edit', edit_site_page_path(site, site.first_page), class: "btn btn-primary" %> </p>
-            <% end %>
               <%= rating_for site, "original_score", disable_after_rate: true, imdb_avg: true, cancel: false %>
             <p>
-              <i class="icon-user"></i><%= site.user.name %>
-              | <i class="icon-calendar"></i> <%= I18n.l site.created_at, format: :long %>
+              <i class="icon-user"></i> <%= site.user.name %>
+              | <i class="icon-calendar"></i> <%= I18n.l site.created_at, format: :short %>
             </p>
             <p>
               <% if site.tag_list.count > 0 %>
                   <i class="icon-tags"></i><%= I18n.t('tags') %> :
                   <% site.tag_list.each do |tag| %>
-                    <%= link_to search_path(tag: tag) do %><span class="label label-info"><%= tag %></span><% end %>
+                    <%= link_to sites_path(tag: tag) do %><span class="label label-info"><%= tag %></span><% end %>
                   <% end %>
               <% end %>
             </p>
