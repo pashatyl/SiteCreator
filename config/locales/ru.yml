@@ -94,6 +94,11 @@ ru:
         few: Рейтинга
         many: Рейтингов
         other: Рейтинга
+      tag:
+        one: Тег
+        few: Тега
+        many: Тегов
+        other: Тега
       video: Видео
   date:
     abbr_day_names:

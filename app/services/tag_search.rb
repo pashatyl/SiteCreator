@@ -1,4 +1,4 @@
-class Tag
+class Tag < ActiveRecord::Base
   def self.search(text)
     res = []
     Site.tagged_with(text).each do |tag|
@@ -34,6 +34,6 @@ class Result
   end
 
   def class
-    'Tag'
+    Tag
   end
 end

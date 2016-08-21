@@ -62,13 +62,13 @@ class Site < ActiveRecord::Base
 		self
 	end
 
+	def img
+		self.picture.url
+	end
+
 	private
 
 	def empty_logo(attributes)
       !attributes['url'].present? && !attributes['public_id'].present?
     end
-
-	def img
-		self.picture.url
-	end
 end

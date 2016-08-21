@@ -32,7 +32,10 @@
       <% end %>
     </div>
   <% end %>
-  <%= will_paginate @sites %>
+  <%= will_paginate @sites,
+                    :previous_label => "&#8249;",
+                    :next_label => "&#8250;"
+  %>
 </div>
 
 <script type="text/javascript">
