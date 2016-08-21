@@ -18,7 +18,7 @@
 //= require jquery-ui/sortable
 //= require jquery.raty
 //= require ratyrate
-//= require turbolinks
+// require turbolinks
 //= require tether
 //= require cloudinary
 //= require editable/bootstrap-editable

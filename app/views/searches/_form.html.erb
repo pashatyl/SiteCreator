@@ -1,10 +1,12 @@
 <div class="well">
   <%= form_tag search_path, method: "get", class: "form form-inline" do %>
     <div>
-      <%= text_field_tag :searches, params[:searches],  class: "form-control", placeholder: t('menu.search') %>
-    </div>
-    <div>
-      <%= select_tag 'filter', options_for_select(["Comments", "Sites", "Pages"], params[:filter] || "Sites"), class: "form-control" %>
+        <div>
+          <%= text_field_tag :searches, params[:searches],  class: "form-control", placeholder: t('menu.search') %>
+        </div>
+        <div>
+          <%= select_tag 'filter', options_for_select(["Comments", "Sites", "Pages"], params[:filter] || "Sites"), class: "form-control" %>
+        </div>
     </div>
     <div>
       <%= submit_tag t('menu.search'), :name => nil, class: "btn btn-primary" %>

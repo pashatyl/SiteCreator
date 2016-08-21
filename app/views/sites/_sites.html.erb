@@ -2,15 +2,20 @@
   <% @sites.each_slice(2).to_a.each do |pair|%>
     <div class="row">
       <% pair.each do |site| %>
-        <div class="col-md-6">
+        <div class="col-md-6 site-tile">
           <div id="rating">
             <h2><%= link_to site.title, site_page_path(site, site.first_page) %></a></h2>
             <%= image_tag site.picture.url, class:"img-responsive img-thumbnail", style:"height:200px;" %>
             <p class="description"><%= site.get_short_description %></p>
+            <% if can? :update, site %>
+                <p> <%= link_to 'Edit', edit_site_page_path(site, site.first_page), class: "btn btn-primary" %> </p>
+            <% end %>
             <% if can? :read, site %>
               <p> <%= link_to 'More info', site_path(site), class: "btn btn-primary" %> </p>
             <% end %>
+            <div class="site-rating">
               <%= rating_for site, "original_score", disable_after_rate: true, imdb_avg: true, cancel: false %>
+            </div>
             <p>
               <i class="icon-user"></i> <%= site.user.name %>
               | <i class="icon-calendar"></i> <%= I18n.l site.created_at, format: :short %>
