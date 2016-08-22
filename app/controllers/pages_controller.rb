@@ -30,7 +30,6 @@ class PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
-    #pry
     @page = Page.new(page_params)
     @site = Site.find(params[:site_id])
 
@@ -39,7 +38,8 @@ class PagesController < ApplicationController
         format.html { redirect_to edit_site_page_path(@site, @page), notice: 'page was successfully created.' }
         format.json { render :show, status: :created, location: @page }
       else
-        format.html { render :new }
+        flash[:notice] = 'There was a problem creating page'
+        format.html { redirect_to edit_site_page_path(@site, @site.first_page) }
         format.json { render json: @page.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +54,7 @@ class PagesController < ApplicationController
     respond_to do |format|      
       if @page.update(update_params) && delete_elements(deleted_elements)
         @body = HtmlProcessor.new(@page, "edit").process
-        format.js {render :edit}
+        format.js {render :edit, notice: 'page was successfully updated.'}
         format.html { redirect_to @page, notice: 'page was successfully updated.' }
         
         format.json { render json: @body.to_json, status: 200}
