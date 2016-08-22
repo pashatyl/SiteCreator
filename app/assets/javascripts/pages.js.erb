@@ -57,8 +57,6 @@ function initializeSortable(){
 
         },
         stop: function(event, ui){  
-          //updateWidgetData();
-
         },
 
     })  
@@ -214,7 +212,7 @@ function updatePageData(){
           dataType: 'script',
           success: function(msg) {
             $("#flash_messages").html("<div class='alert alert-success alert-dismissible' role='alert'><button class='close' data-dismiss='alert'>×" +
-                "</button><%= I18n.t('page.update.success') %></div>")
+                "</button><%= flash[:notice] %></div>")
             deletedItems = [];
           }
         });
