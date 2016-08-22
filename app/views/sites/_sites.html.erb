@@ -7,9 +7,6 @@
             <h2><%= link_to site.title, site_page_path(site, site.first_page) %></a></h2>
             <%= image_tag site.picture.url, class:"img-responsive img-thumbnail", style:"height:200px;" %>
             <p class="description"><%= site.get_short_description %></p>
-            <% if can? :update, site %>
-                <p> <%= link_to 'Edit', edit_site_page_path(site, site.first_page), class: "btn btn-primary" %> </p>
-            <% end %>
             <% if can? :read, site %>
               <p> <%= link_to 'More info', site_path(site), class: "btn btn-primary" %> </p>
             <% end %>
