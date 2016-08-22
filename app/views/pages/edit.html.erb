@@ -7,13 +7,16 @@
     <div class="btn-toolbar">
       <div class="btn-group">
         <button class="btn btn-default" id="picture-btn" data-original-title="<%= t('editor.dragPicture') %>"
-            data-placement="bottom" rel="popover" ><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
+            data-placement="bottom" rel="popover"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
         </button>
-        <button class="btn draggable btn-default" id="video-btn" data-toggle="tooltip" title="Drag to add video"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
-        <button class="btn draggable btn-default" id="text-btn"  data-toggle="tooltip" title="Drag to add text"><i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
-        <button class="btn btn-default" id="add-page" data-toggle="modal" data-target="#newPageDialog"  data-toggle="tooltip" title="Add new page"> <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+        <button class="btn draggable btn-default" id="video-btn" data-toggle="tooltip" title="<%= I18n.t('page.dragVideo')%>">
+          <i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></button>
+        <button class="btn draggable btn-default" id="text-btn"  data-toggle="tooltip" title="<%= I18n.t('page.dragText') %>">
+          <i class="fa fa-font fa-2x" aria-hidden="true"></i></button>
+        <button class="btn btn-default" id="add-page" data-toggle="modal" data-target="#newPageDialog"  data-toggle="tooltip" title="<%= I18n.t('page.addPage') %>">
+          <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
         </button>
-        <button class="btn btn-default" id="save" data-toggle="tooltip" title="Save"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></button>
+        <button class="btn btn-default" id="save" data-toggle="tooltip" title="<%= I18n.t('page.save') %>"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></button>
       </div>
     </div>
   </div>
