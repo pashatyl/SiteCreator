@@ -9,7 +9,7 @@ class Site < ActiveRecord::Base
   after_save :create_first_page
   ratyrate_rateable 'original_score'
   validates :title, :theme, :menu_type, :description, :user, :default_template, :picture, presence: true
-
+  after_save :fire_save_event
 
   searchable do
     text :title, :boost => 2, :stored => true
@@ -66,6 +66,10 @@ class Site < ActiveRecord::Base
 
   def empty_logo(attributes)
     !attributes['url'].present? && !attributes['public_id'].present?
+  end
+
+  def fire_save_event
+    ActiveSupport::Notifications.instrument "sites.create", site: self
   end
 
 end

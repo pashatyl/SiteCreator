@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
 
+  # subscribe :posts
+
   def index
     @sites = Site.all
   end

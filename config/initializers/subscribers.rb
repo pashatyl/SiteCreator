@@ -1,0 +1,1 @@
+AchievementsManager.attach_to('sites.create')

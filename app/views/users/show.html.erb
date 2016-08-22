@@ -26,6 +26,10 @@
           <h2><strong><%= @user.comments.count %></strong></h2>
           <p><%= I18n.t 'activerecord.models.comment', count: @user.comments.count %></p>
         </div>
+        <div class="col-xs-12 col-sm-4">
+          <h2><strong><%= @user.achievement %></strong></h2>
+          <p>Achievements</p>
+        </div>
 
         <!--/col-->
       </div>
