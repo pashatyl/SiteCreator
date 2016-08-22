@@ -6,7 +6,7 @@
         <%= text_field_tag :searches, params[:searches],  class: "form-control", placeholder: t('menu.search') %>
    </div>
    <div class="col-sm-3">
-      <%= select_tag 'filter', options_for_select(["Comments", "Sites", "Pages"], params[:filter] || "Sites"), class: "form-control" %>
+      <%= select_tag 'filter', options_for_select(searchOptions, params[:filter] || "Sites"), class: "form-control" %>
      </div>
      <div class="col-sm-3">
         <%= submit_tag t('menu.search'), :name => nil, class: "btn btn-primary" %>
