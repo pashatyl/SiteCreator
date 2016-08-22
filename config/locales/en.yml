@@ -60,6 +60,7 @@ en:
     description: Description
     logo: Logo
     userName: User
+    moreInfo: More info
   page:
     enter:
       video: Add video
