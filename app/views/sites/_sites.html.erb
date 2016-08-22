@@ -1,14 +1,15 @@
 <div class="row stylish-panel">
-  <% @sites.each_slice(2).to_a.each do |pair| %>
+  <% @sites.each_slice(2).to_a.each do |pair|%>
       <div class="row">
         <% pair.each do |site| %>
+
             <div class="col-md-6 site-tile">
               <div id="rating">
-                <h2><%= link_to site.title, site_page_path(site, site.first_page) %></a></h2>
-                <%= image_tag site.picture.url, class: "img-responsive img-thumbnail", style: "height:200px;" %>
+                <h2><%= link_to site.title, site_page_path(site, site.first_page) %></h2>
+                <%= image_tag site.picture.url, class:"img-responsive img-thumbnail", style:"height:200px;" %>
                 <p class="description"><%= site.get_short_description %></p>
                 <% if can? :read, site %>
-                    <p> <%= link_to t('site.moreInfo'), site_path(site), class: "btn btn-primary" %> </p>
+                    <%= link_to t('site.moreInfo'), site_path(site), class: "btn btn-primary" %>
                 <% end %>
                 <div class="site-rating">
                   <%= rating_for site, "original_score", disable_after_rate: true, imdb_avg: true, cancel: false %>
@@ -21,8 +22,7 @@
                   <% if site.tag_list.count > 0 %>
                       <i class="icon-tags"></i><%= I18n.t('tags') %> :
                       <% site.tag_list.each do |tag| %>
-                          <%= link_to sites_path(tag: tag) do %><span class="label label-info"><%= tag %></span>
-                          <% end %>
+                          <%= link_to sites_path(tag: tag) do %><span class="label label-info"><%= tag %></span><% end %>
                       <% end %>
                   <% end %>
                 </p>

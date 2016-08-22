@@ -35,6 +35,26 @@ body {
   margin-bottom: 0;
   border-radius: 0;
 }
+.navbar-dark {
+  background-color: #275d8b;
+  border-color: #337ab7;
+  li > a {
+    color: #ffffff !important;
+  }
+  .navbar-brand {
+    color: #ffffff;
+  }
+  .active > a, .active > a:hover, .active > a:focus, a:hover, a:focus  {
+    background-color: #224f77 !important;
+  }
+}
+
+.dropdown-menu {
+  li a, .active > a:hover, .active > a:focus{
+    color: #275d8b !important;
+    background-color: #ffffff !important;
+  }
+}
 
 .sidenav {
   background-color: #f1f1f1;
@@ -181,9 +201,6 @@ button.close {
   margin: 10px auto;
   width: 50%;
   height: 50%;
-  /* -webkit-border-radius: 90% !important;
-   -moz-border-radius: 90% !important;
-   border-radius: 90% !important;*/
 }
 
 .profile-usertitle {
@@ -223,5 +240,7 @@ button.close {
   margin: 0 auto;
 }
 
-
+.owerflow-row {
+  overflow:hidden;
+}
 

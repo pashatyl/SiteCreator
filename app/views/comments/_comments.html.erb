@@ -5,10 +5,10 @@
 <ul>
   <% site.comments.persisted.each do |comment| %>
       <li>
-        <h3><i class="fa fa-comment"></i> <%= comment.content %></h3>
-        <p><%= comment.user.name %>,
-          <small> <%= l comment.created_at, format: :long %> </small>
-        </p>
+        <h3><i class="fa fa-comment"></i> <%= comment.user.name %>
+        	<small> <%= l comment.created_at, format: :long %> </small>
+        </h3>
+        <p><%= comment.content %></p>
       </li>
   <% end %>
 </ul>

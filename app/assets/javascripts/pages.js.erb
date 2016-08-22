@@ -1,31 +1,29 @@
 var deletedItems = [];
-$(document).ready(function () {
+$(document).ready(function() {
   initializeEditable();
   initializeSortable();
   initializeCloseButon();
   $('#picture-btn')
-      .popover({
-        trigger: "click", html: true, content: function () {
-          return $('<div>').html(Data.pictures);
+      .popover({trigger: "click", html:true, content: function () {
+        return $('<div>').html(Data.pictures);
 
-        }
-      })
-      .click(function (e) {
+      }})
+      .click(function(e) {
         e.preventDefault();
         initializeSortable();
         $(this).focus();
       });
-  $("#save").click(function () {
+  $("#save").click(function() {
     updatePageData();
   });
 
 });
 
-function initializeSortable() {
+function initializeSortable(){
   $('.draggable').draggable({
     cancel: false,
     revert: "invalid",
-    helper: function (e) {
+    helper: function(e) {
       var type = this.id
       if (type == "picture") {
         return $(this).clone().addClass('edit-class').prepend("<button class='close'>X</button>");
@@ -34,10 +32,14 @@ function initializeSortable() {
         return '<i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>';
       }
     },
-    stop: function (event, ui) {
-      showDraggedElement(ui.helper, this.id)
-      initializeCloseButon();
-      initializeEditable();
+    stop: function( event, ui ) {
+      if (/^col\d$/.test($(ui.helper).parent().attr("id"))) {
+        showDraggedElement(ui.helper, this.id);
+        initializeCloseButon();
+        initializeEditable();
+      } else {
+        ui.helper.remove();
+      }
 
     },
     connectToSortable: "div[id^='col']"
@@ -49,14 +51,12 @@ function initializeSortable() {
     placeholder: 'placeholder',
     forcePlaceholderSize: true,
     opacity: 0.4,
-    update: function (event, ui) {
-      ui.item.attr('style', '');
+    update: function(event, ui){
+      ui.item.attr('style','');
       initializeEditable();
 
     },
-    stop: function (event, ui) {
-      //updateWidgetData();
-
+    stop: function(event, ui){
     },
 
   })
@@ -69,7 +69,7 @@ function initializeEditable() {
   $('.edit_area').editable({
     type: 'textarea',
     title: 'Enter ...',
-    emptytext: function () {
+    emptytext   : function() {
       var parent = $(this).parent();
       if (parent.data("type") == "video") {
         return Data.videoEmptyText;
@@ -78,9 +78,9 @@ function initializeEditable() {
       }
       return parent.data("type");
     },
-    success: function (response, newValue) {
+    success: function(response, newValue) {
       var parent = $(this).parent();
-      if (parent.data("type") == "video") {
+      if(parent.data("type") == "video") {
         loadVideo(parent, newValue);
         initializeCloseButon();
       }
@@ -94,12 +94,11 @@ function loadVideo(parent, url) {
   if (matches) {
     parent.empty();
 
-    var frame = $('<iframe>').attr("src", getFullUrl(matches[5])).attr("frameborder", 0).attr("allowfullscreen", "");
+    var frame = $('<iframe>').attr("src", getFullUrl(matches[5])).attr("frameborder", 0).attr("allowfullscreen","");
     var div = $('<div>').addClass("embed-responsive embed-responsive-4by3");
     parent.append("<button class='close'>X</button>").append(div.append(frame));
   } else {
     alert("Only youtube videos allowed");
-    console.log(parent.find("edit-area").text())
     parent.find("edit-area").text("")
   }
 
@@ -110,7 +109,7 @@ function getFullUrl(videoId) {
 }
 
 function showDraggedElement(elem, type) {
-  if (type == "picture") {
+  if(type == "picture"){
     if ($(elem).data("id") == "new") {
       showUploadDialog(elem, placePictureInContainer);
       return
@@ -133,9 +132,9 @@ function showDraggedElement(elem, type) {
 }
 
 function showUploadDialog(elem, callback) {
-  cloudinary.openUploadWidget({cloud_name: 'dg1a2dx9d', upload_preset: 'zothj6or', 'folder': 'user_photos'},
-      function (error, result) {
-        if (result) {
+  cloudinary.openUploadWidget({ cloud_name: 'dg1a2dx9d', upload_preset: 'zothj6or', 'folder': 'user_photos' },
+      function(error, result) {
+        if(result) {
 
           callback(error, result, elem)
         } else {
@@ -159,37 +158,36 @@ function placePictureInContainer(error, result, elem) {
 
 function initializeCloseButon() {
   $(".edit-class").hover(
-      function () {
+      function() {
         $(this).find('.close').delay(50).fadeIn(10);
       },
-      function () {
+      function() {
         $(this).find('.close').delay(50).fadeOut(10);
       });
-
+  $('button.close').off('click')
   $('button.close').click(function (e) {
-
     var elem = $(this).parent()
     if (elem.data("id") != null) {
       deletedItems.push({
         type: elem.data("type"),
-        id: elem.data("id")
+        id : elem.data("id")
       });
     }
     $(this).parent().remove();
   });
 }
 
-function updatePageData() {
-  var items = [];
-  $("div[id^='col']").each(function () {
-    var columnId = $(this).attr('id');
-    $('.edit-class', this).each(function (i) {
+function updatePageData(){
+  var items=[];
+  $("div[id^='col']").each(function(){
+    var columnId=$(this).attr('id');
+    $('.edit-class', this).each(function(i){
 
-      var item = {
-        id: $(this).data('id'),
-        order: i,
-        type: $(this).data('type'),
-        div_id: columnId
+      var item={
+        id : $(this).data('id'),
+        order : i,
+        type : $(this).data('type'),
+        div_id : columnId
       };
       if (item["type"] == "markdown_text") {
         item["markdown"] = $(this).find("div").text();
@@ -197,25 +195,24 @@ function updatePageData() {
         item["url"] = $(this).find('iframe').attr("src")
       } else if (item["type"] == "picture_role") {
         var pictureItem = {
-          url: $(this).find('img').attr("src"),
-          public_id: $(this).find('img').data("public"),
-          id: $(this).find('img').data("id")
+          url : $(this).find('img').attr("src"),
+          public_id : $(this).find('img').data("public"),
+          id : $(this).find('img').data("id")
         }
         item["picture_attributes"] = pictureItem
       }
       items.push(item);
     });
   });
-  var sortorder = {items: items};
-  console.log(sortorder);
+  var sortorder={ items: items };
   $.ajax({
     type: "PATCH",
-    url: window.location.pathname.replace("edit", ""),
-    data: {page_elements: JSON.stringify(sortorder), deleted_elements: JSON.stringify(deletedItems)},
+    url: window.location.pathname.replace("edit",""),
+    data: {page_elements: JSON.stringify( sortorder ), deleted_elements: JSON.stringify( deletedItems)},
     dataType: 'script',
-    success: function (msg) {
+    success: function(msg) {
       $("#flash_messages").html("<div class='alert alert-success alert-dismissible' role='alert'><button class='close' data-dismiss='alert'>×" +
-          "</button><%= I18n.t('page.update.success') %></div>")
+          "</button><%= flash[:notice] %></div>")
       deletedItems = [];
     }
   });

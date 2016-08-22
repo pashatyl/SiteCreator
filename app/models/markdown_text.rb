@@ -6,8 +6,8 @@ class MarkdownText < ActiveRecord::Base
 
   def to_html(action)
     text = action == "show" ? markdown_to_html(markdown) : markdown
-    '<div class="edit_area">' + text + '</div>'
-  end
+    "<div class='#{action}_area'>" + text + "</div>"
+	end
 
 
   private

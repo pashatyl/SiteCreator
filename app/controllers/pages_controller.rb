@@ -48,24 +48,23 @@ class PagesController < ApplicationController
   # PATCH/PUT /pages/1
   # PATCH/PUT /pages/1.json
   def update
-    #puts JSON.parse params[:page_elements]
     update_params = parse_params(JSON.parse params[:page_elements])
     deleted_elements = JSON.parse(params[:deleted_elements])
+    begin
+    ActiveRecord::Base.transaction do
+      delete_elements(deleted_elements)
+      @page.attributes = update_params
+      @page.save!
+    end
+      flash[:notice] = t('page.update.success')
+    rescue ActiveRecord::RecordInvalid
+      flash[:notice] = t('page.update.problem')
+    end 
     respond_to do |format|
-      if @page.update(update_params) && delete_elements(deleted_elements)
-        @body = HtmlProcessor.new(@page, "edit").process
-        format.js { render :edit, notice: t('page.update.success') }
-        format.html { redirect_to @page, notice: t('page.update.success') }
-
-        format.json { render json: @body.to_json, status: 200 }
-      else
-        #Rails.logger.error( @page.errors.messages)
-        flash[:notice] = t('page.update.problem')
-        get_elements_for_edit_action
-        format.js { render :edit }
-        format.html { render :edit }
-        format.json { render json: @errors, status: :unprocessable_entity }
-      end
+      get_elements_for_edit_action
+      format.js {render :edit}
+      format.html { redirect_to redirect_to edit_site_page_path(@site, @page)} 
+      format.json { render json: @body.to_json, status: 200}
     end
   end
 
