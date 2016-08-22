@@ -46,7 +46,7 @@ en:
       other: '%{count} errors'
     notSavedMessage: 'prohibited this site from being saved:'
     chooseLogo: Choose logo
-    fileNotChoosed: File isn't choosed
+    fileNotChoosed: File isn't chosen
     dropdown:
       description: Description
       show: Show
@@ -60,6 +60,11 @@ en:
     description: Description
     logo: Logo
     userName: User
+    moreInfo: More info
+    recent: Recent sites
+    edit: Edit
+    template: Template
+    picture: Logo
   page:
     enter:
       video: Add video
@@ -74,6 +79,7 @@ en:
   comment:
     comments_at: 'comments'
   tags: Tags
+  create: Create
   activerecord:
     models:
       site: 'Sites'

@@ -3,16 +3,15 @@
 <%= form_for([@site]) do |f| %>
     <% if @site.errors.any? %>
         <div id="error_explanation">
-          <h2><%= t('site.error', count: @site.errors.count) + ' ' + t('site.notSavedMessage') %></h2>
-          <ul>
-            <% @site.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
+          <ul class="alert alert-danger">
+            <% @site.errors.messages.each do |message| %>
+                <li><%= "#{I18n.t('site.' + message[0].to_s)} #{message[1][0]}" %></li>
             <% end %>
           </ul>
         </div>
     <% end %>
     <div class="form-group">
-      <%= f.label :theme %><br>
+      <%= f.label t('site.theme') %><br>
       <%= f.select :theme, {}, {}, {class: "form-control"} do %>
           <% @themes.each do |theme| %>
               <%= content_tag(:option, theme[:name], value: theme[:value]) %>
@@ -20,7 +19,7 @@
       <% end %>
     </div>
     <div class="form-group">
-      <%= f.label :menu_type %><br>
+      <%= f.label t('site.menutype') %><br>
       <%= f.select :menu_type, {}, {}, {class: "form-control"} do %>
           <% @menu.each do |menu| %>
               <%= content_tag(:option, menu[:name], value: menu[:value]) %>
@@ -28,17 +27,17 @@
       <% end %>
     </div>
     <div class="form-group">
-      <%= f.label :default_template_id %><br>
+      <%= f.label t('site.template') %><br>
       <%= f.collection_select(:default_template_id, @templates, :id, :title, {}, {class: "form-control"}) %>
 
     </div>
     <div class="form-group">
-      <%= f.label :title %><br>
-      <%= f.text_field :title, class: "form-control", placeholder: "Site title" %>
+      <%= f.label t('site.title') %><br>
+      <%= f.text_field :title, class: "form-control", placeholder: t('site.title') %>
     </div>
     <div class="form-group">
-      <%= f.label :description %><br>
-      <%= f.text_field :description, class: "form-control", placeholder: "Site description"  %>
+      <%= f.label t('site.description') %><br>
+      <%= f.text_field :description, class: "form-control", placeholder: t('site.description')  %>
     </div>
     <%= f.fields_for :picture do |ff| %>
         <div  class="form-group">
@@ -47,14 +46,14 @@
           <%= ff.hidden_field :url %>
           <%= ff.hidden_field :public_id %>
         </div>
-         
+
     <% end %>
     <div class="form-group">
       <%= f.autocomplete_field :tag_list, autocomplete_tag_name_sites_path,
-                                   'data-delimiter' => ' ' %>
+                               'data-delimiter' => ' ', placeholder: t('tags') %>
     </div>
     <div class="actions">
-      <%= f.submit "Create", class: "btn btn-default" %>
+      <%= f.submit t('create'), class: "btn btn-default" %>
     </div>
 <% end %>
 

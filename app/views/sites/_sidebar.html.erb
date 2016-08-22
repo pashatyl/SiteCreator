@@ -1,12 +1,12 @@
 
 <div class="well">
-  <h4><i class="fa fa-tags"></i>Tags:</h4>
+  <h4><i class="fa fa-tags"></i> <%= I18n.t('tags') %>:</h4>
   <div class="row">
     <div id="tag-cloud" style="height: 350px; color: black;"></div>
   </div>
 </div>
 <div class="well">
-  <h4><i class="fa fa-fire"></i> Recent sites:</h4>
+  <h4><i class="fa fa-fire"></i> <%= I18n.t('site.recent') %>:</h4>
   <ul>
    <% @recent_sites.each do |site| %>
        <li><%= link_to site.title, site_path(site) %></li>

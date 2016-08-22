@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-xs-6">
           <h1><%= link_to @site.title, site_page_path(@site, @site.first_page) %></h1>
-          <p class="lead"><i class="fa fa-user"></i> by <%= @site.user.name %></p>
+          <p class="lead"><i class="fa fa-user"></i> <%= @site.user.name %></p>
         </div>
 
         <div class="col-xs-6">
@@ -15,8 +15,8 @@
 
       <hr>
       <div class="col-md-8">
-      <p><i class="fa fa-calendar"></i> Posted on <%= I18n.l(@site.created_at, format: :short) %></p>
-      <p><i class="fa fa-tags"></i> Tags:
+      <p><i class="fa fa-calendar"></i> <%= I18n.l(@site.created_at, format: :long) %></p>
+      <p><i class="fa fa-tags"></i>
         <% @site.tag_list.each do |tag| %>
             <%= link_to sites_path(tag: tag) do %><span class="badge badge-info"><%= tag %></span>
             <% end %>
@@ -39,7 +39,7 @@
         </div>
       </div>
       <hr>
-      <p class="lead" > <strong>Description
+      <p class="lead" > <strong><%= I18n.t('site.description') %>
         </br>
         </br>
       </strong><%= @site.description %></p>

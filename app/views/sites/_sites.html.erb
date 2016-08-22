@@ -8,14 +8,14 @@
             <%= image_tag site.picture.url, class:"img-responsive img-thumbnail", style:"height:200px;" %>
             <p class="description"><%= site.get_short_description %></p>
             <% if can? :read, site %>
-              <p> <%= link_to 'More info', site_path(site), class: "btn btn-primary" %> </p>
+              <p> <%= link_to t('site.moreInfo'), site_path(site), class: "btn btn-primary" %> </p>
             <% end %>
             <div class="site-rating">
               <%= rating_for site, "original_score", disable_after_rate: true, imdb_avg: true, cancel: false %>
             </div>
             <p>
               <i class="icon-user"></i> <%= site.user.name %>
-              | <i class="icon-calendar"></i> <%= I18n.l site.created_at, format: :short %>
+              | <i class="icon-calendar"></i> <%= I18n.l site.created_at, format: :long %>
             </p>
             <p>
               <% if site.tag_list.count > 0 %>
@@ -35,12 +35,3 @@
                     :next_label => "&#8250;"
   %>
 </div>
-
-<script type="text/javascript">
-//   $("#rating div").each(function( index, value ) {
-//   console.log( index + ": " + $(value).html() );
-//   $(value).css("float:right;")
-//   $(value).css("margin-bottom:3px;")
-//   $(value).css("margin-top:0;")
-// });
-</script>
