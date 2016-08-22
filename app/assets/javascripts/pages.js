@@ -33,9 +33,13 @@ function initializeSortable(){
             }
         },
         stop: function( event, ui ) {
-            showDraggedElement(ui.helper, this.id)
-            initializeCloseButon();
-            initializeEditable();
+            if (/^col\d$/.test($(ui.helper).parent().attr("id"))) {
+                showDraggedElement(ui.helper, this.id);
+                initializeCloseButon();
+                initializeEditable();
+            } else {
+                ui.helper.remove();
+            }
             
         },
         connectToSortable: "div[id^='col']"
