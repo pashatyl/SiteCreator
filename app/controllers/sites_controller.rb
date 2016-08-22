@@ -4,7 +4,7 @@ class SitesController < ApplicationController
   load_and_authorize_resource
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
   ActsAsTaggableOn.delimiter = ' '
-  
+
   # GET /sites
   # GET /sites.json
   def index
@@ -13,7 +13,7 @@ class SitesController < ApplicationController
       @sites = Site.tagged_with(params[:tag]).paginate(page: params[:page], :per_page => 4)
     else
       @sites = Site.includes(:original_score_average, :picture).order('rating_caches.avg DESC')
-        .paginate(page: params[:page], :per_page => 4)
+                   .paginate(page: params[:page], :per_page => 4)
     end
   end
 
@@ -36,11 +36,11 @@ class SitesController < ApplicationController
   # POST /sites
   # POST /sites.json
   def create
-    @site = Site.new(site_params.deep_merge(user_id: current_user.id, 
-      picture_attributes: {user_id: current_user.id}))
+    @site = Site.new(site_params.deep_merge(user_id: current_user.id,
+                                            picture_attributes: {user_id: current_user.id}))
     respond_to do |format|
       if @site.save
-        format.html { redirect_to [@site]}
+        format.html { redirect_to [@site] }
         format.json { render :show, status: :created, location: @site }
       else
         get_info_for_new_form
@@ -69,33 +69,34 @@ class SitesController < ApplicationController
   def destroy
     @site.destroy
     respond_to do |format|
-      format.html { redirect_to sites_url}
+      format.html { redirect_to sites_url }
       format.json { head :no_content }
     end
   end
 
   private
-    def set_recent_sites
-      @recent_sites = Site.order("created_at desc").limit(6)
-    end
+  def set_recent_sites
+    @recent_sites = Site.order("created_at desc").limit(6)
+  end
 
-    def get_info_for_new_form
-      @themes = Site.available_themes_with_names #callb!
-      @menu = Site.available_menu_with_names #callb!
-      @templates = Template.all
-      @site.picture = Picture.new
-    end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_site
-      @site = Site.find(params[:id])
-    end
+  def get_info_for_new_form
+    @themes = Site.available_themes_with_names #callb!
+    @menu = Site.available_menu_with_names #callb!
+    @templates = Template.all
+    @site.picture = Picture.new
+  end
 
-    def set_tags
-      @tags = ActsAsTaggableOn::Tag.all
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_site
+    @site = Site.find(params[:id])
+  end
 
-    def site_params
-      params.require(:site).permit(:theme, :menu_type, :title, :default_template_id, :description, 
-        :tag_list, picture_attributes: [ :public_id, :url ])
-    end
+  def set_tags
+    @tags = ActsAsTaggableOn::Tag.all
+  end
+
+  def site_params
+    params.require(:site).permit(:theme, :menu_type, :title, :default_template_id, :description,
+                                 :tag_list, picture_attributes: [:public_id, :url])
+  end
 end

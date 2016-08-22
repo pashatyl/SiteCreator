@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-  	@site = Site.find(params[:site_id])
+    @site = Site.find(params[:site_id])
     @body = HtmlProcessor.new(@page, "show").process
     render layout: "user_layout"
   end
@@ -51,18 +51,18 @@ class PagesController < ApplicationController
     #puts JSON.parse params[:page_elements]
     update_params = parse_params(JSON.parse params[:page_elements])
     deleted_elements = JSON.parse(params[:deleted_elements])
-    respond_to do |format|      
+    respond_to do |format|
       if @page.update(update_params) && delete_elements(deleted_elements)
         @body = HtmlProcessor.new(@page, "edit").process
-        format.js {render :edit, notice: t('page.update.success')}
+        format.js { render :edit, notice: t('page.update.success') }
         format.html { redirect_to @page, notice: t('page.update.success') }
-        
-        format.json { render json: @body.to_json, status: 200}
+
+        format.json { render json: @body.to_json, status: 200 }
       else
         #Rails.logger.error( @page.errors.messages)
         flash[:notice] = t('page.update.problem')
         get_elements_for_edit_action
-        format.js{render :edit}
+        format.js { render :edit }
         format.html { render :edit }
         format.json { render json: @errors, status: :unprocessable_entity }
       end
@@ -80,49 +80,49 @@ class PagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_page
-      @page = Page.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_page
+    @page = Page.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def page_params
-      params.require(:page).permit(:title, :template_id, :site_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def page_params
+    params.require(:page).permit(:title, :template_id, :site_id)
+  end
 
-    def get_elements_for_edit_action
-      set_page
-      @page_new = Page.new
-      @templates = Template.all
-      @pictures = current_user.pictures
-      @site = Site.find(params[:site_id])
-      @body = HtmlProcessor.new(@page, "edit").process
-    end
+  def get_elements_for_edit_action
+    set_page
+    @page_new = Page.new
+    @templates = Template.all
+    @pictures = current_user.pictures
+    @site = Site.find(params[:site_id])
+    @body = HtmlProcessor.new(@page, "edit").process
+  end
 
-    def parse_params(page_elements)
-      elements = page_elements["items"].group_by{|el| el["type"]}
-      .transform_values do |value| 
-        value.each do |el|
-          if el["type"] == "picture_role" && el["id"].blank? && !el["picture_attributes"]["id"].blank?
-            picture_id = el["picture_attributes"]["id"]
-            el.delete("picture_attributes")
-            el["picture_id"] = picture_id
-          end
-          if el["type"] == "picture_role" && el.has_key?("picture_attributes")
-            el["picture_attributes"]["user_id"] = current_user.id
-          end
-          el.delete("type")
-         
+  def parse_params(page_elements)
+    elements = page_elements["items"].group_by { |el| el["type"] }
+                   .transform_values do |value|
+      value.each do |el|
+        if el["type"] == "picture_role" && el["id"].blank? && !el["picture_attributes"]["id"].blank?
+          picture_id = el["picture_attributes"]["id"]
+          el.delete("picture_attributes")
+          el["picture_id"] = picture_id
         end
-      end
-      .transform_keys!{ |key| key.pluralize + "_attributes" }
+        if el["type"] == "picture_role" && el.has_key?("picture_attributes")
+          el["picture_attributes"]["user_id"] = current_user.id
+        end
+        el.delete("type")
 
-      elements
-    end
-
-    def delete_elements(deleted_elements)
-      deleted_elements.each do |element|
-        element["type"].camelize.constantize.find(element["id"]).destroy
       end
     end
+                   .transform_keys! { |key| key.pluralize + "_attributes" }
+
+    elements
+  end
+
+  def delete_elements(deleted_elements)
+    deleted_elements.each do |element|
+      element["type"].camelize.constantize.find(element["id"]).destroy
+    end
+  end
 end

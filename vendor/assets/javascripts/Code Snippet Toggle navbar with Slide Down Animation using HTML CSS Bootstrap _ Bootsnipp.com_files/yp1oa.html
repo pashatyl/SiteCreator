@@ -1,150 +1,221 @@
 <!DOCTYPE html>
 <!-- saved from url=(0050)http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <meta name="robots" content="noindex">
 
     <title>Toggle navbar / Slide Down Animation - Bootsnipp.com</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="./bootstrap.min(1).css" rel="stylesheet" id="bootstrap-css">
     <style type="text/css">
-    /*
-Code snippet by maridlcrmn for Bootsnipp.com
-Follow me on Twitter @maridlcrmn
-*/
+        /*
+    Code snippet by maridlcrmn for Bootsnipp.com
+    Follow me on Twitter @maridlcrmn
+    */
 
-.navbar-brand { position: relative; z-index: 2; }
+        .navbar-brand {
+            position: relative;
+            z-index: 2;
+        }
 
-.navbar-nav.navbar-right .btn { position: relative; z-index: 2; padding: 4px 20px; margin: 10px auto; transition: transform 0.3s; }
+        .navbar-nav.navbar-right .btn {
+            position: relative;
+            z-index: 2;
+            padding: 4px 20px;
+            margin: 10px auto;
+            transition: transform 0.3s;
+        }
 
-.navbar .navbar-collapse { position: relative; overflow: hidden !important; }
-.navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px; }
+        .navbar .navbar-collapse {
+            position: relative;
+            overflow: hidden !important;
+        }
 
-.navbar .nav-collapse { position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; }
-.navbar.navbar-default .nav-collapse { background-color: #f8f8f8; }
-.navbar.navbar-inverse .nav-collapse { background-color: #222; }
-.navbar .nav-collapse .navbar-form { border-width: 0; box-shadow: none; }
-.nav-collapse>li { float: right; }
+        .navbar .navbar-collapse .navbar-right > li:last-child {
+            padding-left: 22px;
+        }
 
-.btn.btn-circle { border-radius: 50px; }
-.btn.btn-outline { background-color: transparent; }
+        .navbar .nav-collapse {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+            padding-right: 120px;
+            padding-left: 80px;
+            width: 100%;
+        }
 
-.navbar-nav.navbar-right .btn:not(.collapsed) {
-    background-color: rgb(111, 84, 153);
-    border-color: rgb(111, 84, 153);
-    color: rgb(255, 255, 255);
-}
+        .navbar.navbar-default .nav-collapse {
+            background-color: #f8f8f8;
+        }
 
-.navbar.navbar-default .nav-collapse,
-.navbar.navbar-inverse .nav-collapse {
-    height: auto !important;
-    transition: transform 0.3s;
-    transform: translate(0px,-500px);
-}
-.navbar.navbar-default .nav-collapse.in,
-.navbar.navbar-inverse .nav-collapse.in {
-    transform: translate(0px,0px);
-}
+        .navbar.navbar-inverse .nav-collapse {
+            background-color: #222;
+        }
 
+        .navbar .nav-collapse .navbar-form {
+            border-width: 0;
+            box-shadow: none;
+        }
 
-@media screen and (max-width: 767px) {
-    .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
-    
-    .navbar .nav-collapse { margin: 7.5px auto; padding: 0; }
-    .navbar .nav-collapse .navbar-form { margin: 0; }
-    .nav-collapse>li { float: none; }
-    
-    .navbar.navbar-default .nav-collapse,
-    .navbar.navbar-inverse .nav-collapse {
-        transform: translate(-100%,0px);
-    }
-    .navbar.navbar-default .nav-collapse.in,
-    .navbar.navbar-inverse .nav-collapse.in {
-        transform: translate(0px,0px);
-    }
-    
-    .navbar.navbar-default .nav-collapse.slide-down,
-    .navbar.navbar-inverse .nav-collapse.slide-down {
-        transform: translate(0px,-100%);
-    }
-    .navbar.navbar-default .nav-collapse.in.slide-down,
-    .navbar.navbar-inverse .nav-collapse.in.slide-down {
-        transform: translate(0px,0px);
-    }
-}
+        .nav-collapse > li {
+            float: right;
+        }
 
-html {
-transform-origin: 0px 0px 0px;
--webkit-transform-origin: 0px 0px 0px;
--moz-transform-origin: 0px 0px 0px;
--o-transform-origin: 0px 0px 0px;
-transform: scale(0.5);
--webkit-transform: scale(0.5);
--moz-transform: scale(0.5);
--o-transform: scale(0.5);
-}
+        .btn.btn-circle {
+            border-radius: 50px;
+        }
+
+        .btn.btn-outline {
+            background-color: transparent;
+        }
+
+        .navbar-nav.navbar-right .btn:not(.collapsed) {
+            background-color: rgb(111, 84, 153);
+            border-color: rgb(111, 84, 153);
+            color: rgb(255, 255, 255);
+        }
+
+        .navbar.navbar-default .nav-collapse,
+        .navbar.navbar-inverse .nav-collapse {
+            height: auto !important;
+            transition: transform 0.3s;
+            transform: translate(0px, -500px);
+        }
+
+        .navbar.navbar-default .nav-collapse.in,
+        .navbar.navbar-inverse .nav-collapse.in {
+            transform: translate(0px, 0px);
+        }
+
+        @media screen and (max-width: 767px) {
+            .navbar .navbar-collapse .navbar-right > li:last-child {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .navbar .nav-collapse {
+                margin: 7.5px auto;
+                padding: 0;
+            }
+
+            .navbar .nav-collapse .navbar-form {
+                margin: 0;
+            }
+
+            .nav-collapse > li {
+                float: none;
+            }
+
+            .navbar.navbar-default .nav-collapse,
+            .navbar.navbar-inverse .nav-collapse {
+                transform: translate(-100%, 0px);
+            }
+
+            .navbar.navbar-default .nav-collapse.in,
+            .navbar.navbar-inverse .nav-collapse.in {
+                transform: translate(0px, 0px);
+            }
+
+            .navbar.navbar-default .nav-collapse.slide-down,
+            .navbar.navbar-inverse .nav-collapse.slide-down {
+                transform: translate(0px, -100%);
+            }
+
+            .navbar.navbar-default .nav-collapse.in.slide-down,
+            .navbar.navbar-inverse .nav-collapse.in.slide-down {
+                transform: translate(0px, 0px);
+            }
+        }
+
+        html {
+            transform-origin: 0px 0px 0px;
+            -webkit-transform-origin: 0px 0px 0px;
+            -moz-transform-origin: 0px 0px 0px;
+            -o-transform-origin: 0px 0px 0px;
+            transform: scale(0.5);
+            -webkit-transform: scale(0.5);
+            -moz-transform: scale(0.5);
+            -o-transform: scale(0.5);
+        }
     </style>
     <script src="./jquery-1.10.2.min.js"></script>
     <script src="./bootstrap.min(2).js"></script>
     <script type="text/javascript">
-        window.alert = function(){};
+        window.alert = function () {
+        };
         var defaultCSS = document.getElementById('bootstrap-css');
-        function changeCSS(css){
-            if(css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="'+ css +'" type="text/css" />'); 
-            else $('head > link').filter(':first').replaceWith(defaultCSS); 
+        function changeCSS(css) {
+            if (css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="' + css + '" type="text/css" />');
+            else $('head > link').filter(':first').replaceWith(defaultCSS);
         }
-        $( document ).ready(function() {
-          var iframe_height = parseInt($('html').height()); 
-          window.parent.postMessage( iframe_height, 'http://bootsnipp.com');
+        $(document).ready(function () {
+            var iframe_height = parseInt($('html').height());
+            window.parent.postMessage(iframe_height, 'http://bootsnipp.com');
         });
     </script>
 </head>
 <body>
-	<div class="container-fluid">
+<div class="container-fluid">
     <!-- Second navbar for categories -->
     <nav class="navbar navbar-default">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#">Brand</a>
-        </div>
-    
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#">Person</a></li>
-            <li>
-              <a class="btn btn-default btn-outline btn-circle collapsed" data-toggle="collapse" href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#nav-collapse1" aria-expanded="false" aria-controls="nav-collapse1">Categories</a>
-            </li>
-          </ul>
-          <ul class="collapse nav navbar-nav nav-collapse" id="nav-collapse1">
-            <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#">Work</a></li>
-            <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#">About</a></li>
-            <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#">Contact</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container -->
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#">Brand</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#">Person</a></li>
+                    <li>
+                        <a class="btn btn-default btn-outline btn-circle collapsed" data-toggle="collapse"
+                           href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#nav-collapse1" aria-expanded="false"
+                           aria-controls="nav-collapse1">Categories</a>
+                    </li>
+                </ul>
+                <ul class="collapse nav navbar-nav nav-collapse" id="nav-collapse1">
+                    <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#">Work</a></li>
+                    <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#">About</a></li>
+                    <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yp1oa#">Contact</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
     </nav><!-- /.navbar -->
-    
-    
+
+
 </div><!-- /.container-fluid -->
 
 <div class="[ container ]">
     <div class="[ row ]">
         <div class="[ col-xs-12 col-md-offset-1 col-md-10 text-center ]">
-            <p>I created this because I loved the design done by <a href="http://bootsnipp.com/maridlcrmn" target="_blank">maridlcrmn</a> on her <a href="http://bootsnipp.com/snippets/ZkpRl" target="_blank">Toggle navbar</a> but wanted a fancier slide down naviation when you click on the toggle button. However my code does come with a limitation, you will not be able to use dropdowns within your navigation if using this method because <code>overflow</code> is set to <strong>hidden</strong>. You can see this in action by trying to use the very last navigation on this snippet.</p>
+            <p>I created this because I loved the design done by <a href="http://bootsnipp.com/maridlcrmn"
+                                                                    target="_blank">maridlcrmn</a> on her <a
+                    href="http://bootsnipp.com/snippets/ZkpRl" target="_blank">Toggle navbar</a> but wanted a fancier
+                slide down naviation when you click on the toggle button. However my code does come with a limitation,
+                you will not be able to use dropdowns within your navigation if using this method because
+                <code>overflow</code> is set to <strong>hidden</strong>. You can see this in action by trying to use the
+                very last navigation on this snippet.</p>
         </div>
     </div>
 </div>
-	<script type="text/javascript">
-	
-	</script>
+<script type="text/javascript">
+
+</script>
 
 
-</body></html>
+</body>
+</html>

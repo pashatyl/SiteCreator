@@ -8,38 +8,38 @@
         </div>
 
         <div class="col-xs-6">
-          <%= image_tag @site.picture.url, class:"img-responsive img-thumbnail", style:"height:100px;float:right;"%>
+          <%= image_tag @site.picture.url, class: "img-responsive img-thumbnail", style: "height:100px;float:right;" %>
         </div>
       </div>
       <div class="row">
 
-      <hr>
-      <div class="col-md-8">
-      <p><i class="fa fa-calendar"></i> <%= I18n.l(@site.created_at, format: :long) %></p>
-      <p><i class="fa fa-tags"></i>
-        <% @site.tag_list.each do |tag| %>
-            <%= link_to sites_path(tag: tag) do %><span class="badge badge-info"><%= tag %></span>
+        <hr>
+        <div class="col-md-8">
+          <p><i class="fa fa-calendar"></i> <%= I18n.l(@site.created_at, format: :long) %></p>
+          <p><i class="fa fa-tags"></i>
+            <% @site.tag_list.each do |tag| %>
+                <%= link_to sites_path(tag: tag) do %><span class="badge badge-info"><%= tag %></span>
+                <% end %>
             <% end %>
-        <% end %>
-      </p>
-    </div>
-    <div class="col-md-4 text-right">
-      <div class="btn-group">
-          <% if can? :update, @site %>
-            <%= link_to edit_site_page_path(@site, @site.first_page), class: "btn btn-primary" do%>
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-            <% end %>
-            <% end %>
-          <% if can? :destroy, @site %>
-              <%= link_to site_path(@site), method: :delete, class: "btn btn-primary" do %> 
-                <i class="fa fa-trash" aria-hidden="true"></i>
-              <% end %>
-            <% end %>
+          </p>
         </div>
+        <div class="col-md-4 text-right">
+          <div class="btn-group">
+            <% if can? :update, @site %>
+                <%= link_to edit_site_page_path(@site, @site.first_page), class: "btn btn-primary" do %>
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                <% end %>
+            <% end %>
+            <% if can? :destroy, @site %>
+                <%= link_to site_path(@site), method: :delete, class: "btn btn-primary" do %>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
       <hr>
-      <p class="lead" > <strong><%= I18n.t('site.description') %>
+      <p class="lead"><strong><%= I18n.t('site.description') %>
         </br>
         </br>
       </strong><%= @site.description %></p>
@@ -48,7 +48,7 @@
 
       <hr>
       <!-- the comment box -->
-      <%= render partial: "comments/comments", locals: { site: @site } %>
+      <%= render partial: "comments/comments", locals: {site: @site} %>
 
     </div>
   </div>

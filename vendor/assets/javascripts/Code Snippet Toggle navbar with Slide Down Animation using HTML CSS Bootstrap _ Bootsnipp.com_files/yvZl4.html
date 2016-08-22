@@ -1,480 +1,494 @@
 <!DOCTYPE html>
 <!-- saved from url=(0050)http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4 -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <meta name="robots" content="noindex">
 
     <title>Animation navbar and web - Bootsnipp.com</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="./bootstrap.min(1).css" rel="stylesheet" id="bootstrap-css">
     <style type="text/css">
-    html,
-body {
-  height: 100%;
-  padding-top:50px;
-}
+        html,
+        body {
+            height: 100%;
+            padding-top: 50px;
+        }
 
-.row {
-  margin-left:0px;
-  margin-right:0px;
-}
+        .row {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
 
-/* Wrapper for page content to push down footer */
-#wrap {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  /* Negative indent footer by its height */
-  margin: 0 auto -60px;
-  /* Pad bottom by footer height */
-  padding: 0 0 60px;
-}
+        /* Wrapper for page content to push down footer */
+        #wrap {
+            min-height: 100%;
+            height: auto !important;
+            height: 100%;
+            /* Negative indent footer by its height */
+            margin: 0 auto -60px;
+            /* Pad bottom by footer height */
+            padding: 0 0 60px;
+        }
 
-/* Set the fixed height of the footer here */
-#footer {
-  height: 60px;
-  background-color: #f5f5f5;
-  margin-top:50px;
-  padding-top:20px;
-  padding-bottom:20px;
-}
+        /* Set the fixed height of the footer here */
+        #footer {
+            height: 60px;
+            background-color: #f5f5f5;
+            margin-top: 50px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
 
-header {
-      height:100%;
-	min-height:500px;
-}
+        header {
+            height: 100%;
+            min-height: 500px;
+        }
 
-#wrap > .container {
-  padding: 60px 15px 0;
-}
-.container .credit {
-  margin: 20px 0;
-}
+        #wrap > .container {
+            padding: 60px 15px 0;
+        }
 
-#footer {
-  background-color:#414141;
-}
+        .container .credit {
+            margin: 20px 0;
+        }
 
-#footer a {
-  color:#efefef;
-}
+        #footer {
+            background-color: #414141;
+        }
 
-#topNav {
-	z-index:-1;
-}
+        #footer a {
+            color: #efefef;
+        }
 
-#nav {
-  width: 100%;
-}
+        #topNav {
+            z-index: -1;
+        }
 
-#nav.affix-top {
-   position: absolute;
-   top:0;
-   left:0;
-   z-index:10;
-   height:54px;
-   background-color:#E4D736;
-   border:0;
-}
+        #nav {
+            width: 100%;
+        }
 
-#nav.affix {
-   position: fixed;
-   top: 0;
-   z-index:10;
-   -webkit-transition: all .6s ease-in-out;
-}
+        #nav.affix-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            height: 54px;
+            background-color: #E4D736;
+            border: 0;
+        }
 
-#footer > .container {
-  
-}
+        #nav.affix {
+            position: fixed;
+            top: 0;
+            z-index: 10;
+            -webkit-transition: all .6s ease-in-out;
+        }
 
-@media (min-width: 767px) {
-  .navbar-nav.nav-justified > li{
-      float:none;
-  }
-}
-  
-.navbar-nav {
-  margin: 1px 1px; 
-}  
+        #footer > .container {
 
-.navbar-toggle {
-	outline:0;
-}
+        }
 
-.divider {
-	height:50px;
-}
+        @media (min-width: 767px) {
+            .navbar-nav.nav-justified > li {
+                float: none;
+            }
+        }
 
-.panel {
-	border-width:0;
-}
+        .navbar-nav {
+            margin: 1px 1px;
+        }
 
-@media (max-width: 768px) {
-	header {
-	
-	}
-}
+        .navbar-toggle {
+            outline: 0;
+        }
 
-.scroll-top {
-   position:fixed;
-   bottom:0;
-   right:6%;
-   z-index:100;
-   background: #f2f3f2;
-   font-size:24px;
-   border-top-left-radius:3px;
-   border-top-right-radius:3px;
-}
-.scroll-top a:link,.scroll-top a:visited {
-  color:#222;
-} 
- 
-section {
-  color: #ffffff;
-  min-height: 400px;
-  height: auto !important;
-  height: 100%;
-  padding-top:100px;
-}
+        .divider {
+            height: 50px;
+        }
 
+        .panel {
+            border-width: 0;
+        }
 
-html {
-transform-origin: 0px 0px 0px;
--webkit-transform-origin: 0px 0px 0px;
--moz-transform-origin: 0px 0px 0px;
--o-transform-origin: 0px 0px 0px;
-transform: scale(0.5);
--webkit-transform: scale(0.5);
--moz-transform: scale(0.5);
--o-transform: scale(0.5);
-}
+        @media (max-width: 768px) {
+            header {
+
+            }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 0;
+            right: 6%;
+            z-index: 100;
+            background: #f2f3f2;
+            font-size: 24px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .scroll-top a:link, .scroll-top a:visited {
+            color: #222;
+        }
+
+        section {
+            color: #ffffff;
+            min-height: 400px;
+            height: auto !important;
+            height: 100%;
+            padding-top: 100px;
+        }
+
+        html {
+            transform-origin: 0px 0px 0px;
+            -webkit-transform-origin: 0px 0px 0px;
+            -moz-transform-origin: 0px 0px 0px;
+            -o-transform-origin: 0px 0px 0px;
+            transform: scale(0.5);
+            -webkit-transform: scale(0.5);
+            -moz-transform: scale(0.5);
+            -o-transform: scale(0.5);
+        }
     </style>
     <script src="./jquery-1.10.2.min.js"></script>
     <script src="./bootstrap.min(2).js"></script>
     <script type="text/javascript">
-        window.alert = function(){};
+        window.alert = function () {
+        };
         var defaultCSS = document.getElementById('bootstrap-css');
-        function changeCSS(css){
-            if(css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="'+ css +'" type="text/css" />'); 
-            else $('head > link').filter(':first').replaceWith(defaultCSS); 
+        function changeCSS(css) {
+            if (css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="' + css + '" type="text/css" />');
+            else $('head > link').filter(':first').replaceWith(defaultCSS);
         }
-        $( document ).ready(function() {
-          var iframe_height = parseInt($('html').height()); 
-          window.parent.postMessage( iframe_height, 'http://bootsnipp.com');
+        $(document).ready(function () {
+            var iframe_height = parseInt($('html').height());
+            window.parent.postMessage(iframe_height, 'http://bootsnipp.com');
         });
     </script>
 </head>
 <body>
-	       <!-- Wrap all page content here -->
+<!-- Wrap all page content here -->
 <div id="wrap">
-  
-<header class="masthead">
-    <h1 class="text-center">Hello This is Smaple web.</h1>
-</header>
-    
-<!-- Fly-in navbar -->
-<div class="navbar navbar-inverse navbar-static-top affix-top" id="nav">
+
+    <header class="masthead">
+        <h1 class="text-center">Hello This is Smaple web.</h1>
+    </header>
+
+    <!-- Fly-in navbar -->
+    <div class="navbar navbar-inverse navbar-static-top affix-top" id="nav">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <div class="navbar-brand">Project Name</div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#">Home</a></li>
+                    <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#section2">About</a></li>
+                    <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#section3">Services</a></li>
+                    <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#section4">Location</a></li>
+                    <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#section5">Contact</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container -->
+    </div><!--/.navbar -->
+
+    <!-- Begin page content -->
+    <div class="divider" id="section1"></div>
+
     <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse">
-      <div class="navbar-brand">Project Name</div>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#">Home</a></li>
-          <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#section2">About</a></li>
-          <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#section3">Services</a></li>
-          <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#section4">Location</a></li>
-          <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#section5">Contact</a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div><!--/.container -->
-</div><!--/.navbar -->
-  
-<!-- Begin page content -->
-<div class="divider" id="section1"></div>
-  
-<div class="container">
-  <div class="col-sm-10 col-sm-offset-1">
-    <div class="page-header text-center">
-      <h1>Home</h1>
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="page-header text-center">
+                <h1>Home</h1>
+            </div>
+
+            <p class="lead text-center">
+                klads kajsdbac ;jbasdou . a;dsofn ;josdabn
+            </p>
+
+            <hr>
+
+            <div class="divider"></div>
+
+        </div>
     </div>
-    
-    <p class="lead text-center"> 
-      klads kajsdbac ;jbasdou . a;dsofn  ;josdabn
-    </p> 
-    
-    <hr>
-    
+
     <div class="divider"></div>
-    
-  </div>
-</div>
-    
-<div class="divider"></div>
-  
-<section class="bg-1">
-  <div class="col-sm-6 col-sm-offset-3 text-center"></div>
-</section>
-  
-<div class="divider" id="section2"></div>
-   
-<div class="row">
-  	<div class="col-sm-10 col-sm-offset-1">
-      <h1>About</h1>
-      
-      <hr>
-     
-      <p>
-        bkjFW FUfu wevbakjdlsgf hr;eiog qir;hkadjshgfuia areu . tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-        dolor, in sagittis nisi. Sed ac orci quis tortor  fkjewgrf  riu we gn felis sit amet augue.
-	  </p> 
-      
-      <hr>
-      
-      <div class="divider"></div>
-      
-  	</div><!--/col-->
-</div><!--/container-->
 
-<div class="divider"></div>
-  
-<section class="bg-3">
-  <div class="col-sm-6 col-sm-offset-3 text-center"><h2>Clients &amp; Partners</h2></div>
-</section>
-  
-<div class="divider" id="section3"></div>
-  
-<div class="bg-4">
-  <div class="container">
-	<div class="row">
-	   <div class="col-sm-4 col-xs-6">
-      
-        <div class="panel panel-default">
-          <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#"><img src="./F8F8F8" class="img-responsive"></a></div>
-          <div class="panel-body">
-            <p>Renovations</p>
-            <p></p>
+    <section class="bg-1">
+        <div class="col-sm-6 col-sm-offset-3 text-center"></div>
+    </section>
 
-          </div>
-        </div><!--/panel-->
-      </div><!--/col-->
-      
-      <div class="col-sm-4 col-xs-6">
-      
-      	<div class="panel panel-default">
-          <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#"><img src="./FFF" class="img-responsive"></a></div>
-          <div class="panel-body">
-            <p>Projects</p>
-            <p></p>
-            
-          </div>
-        </div><!--/panel--> 
-      </div><!--/col-->
-      
-      <div class="col-sm-4 col-xs-6">
-      
-      	<div class="panel panel-default">
-          <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#" title="Interiors"><img src="./F2F2F2" class="img-responsive"></a></div>
-          <div class="panel-body">
-            <p>Interiors</p>
-            <p></p>
-            
-          </div>
-        </div><!--/panel--> 
+    <div class="divider" id="section2"></div>
 
-      </div><!--/col--> 
-      
-      <div class="col-sm-4 col-xs-6">
-      
-      	<div class="panel panel-default">
-          <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#"><img src="./FFF(1)" class="img-responsive"></a></div>
-          <div class="panel-body">
-            <p>Design</p>
-            <p></p>
-            
-          </div>
-        </div><!--/panel--> 
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <h1>About</h1>
 
-      </div><!--/col--> 
-      
-      <div class="col-sm-4 col-xs-6">
-      
-      	<div class="panel panel-default">
-          <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#"><img src="./EEE" class="img-responsive"></a></div>
-          <div class="panel-body">
-            <p>Site Planning</p>
-            <p></p>
-            
-          </div>
-        </div><!--/panel--> 
+            <hr>
 
-      </div><!--/col--> 
-      
-      <div class="col-sm-4 col-xs-6">
-      
-      	<div class="panel panel-default">
-          <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#"><img src="./F4F4F4" class="img-responsive"></a></div>
-          <div class="panel-body">
-            <p>More</p>
-            <p></p>
-            
-          </div>
-        </div><!--/panel--> 
+            <p>
+                bkjFW FUfu wevbakjdlsgf hr;eiog qir;hkadjshgfuia areu . tincidunt condimentum vitae, gravida a libero.
+                Aenean sit amet felis
+                dolor, in sagittis nisi. Sed ac orci quis tortor fkjewgrf riu we gn felis sit amet augue.
+            </p>
 
-      </div><!--/col--> 
-      
-	</div><!--/row-->
-  </div><!--/container-->
-</div>
+            <hr>
 
-<div class="divider" id="section4"></div>
+            <div class="divider"></div>
 
-<div class="row">
-  <div class="col-md-8 col-md-offset-1">
-  </div>
-</div>
-  
-<div class="row">
-  
-  <div class="col-sm-10 col-sm-offset-1">
-      <h1>Location</h1>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-    Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-    dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-    Aliquam in felis sit amet augue.
-  </div>   
-       
-  
-  <hr>
-  
-</div><!--/row-->
-  
-<div class="divider" id="section5"></div>  
+        </div><!--/col-->
+    </div><!--/container-->
 
-<div class="row">
-  
-  <hr>
-  
-  <div class="col-xs-12">
-      
-      <div class="row form-group">
-        <div class="col-md-12">
-        <h1>Contact Us</h1>        
+    <div class="divider"></div>
+
+    <section class="bg-3">
+        <div class="col-sm-6 col-sm-offset-3 text-center"><h2>Clients &amp; Partners</h2></div>
+    </section>
+
+    <div class="divider" id="section3"></div>
+
+    <div class="bg-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-xs-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#"><img
+                                src="./F8F8F8" class="img-responsive"></a></div>
+                        <div class="panel-body">
+                            <p>Renovations</p>
+                            <p></p>
+
+                        </div>
+                    </div><!--/panel-->
+                </div><!--/col-->
+
+                <div class="col-sm-4 col-xs-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#"><img
+                                src="./FFF" class="img-responsive"></a></div>
+                        <div class="panel-body">
+                            <p>Projects</p>
+                            <p></p>
+
+                        </div>
+                    </div><!--/panel-->
+                </div><!--/col-->
+
+                <div class="col-sm-4 col-xs-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#"
+                                                        title="Interiors"><img src="./F2F2F2"
+                                                                               class="img-responsive"></a></div>
+                        <div class="panel-body">
+                            <p>Interiors</p>
+                            <p></p>
+
+                        </div>
+                    </div><!--/panel-->
+
+                </div><!--/col-->
+
+                <div class="col-sm-4 col-xs-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#"><img
+                                src="./FFF(1)" class="img-responsive"></a></div>
+                        <div class="panel-body">
+                            <p>Design</p>
+                            <p></p>
+
+                        </div>
+                    </div><!--/panel-->
+
+                </div><!--/col-->
+
+                <div class="col-sm-4 col-xs-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#"><img
+                                src="./EEE" class="img-responsive"></a></div>
+                        <div class="panel-body">
+                            <p>Site Planning</p>
+                            <p></p>
+
+                        </div>
+                    </div><!--/panel-->
+
+                </div><!--/col-->
+
+                <div class="col-sm-4 col-xs-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-thumbnail"><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#"><img
+                                src="./F4F4F4" class="img-responsive"></a></div>
+                        <div class="panel-body">
+                            <p>More</p>
+                            <p></p>
+
+                        </div>
+                    </div><!--/panel-->
+
+                </div><!--/col-->
+
+            </div><!--/row-->
+        </div><!--/container-->
+    </div>
+
+    <div class="divider" id="section4"></div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-1">
         </div>
-        <div class="col-xs-4">
-          <input class="form-control" id="firstName" name="name" placeholder="Your Name" type="text">
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-10 col-sm-offset-1">
+            <h1>Location</h1>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+            Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
+            dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
+            Aliquam in felis sit amet augue.
         </div>
-        <div class="col-xs-6">
-          <input class="form-control" id="organization" name="organization" placeholder="Company or Organization" type="text">
+
+
+        <hr>
+
+    </div><!--/row-->
+
+    <div class="divider" id="section5"></div>
+
+    <div class="row">
+
+        <hr>
+
+        <div class="col-xs-12">
+
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <h1>Contact Us</h1>
+                </div>
+                <div class="col-xs-4">
+                    <input class="form-control" id="firstName" name="name" placeholder="Your Name" type="text">
+                </div>
+                <div class="col-xs-6">
+                    <input class="form-control" id="organization" name="organization"
+                           placeholder="Company or Organization" type="text">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <input class="form-control" name="email" placeholder="Email" type="text">
+                </div>
+                <div class="col-xs-6">
+                    <input class="form-control" name="phone" placeholder="Phone" type="text">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-12">
+                    <textarea class="form-control" placeholder="Comments"></textarea>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-12">
+                    <button class="btn btn-default pull-right">Contact Us</button>
+                </div>
+            </div>
+
         </div>
-      </div>
-      <div class="row form-group">
-          <div class="col-xs-6">
-          <input class="form-control" name="email" placeholder="Email" type="text">
-          </div>
-          <div class="col-xs-6">
-          <input class="form-control" name="phone" placeholder="Phone" type="text">
-          </div>
-      </div>
-      <div class="row form-group">
-          <div class="col-xs-12">
-            <textarea class="form-control" placeholder="Comments"></textarea>
-          </div>
-      </div>
-      <div class="row form-group">
-          <div class="col-xs-12">
-            <button class="btn btn-default pull-right">Contact Us</button>
-          </div>
-      </div>
-    
-  </div>
-  
-</div><!--/row-->
-  
-<div class="container">
-  	<div class="col-sm-8 col-sm-offset-2 text-center">
-      
-  	</div><!--/col-->
-</div><!--/container-->
-  
+
+    </div><!--/row-->
+
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+
+        </div><!--/col-->
+    </div><!--/container-->
+
 </div><!--/wrap-->
 
 <div id="footer">
-  <div class="container">
-  </div>
+    <div class="container">
+    </div>
 </div>
 
 <ul class="nav pull-right scroll-top">
-  <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a></li>
+    <li><a href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#" title="Scroll to top"><i
+            class="glyphicon glyphicon-chevron-up"></i></a></li>
 </ul>
 
 
 <div class="modal" id="myModal" role="dialog">
-  <div class="modal-dialog">
-  <div class="modal-content">
-	<div class="modal-header">
-		<button class="close" type="button" data-dismiss="modal">×</button>
-		<h3 class="modal-title"></h3>
-	</div>
-	<div class="modal-body">
-		<div id="modalCarousel" class="carousel">
- 
-          <div class="carousel-inner">
-           
-          </div>
-          
-          <a class="carousel-control left" href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#modaCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-          <a class="carousel-control right" href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#modalCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-          
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h3 class="modal-title"></h3>
+            </div>
+            <div class="modal-body">
+                <div id="modalCarousel" class="carousel">
+
+                    <div class="carousel-inner">
+
+                    </div>
+
+                    <a class="carousel-control left"
+                       href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#modaCarousel" data-slide="prev"><i
+                            class="glyphicon glyphicon-chevron-left"></i></a>
+                    <a class="carousel-control right"
+                       href="http://d2d3qesrx8xj6s.cloudfront.net/siframe/yvZl4#modalCarousel" data-slide="next"><i
+                            class="glyphicon glyphicon-chevron-right"></i></a>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div>
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-default" data-dismiss="modal">Close</button>
-	</div>
-   </div>
-  </div>
+    </div>
 </div>
 
 
-	<script type="text/javascript">
-	 $(document).ready(function() {
-        
-            /* affix the navbar after scroll below header */
-$('#nav').affix({
-      offset: {
-        top: $('header').height()-$('#nav').height()
-      }
-});    
+<script type="text/javascript">
+    $(document).ready(function () {
 
-/* highlight the top nav as scrolling occurs */
-$('body').scrollspy({ target: '#nav' })
-
-/* smooth scrolling for scroll to top */
-$('.scroll-top').click(function(){
-  $('body,html').animate({scrollTop:0},1000);
-})
-
-/* smooth scrolling for nav sections */
-$('#nav .navbar-nav li>a').click(function(){
-  var link = $(this).attr('href');
-  var posi = $(link).offset().top;
-  $('body,html').animate({scrollTop:posi},700);
-});
-
-
-
-
-
-
-        
+        /* affix the navbar after scroll below header */
+        $('#nav').affix({
+            offset: {
+                top: $('header').height() - $('#nav').height()
+            }
         });
-	</script>
+
+        /* highlight the top nav as scrolling occurs */
+        $('body').scrollspy({target: '#nav'})
+
+        /* smooth scrolling for scroll to top */
+        $('.scroll-top').click(function () {
+            $('body,html').animate({scrollTop: 0}, 1000);
+        })
+
+        /* smooth scrolling for nav sections */
+        $('#nav .navbar-nav li>a').click(function () {
+            var link = $(this).attr('href');
+            var posi = $(link).offset().top;
+            $('body,html').animate({scrollTop: posi}, 700);
+        });
 
 
-</body></html>
+    });
+</script>
+
+
+</body>
+</html>

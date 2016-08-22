@@ -1,6 +1,6 @@
 <% @pictures.each do |picture| %>
-  <div class="draggable dragbox" id="picture" data-type="picture_role"><%= picture.to_html("edit").html_safe %></div>
+    <div class="draggable dragbox" id="picture" data-type="picture_role"><%= picture.to_html("edit").html_safe %></div>
 <% end %>
-<div class="draggable dragbox" id="picture" data-id="new"  data-type="picture_role">
-	<img src="http://placehold.it/50x50">
+<div class="draggable dragbox" id="picture" data-id="new" data-type="picture_role">
+  <img src="http://placehold.it/50x50">
 </div>

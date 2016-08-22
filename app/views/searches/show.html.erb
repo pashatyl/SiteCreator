@@ -1,32 +1,32 @@
 <div class="container bootstrap snippet">
   <%= render "searches/form" %>
-    <div class="row">
-        <div class="col-lg-12">
-           <hgroup class="mb20">
-            <h1><%= I18n.t('search.search_results') %></h1>
-            <h2 class="lead"><%= I18n.t('search.results', count: @results.count) %> <strong class="text-danger">
-              <%= params[:searches] %></strong></h2>
-          </hgroup>
-            <div class="ibox float-e-margins">
-                <div class="ibox-content">
-                  <% if @results.count > 0 %>
-                  <% @results.each do |f| %>
-                    <div class="hr-line-dashed"></div>
-                    <div class="search-result">
-                        <p>
-                          <%= f.first.get_link.html_safe %>
-                        </p>
-                        <p>
-                           <%= f.first.get_info(f.last)%> 
-                           <%=   f.second.html_safe %>
-                        </p>
-                    </div>
-                    <% end %>
-                    <% else %>
-                    <h1><%= I18n.t('search.empty') %></h1>
-                    <% end %>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <hgroup class="mb20">
+        <h1><%= I18n.t('search.search_results') %></h1>
+        <h2 class="lead"><%= I18n.t('search.results', count: @results.count) %> <strong class="text-danger">
+          <%= params[:searches] %></strong></h2>
+      </hgroup>
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <% if @results.count > 0 %>
+              <% @results.each do |f| %>
+                  <div class="hr-line-dashed"></div>
+                  <div class="search-result">
+                    <p>
+                      <%= f.first.get_link.html_safe %>
+                    </p>
+                    <p>
+                      <%= f.first.get_info(f.last) %>
+                      <%= f.second.html_safe %>
+                    </p>
+                  </div>
+              <% end %>
+          <% else %>
+              <h1><%= I18n.t('search.empty') %></h1>
+          <% end %>
         </div>
+      </div>
     </div>
+  </div>
 </div>

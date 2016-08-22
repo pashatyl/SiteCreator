@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  
+  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
+
   resources :pictures
-  resources :users 
+  resources :users
   scope '(:locale)' do
     resource :search, only: :show
     resources :sites do
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

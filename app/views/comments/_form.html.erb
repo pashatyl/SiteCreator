@@ -1,14 +1,14 @@
- <div class="well">
-    <h4><i class="fa fa-paper-plane-o"></i> <%= I18n.t('comments.add') %>:</h4>
-<%= form_for([site, site.comments.new], :html=>{class: "form-inline"}) do |f| %>
-<div class="row">
-  <div class="form-group col-sm-8">    
-    <%= f.text_area :content,  class: "form-control", placeholder: t('comments.your_comment') %>
-  </div>
-  
-  <div class="actions col-sm-4" >
-    <%= f.submit I18n.t('comments.add'), class: "btn btn-primary" %>
-  </div>
-  </div>
-<% end %>
+<div class="well">
+  <h4><i class="fa fa-paper-plane-o"></i> <%= I18n.t('comments.add') %>:</h4>
+  <%= form_for([site, site.comments.new], :html => {class: "form-inline"}) do |f| %>
+      <div class="row">
+        <div class="form-group col-sm-8">
+          <%= f.text_area :content, class: "form-control", placeholder: t('comments.your_comment') %>
+        </div>
+
+        <div class="actions col-sm-4">
+          <%= f.submit I18n.t('comments.add'), class: "btn btn-primary" %>
+        </div>
+      </div>
+  <% end %>
 </div>

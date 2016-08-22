@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
-  
+
   def after_sign_out_path_for(resource_or_scope)
-  	root_path
-	end
+    root_path
+  end
 
   protected
 
@@ -34,8 +34,8 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
   def default_url_options
-      { locale: I18n.locale }
+    {locale: I18n.locale}
   end
 end

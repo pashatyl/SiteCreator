@@ -1,21 +1,22 @@
 .stylish-panel {
-    padding: 20px 0;
-    text-align: center;
-}
-.stylish-panel > div > div > div{
-    padding: 10px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    transition: 0.2s;
-}
-.stylish-panel > div > div:hover > div{
-    margin-top: -10px;
-    border: 1px solid rgb(200, 200, 200);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 2px;
-    background: rgba(200, 200, 200, 0.1);
-    transition: 0.5s;
+  padding: 20px 0;
+  text-align: center;
 }
 
+.stylish-panel > div > div > div {
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+.stylish-panel > div > div:hover > div {
+  margin-top: -10px;
+  border: 1px solid rgb(200, 200, 200);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 2px;
+  background: rgba(200, 200, 200, 0.1);
+  transition: 0.5s;
+}
 
 .description {
   margin: 20px !important;

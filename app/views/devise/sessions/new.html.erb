@@ -10,12 +10,12 @@
         <div class="main-login-form">
           <div class="login-group">
             <div class="form-group">
-              <%= f.label :email, class: "sr-only"%><br />
-              <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "email"%>
+              <%= f.label :email, class: "sr-only" %><br/>
+              <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "email" %>
             </div>
             <div class="form-group">
               <%= f.label :password, class: "sr-only" %>
-              <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "password"%>
+              <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "password" %>
 
             </div>
             <div class="form-group">
@@ -26,9 +26,9 @@
             </div>
 
           </div>
-          <%= f.submit ">", class: "login-button" do%>
+          <%= f.submit ">", class: "login-button" do %>
               <i class="fa fa-chevron-right"></i>
-          <%end%>
+          <% end %>
         </div>
         <%= render "devise/shared/links" %>
     <% end %>

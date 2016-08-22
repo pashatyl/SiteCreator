@@ -2,6 +2,6 @@ $("div#content").html("<%= escape_javascript(@body.html_safe) %>")
 initializeEditable();
 initializeSortable();
 initializeCloseButon();
-if('<%= flash[:notice] %>'){
-	$("#flash_messages").html("<div class='alert alert-danger alert-dismissible' role='alert'><button class='close' data-dismiss='alert'>×</button><%= flash[:notice] %></div>")
+if ('<%= flash[:notice] %>') {
+  $("#flash_messages").html("<div class='alert alert-danger alert-dismissible' role='alert'><button class='close' data-dismiss='alert'>×</button><%= flash[:notice] %></div>")
 }

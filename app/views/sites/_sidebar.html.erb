@@ -1,4 +1,3 @@
-
 <div class="well">
   <h4><i class="fa fa-tags"></i> <%= I18n.t('tags') %>:</h4>
   <div class="row">
@@ -8,19 +7,19 @@
 <div class="well">
   <h4><i class="fa fa-fire"></i> <%= I18n.t('site.recent') %>:</h4>
   <ul>
-   <% @recent_sites.each do |site| %>
-       <li><%= link_to site.title, site_path(site) %></li>
+    <% @recent_sites.each do |site| %>
+        <li><%= link_to site.title, site_path(site) %></li>
     <% end %>
   </ul>
 </div>
 <script type="text/javascript">
   var word_array = [
     <% @tags.each do |tag| %>
-    {text: "<%= tag.name %>", weight: <%= tag.taggings_count %>, link: "<%= sites_path(tag: tag.name) %>" },
+    {text: "<%= tag.name %>", weight: <%= tag.taggings_count %>, link: "<%= sites_path(tag: tag.name) %>"},
     <% end %>
   ];
 
-  $(function() {
+  $(function () {
     $("#tag-cloud").jQCloud(word_array, {});
   });
 </script>

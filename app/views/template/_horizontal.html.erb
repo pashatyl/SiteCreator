@@ -1,30 +1,30 @@
 <nav class="navbar navbar-default <%= @site.theme %>">
   <div class="container-fluid">
     <div class="navbar-header">
-       <a class="navbar-brand" href="" style="padding: 0px;"><img  style="height: 100%; margin:0 10px; width: auto; display:inline;" src="<%= @site.picture.url %>">
+      <a class="navbar-brand" href="" style="padding: 0px;"><img style="height: 100%; margin:0 10px; width: auto; display:inline;" src="<%= @site.picture.url %>">
         <%= @site.title %></a>
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#horizontalNavbar">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#horizontalNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
+        <span class="icon-bar"></span>
       </button>
     </div>
     <div class="collapse navbar-collapse" id="horizontalNavbar">
       <ul class="nav navbar-nav">
         <% @site.pages.each do |page| %>
-          <li><%= active_link_to page.title, { controller: "pages", action: action_name, id: page }, :wrap_tag => :li %> </li>
+            <li><%= active_link_to page.title, {controller: "pages", action: action_name, id: page}, :wrap_tag => :li %> </li>
         <% end %>
       </ul>
       <% if action_name == "show" %>
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Back", root_path %></li>
-        </ul>
-      <% end %> 
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Back", root_path %></li>
+          </ul>
+      <% end %>
     </div>
   </div>
 </nav>
-  <div class="row">
-    <div class="col-sm-12 height-column" id="content"  style="overflow:hidden;">
-      <%= @body.html_safe %>
-    </div>
+<div class="row">
+  <div class="col-sm-12 height-column" id="content" style="overflow:hidden;">
+    <%= @body.html_safe %>
   </div>
+</div>

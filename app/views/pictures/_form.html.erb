@@ -1,8 +1,7 @@
+<%= form_for @picture, remote: true, html: {style: "display:inline;", multipart: true, class: "dropzone"} do |f| %>
+    <div class="fallback">
+      <%= f.file_field :image %><br>
+      <%= f.submit "Upload" %>
+    </div>
 
- <%= form_for @picture, remote: true, html: { style: "display:inline;", multipart: true, class: "dropzone" } do |f| %>
-     <div class="fallback">
-    <%= f.file_field :image %><br>
-    <%= f.submit "Upload" %>
-  </div>
-
-    <% end %>
+<% end %>

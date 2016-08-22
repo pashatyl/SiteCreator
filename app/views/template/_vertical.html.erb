@@ -11,11 +11,11 @@
       </div>
       <ul class="nav">
         <% @site.pages.each do |page| %>
-          <li><%=  active_link_to page.title, { controller: "pages", action: action_name, id: page }, :wrap_tag => :li  %> </li>
+            <li><%= active_link_to page.title, {controller: "pages", action: action_name, id: page}, :wrap_tag => :li %> </li>
         <% end %>
         <% if action_name == "show" %>
-          <li><%= link_to "Back", root_path %></li>
-        <% end %> 
+            <li><%= link_to "Back", root_path %></li>
+        <% end %>
       </ul>
       <br>
     </div>

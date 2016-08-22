@@ -9,12 +9,12 @@ class SearchesController < ApplicationController
       @search.each_hit_with_result.each do |hit, result|
         params[:filter].singularize.constantize.get_fields_for_search.each do |field|
           hit.highlights(field).each do |highlight|
-              content = highlight.format { |word| "<span class='highlight'>#{word}</span>" }
-              @results << [result, content, field]
+            content = highlight.format { |word| "<span class='highlight'>#{word}</span>" }
+            @results << [result, content, field]
           end
-        end        
+        end
       end
-    else 
+    else
       redirect_to sites_path
     end
   end

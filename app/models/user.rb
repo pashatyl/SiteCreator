@@ -17,14 +17,14 @@ class User < ActiveRecord::Base
   end
 
   def role
-  	ROLES[role_id]  
+    ROLES[role_id]
   end
 
   def self.find_for_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
       user.email = auth.info.email || "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com"
-      user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name   
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name
       user.skip_confirmation!
       user.save!
     end

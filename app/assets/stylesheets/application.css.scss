@@ -21,7 +21,6 @@
 @import "jqcloud";
 @import "jquery-ui.theme";
 
-
 html {
   position: relative;
   min-height: 100%;
@@ -55,60 +54,65 @@ footer {
     padding: 15px;
     background-color: #f1f1f1;
   }
-  .row.content {height:1auto;}
+  .row.content {
+    height: 1 auto;
+  }
 }
 
-.height-column{
+.height-column {
   margin-bottom: -99999px;
   padding-bottom: 99999px;
-  border:1px dashed #ddd;
+  border: 1px dashed #ddd;
 }
+
 .height-row {
-  height: auto; 
+  height: auto;
   overflow: hidden;
 }
+
 .edit-class {
-	margin:5px 2px 2px 20px;
-	background:#fff;
-	position:relative;
-	border:1px solid #ddd;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
+  margin: 5px 2px 2px 20px;
+  background: #fff;
+  position: relative;
+  border: 1px solid #ddd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
+
 .show-class {
-  margin:5px 2px 2px 20px;
-  position:relative;
+  margin: 5px 2px 2px 20px;
+  position: relative;
   padding: 10px;
 }
 
-.placeholder{
-	background: #f0f0f0;
-	border:1px dashed #ddd;
+.placeholder {
+  background: #f0f0f0;
+  border: 1px dashed #ddd;
 }
 
-div iframe{
-	display:block; 
-	margin:10px 1% 10px 1%;
-	width:98%;
+div iframe {
+  display: block;
+  margin: 10px 1% 10px 1%;
+  width: 98%;
 }
+
 .panel {
-	margin:10px 10px 10px 10px;
-	border-bottom:1px solid #eee;
+  margin: 10px 10px 10px 10px;
+  border-bottom: 1px solid #eee;
 }
 
-.panel-heading span
-{
-	margin-top: -26px;
-	font-size: 15px;
-	margin-right: -12px;
+.panel-heading span {
+  margin-top: -26px;
+  font-size: 15px;
+  margin-right: -12px;
 }
 
 .clickable {
-	background: rgba(0, 0, 0, 0.15);
-	display: inline-block;
-	padding: 6px 12px;
-	border-radius: 4px;
-	cursor: pointer;
+  background: rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 button.close {
@@ -121,14 +125,13 @@ button.close {
 .popover-content {
   height: 200px;
   overflow-y: auto;
- }
-
+}
 
 .black {
-	background-color: #373a3c;
-	a, .profile-usertitle-name{
-		color: #cccccc !important;
-	}
+  background-color: #373a3c;
+  a, .profile-usertitle-name {
+    color: #cccccc !important;
+  }
   .active > a, .active > a:hover, .active > a:focus {
     background-color: #181a1b !important;
   }
@@ -139,7 +142,7 @@ button.close {
 }
 
 .white {
-	background-color: #f7f7f9;
+  background-color: #f7f7f9;
   a, .profile-usertitle-name {
     color: #777 !important;
   }
@@ -154,11 +157,11 @@ button.close {
 }
 
 .blue {
-	background-color: #e3f2fd;
-	a, .profile-usertitle-name{
-		color: #696969 !important;
-	}
-  .active > a, .active > a:hover, .active > a:focus, a:hover, a:focus  {
+  background-color: #e3f2fd;
+  a, .profile-usertitle-name {
+    color: #696969 !important;
+  }
+  .active > a, .active > a:hover, .active > a:focus, a:hover, a:focus {
     background-color: #cfe9fc !important;
   }
   a:hover, a:focus {
@@ -173,15 +176,14 @@ button.close {
   }
 }
 
-
 .profile-userpic img {
   float: none;
   margin: 10px auto;
   width: 50%;
   height: 50%;
- /* -webkit-border-radius: 90% !important;
-  -moz-border-radius: 90% !important;
-  border-radius: 90% !important;*/
+  /* -webkit-border-radius: 90% !important;
+   -moz-border-radius: 90% !important;
+   border-radius: 90% !important;*/
 }
 
 .profile-usertitle {

@@ -1,25 +1,26 @@
 class MarkdownText < ActiveRecord::Base
-	belongs_to :page
+  belongs_to :page
   validates :markdown, :page, :div_id, :order, presence: true
-  validates :order, numericality: { only_integer: true }
+  validates :order, numericality: {only_integer: true}
   before_save :escape_javascript
-	def to_html(action)
+
+  def to_html(action)
     text = action == "show" ? markdown_to_html(markdown) : markdown
     '<div class="edit_area">' + text + '</div>'
-	end
+  end
 
 
-	private
-	def markdown_to_html(text)
+  private
+  def markdown_to_html(text)
     renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
     options = {
-      autolink: true,
-      no_intra_emphasis: true,
-      fenced_code_blocks: true,
-      lax_html_blocks: true,
-      strikethrough: true,
-      superscript: true,
-      space_after_headers: true
+        autolink: true,
+        no_intra_emphasis: true,
+        fenced_code_blocks: true,
+        lax_html_blocks: true,
+        strikethrough: true,
+        superscript: true,
+        space_after_headers: true
     }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end

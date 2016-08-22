@@ -1,6 +1,6 @@
 class CreatePictures < ActiveRecord::Migration
   def change
-    create_table :pictures do |t| 
+    create_table :pictures do |t|
       t.string :public_id
       t.string :url
       t.timestamps null: false
@@ -13,8 +13,6 @@ class CreatePictures < ActiveRecord::Migration
       t.integer :order
       t.timestamps
     end
-
-
 
 
   end
