@@ -8,7 +8,7 @@
             <%= image_tag site.picture.url, class:"img-responsive img-thumbnail", style:"height:200px;" %>
             <p class="description"><%= site.get_short_description %></p>
             <% if can? :update, site %>
-                <p> <%= link_to 'Edit', edit_site_page_path(site, site.first_page), class: "btn btn-primary" %> </p>
+                <p> <%= link_to t('site.edit'), edit_site_page_path(site, site.first_page), class: "btn btn-primary" %> </p>
             <% end %>
             <% if can? :read, site %>
               <p> <%= link_to t('site.moreInfo'), site_path(site), class: "btn btn-primary" %> </p>
@@ -18,7 +18,7 @@
             </div>
             <p>
               <i class="icon-user"></i> <%= site.user.name %>
-              | <i class="icon-calendar"></i> <%= I18n.l site.created_at, format: :short %>
+              | <i class="icon-calendar"></i> <%= I18n.l site.created_at, format: :long %>
             </p>
             <p>
               <% if site.tag_list.count > 0 %>

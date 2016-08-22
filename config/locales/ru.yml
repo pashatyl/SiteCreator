@@ -41,6 +41,10 @@ ru:
     logo: Логотип
     userName: Пользователь
     moreInfo: Подробнее
+    recent: Последние добавленные сайты
+    edit: Редактировать
+    template: Шаблон
+    picture: Логотип
   page:
     enter:
       video: Добавьте видео
@@ -57,6 +61,7 @@ ru:
   comment:
     comments_at: 'прокомментировал'
   tags: 'Теги'
+  create: 'Создать'
 
   activerecord:
     errors:
@@ -72,14 +77,14 @@ ru:
               confirmation: Введенные пароли не совпадают
             email:
               taken: Данный email уже используется
-          site:
+        site:
           attributes:
             title:
-              blank: Заголовок сайта не может быть пустым
+              blank: сайта не может быть пустым
             description:
-              blank: Описание сайта не может быть пустым
+              blank: сайта не может быть пустым
             picture:
-              blank: Сайт должен иметь логотип
+              blank: должен не может быть пустым
     models:
       user:
         one: Пользователь
