@@ -95,7 +95,7 @@ ru:
             description:
               blank: сайта не может быть пустым
             picture:
-              blank: должен не может быть пустым
+              blank: не может быть пустым
     models:
       user:
         one: Пользователь
