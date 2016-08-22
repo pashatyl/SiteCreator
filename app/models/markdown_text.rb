@@ -5,7 +5,7 @@ class MarkdownText < ActiveRecord::Base
   before_save :escape_javascript
 	def to_html(action)
     text = action == "show" ? markdown_to_html(markdown) : markdown
-    '<div class="edit_area">' + text + '</div>'
+    "<div class='#{action}_area'>" + text + "</div>"
 	end
 
 
