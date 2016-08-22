@@ -1,3 +1,17 @@
+= Solr
+
+Start
+rake sunspot:solr:start
+
+Stop
+rake sunspot:solr:stop
+
+Reindex
+rake sunspot:reindex
+
+If you experience any difficulties with solr try to delete /solr folder in the project, then start solr and run reindex. You should be good after that.
+
+
 == README
 
 This README would normally document whatever steps are necessary to get the

@@ -167,11 +167,12 @@ button.close {
   }
 }
 
-.col-sm-9, .col-sm-3, .col-sm-6, .col-sm-12 {
-  min-height: 200px;
-  //margin: 0 10px;
-
+.sites {
+  .col-sm-9, .col-sm-3, .col-sm-6, .col-sm-12 {
+    min-height: 200px;
+  }
 }
+
 
 .profile-userpic img {
   float: none;
@@ -194,13 +195,31 @@ button.close {
   margin-bottom: 7px;
 }
 
-
-.editor-panel{
-	padding:10px 0;
+.editor-panel {
+  padding: 10px 0;
   min-height: 400px;
-
 }
 
+.well:first-child {
+  margin-top: 20px;
+}
+
+.form-inline {
+  display: inline-block;
+
+  div {
+    display: inline-block;
+    margin: 3px 0;
+  }
+}
+
+.user-info i {
+  margin-right: 5px;
+}
+
+.site-rating div {
+  margin: 0 auto;
+}
 
 
 

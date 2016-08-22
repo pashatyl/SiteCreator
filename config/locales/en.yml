@@ -75,3 +75,7 @@ en:
   comment:
     comments_at: 'comments'
   tags: Tags
+  activerecord:
+    models:
+      site: 'Sites'
+      comment: 'Comments'
