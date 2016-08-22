@@ -101,7 +101,6 @@ function loadVideo(parent, url) {
         parent.append("<button class='close'>X</button>").append(div.append(frame));
     } else {
         alert("Only youtube videos allowed");
-        console.log(parent.find("edit-area").text())
         parent.find("edit-area").text("")
     }
 
@@ -167,9 +166,8 @@ function initializeCloseButon() {
         function() {
             $(this).find('.close').delay(50).fadeOut(10);
     });
-
+    $('button.close').off('click') 
     $('button.close').click(function (e) {
-    
         var elem = $(this).parent()
         if (elem.data("id") != null) {
             deletedItems.push({
@@ -209,7 +207,6 @@ function updatePageData(){
         });  
       });  
       var sortorder={ items: items };  
-      console.log(sortorder);  
          $.ajax({
           type: "PATCH",
           url: window.location.pathname.replace("edit",""),

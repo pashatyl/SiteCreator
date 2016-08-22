@@ -52,7 +52,7 @@ class PagesController < ApplicationController
     update_params = parse_params(JSON.parse params[:page_elements])
     deleted_elements = JSON.parse(params[:deleted_elements])
     respond_to do |format|      
-      if @page.update(update_params) && delete_elements(deleted_elements)
+      if delete_elements(deleted_elements) && @page.update(update_params)
         @body = HtmlProcessor.new(@page, "edit").process
         format.js {render :edit, notice: t('page.update.success')}
         format.html { redirect_to @page, notice: t('page.update.success') }
