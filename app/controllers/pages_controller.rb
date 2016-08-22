@@ -35,10 +35,10 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to edit_site_page_path(@site, @page), notice: 'page was successfully created.' }
+        format.html { redirect_to edit_site_page_path(@site, @page), notice: t('page.create.success') }
         format.json { render :show, status: :created, location: @page }
       else
-        flash[:notice] = 'There was a problem creating page'
+        flash[:notice] = t('page.create.problem')
         format.html { redirect_to edit_site_page_path(@site, @site.first_page) }
         format.json { render json: @page.errors, status: :unprocessable_entity }
       end
@@ -54,13 +54,13 @@ class PagesController < ApplicationController
     respond_to do |format|      
       if @page.update(update_params) && delete_elements(deleted_elements)
         @body = HtmlProcessor.new(@page, "edit").process
-        format.js {render :edit, notice: 'page was successfully updated.'}
-        format.html { redirect_to @page, notice: 'page was successfully updated.' }
+        format.js {render :edit, notice: t('page.update.success')}
+        format.html { redirect_to @page, notice: t('page.update.success') }
         
         format.json { render json: @body.to_json, status: 200}
       else
         #Rails.logger.error( @page.errors.messages)
-        flash[:notice] = 'There was a problem updating page'
+        flash[:notice] = t('page.update.problem')
         get_elements_for_edit_action
         format.js{render :edit}
         format.html { render :edit }
@@ -74,7 +74,7 @@ class PagesController < ApplicationController
   def destroy
     @page.destroy
     respond_to do |format|
-      format.html { redirect_to pages_url, notice: 'page was successfully destroyed.' }
+      format.html { redirect_to pages_url, notice: t('page.destroy') }
       format.json { head :no_content }
     end
   end

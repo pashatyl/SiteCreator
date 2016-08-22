@@ -34,7 +34,7 @@ en:
         ru: "Russian"
   comments:
     comment: 'Comments'
-    add: 'Add'
+    add: 'Leave comment'
     your_comment: 'Your comment'
   editor:
     dragPicture: 'Drag picture'
@@ -70,6 +70,17 @@ en:
       video: Add video
       text: Enter text
     clickToEdit: Click to add
+    create:
+      success: 'Page was successfully created'
+      problem: 'There was a problem creating page'
+    update:
+      success: 'Page was successfully updated'
+      problem:  'There was a problem updating page'
+    destroy: 'Page was successfully destroyed.'
+    dragVideo: 'Drag video'
+    dragText: Drag text
+    addPage: Add page
+    save: Save
   search:
     search_results: Search results
     results:

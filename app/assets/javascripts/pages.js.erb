@@ -216,8 +216,9 @@ function updatePageData(){
           data: {page_elements: JSON.stringify( sortorder ), deleted_elements: JSON.stringify( deletedItems)},
           dataType: 'script',
           success: function(msg) {
-            $("#flash_messages").html("<div class='alert alert-success alert-dismissible' role='alert'><button class='close' data-dismiss='alert'>×</button>Page was successfully updated.</div>")
+            $("#flash_messages").html("<div class='alert alert-success alert-dismissible' role='alert'><button class='close' data-dismiss='alert'>×" +
+                "</button><%= I18n.t('page.update.success') %></div>")
             deletedItems = [];
-          }            
+          }
         });
     }

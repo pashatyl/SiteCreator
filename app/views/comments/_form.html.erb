@@ -1,5 +1,5 @@
  <div class="well">
-    <h4><i class="fa fa-paper-plane-o"></i> Leave a Comment:</h4>
+    <h4><i class="fa fa-paper-plane-o"></i> <%= I18n.t('comments.add') %>:</h4>
 <%= form_for([site, site.comments.new], :html=>{class: "form-inline"}) do |f| %>
 <div class="row">
   <div class="form-group col-sm-8">    
