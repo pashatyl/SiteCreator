@@ -4,3 +4,9 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
+
+namespace :db do
+  task :restore do
+    system "mysql -u root SiteCreator_development < db.sql"
+  end
+end
